@@ -1,0 +1,13 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ambient-package-update"
+version = "1.0.0"
+dependencies = [
+    # Deployment
+    'typer~=0.7',
+    'Jinja2~=3.1',
+    'flit~=3.8',
+]
