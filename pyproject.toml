@@ -29,6 +29,7 @@ dependencies = [
     'typer~=0.7',
     'Jinja2~=3.1',
     'flit~=3.8',
+    'keyring~=23.13',
     # Linting
     'pre-commit~=3.2',
     'black~=23.3',

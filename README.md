@@ -1,3 +1,6 @@
+[![pypi](https://img.shields.io/pypi/v/ambient-package-update.svg)](https://pypi.python.org/pypi/ambient-package-update/)
+[![Downloads](https://pepy.tech/badge/ambient-package-update)](https://pepy.tech/project/ambient-package-update)
+
 # Ambient Package Update
 
 This repository will help keep all Python packages maintained by 
@@ -15,14 +18,9 @@ This project follows the CalVer versioning pattern: `YY.0M.[RELEASE]`
 
 ## Usage
 
-todos:
+todo:
 - write usage paragraph
-- package oder kein package?
-- update-script/typer einbauen (zielt aktuell noch auf lokal)
-- package-readme braucht mehr variablen für den title
 - package-readme hat dopplungen zu docs und enthält zeug, das nicht da drinstehen muss
-- metadata-dataclasses 
-- metadata aufteilen in file, das in jedem package liegt
 - ambient-toolbox branch löschen und nur rest von core da ablegen
 
 ## Contribution
