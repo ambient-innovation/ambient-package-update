@@ -2,17 +2,16 @@
 [![Downloads](https://pepy.tech/badge/{{ package_name|replace("_", "-") }})](https://pepy.tech/project/{{ package_name|replace("_", "-") }})
 [![Documentation Status](https://readthedocs.org/projects/{{ package_name|replace("_", "-") }}/badge/?version=latest)](https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/?badge=latest)
 
-**{{ readme_content.tagline }}**
+{{ readme_content.tagline }}
 
-Full documentation for the project is available at [readthedocs.io](https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/index.html).
-
-Created and maintained by [Ambient Digital](https://ambient.digital).
-
----
+* [PyPI](https://pypi.org/project/{{ package_name|replace("_", "-") }}/)
+* [GitHub](https://github.com/ambient-innovation/{{ package_name|replace("_", "-") }})
+* [Full documentation](https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/index.html)
+* Creator & Maintainer: [Ambient Digital](https://ambient.digital)
 
 {{ readme_content.content }}
 
-# Installation
+## Installation
 
 - Install the package via pip:
 
@@ -31,16 +30,16 @@ Created and maintained by [Ambient Digital](https://ambient.digital).
     )
      ````
 
-# Contribute
+## Contribute
 
-## Setup package for development
+### Setup package for development
 
 - Create a Python virtualenv and activate it
 - Install "pip-tools" with `pip install pip-tools`
 - Compile the requirements with `pip-compile --extra dev -o requirements.txt pyproject.toml --resolver=backtracking`
 - Sync the dependencies with your virtualenv with `pip-sync`
 
-## Add functionality
+### Add functionality
 
 - Create a new branch for your feature
 - Change the dependency in your requirements.txt to a local (editable) one that points to your local file system:
@@ -48,14 +47,14 @@ Created and maintained by [Ambient Digital](https://ambient.digital).
 - Ensure the code passes the tests
 - Create a pull request
 
-## Run tests
+### Run tests
 
 - Run tests
   ````
   pytest --ds settings tests
   ````
 
-## Git hooks (via pre-commit)
+### Git hooks (via pre-commit)
 
 We use pre-push hooks to ensure that only linted code reaches our remote repository and pipelines aren't triggered in
 vain.
@@ -80,35 +79,35 @@ Example: run all hooks of pre-push stage
 
     pre-commit run --all-files --hook-stage push
 
-## Update documentation
+### Update documentation
 
 - To build the documentation run: `sphinx-build docs/ docs/_build/html/`.
 - Open `docs/_build/html/index.html` to see the documentation.
 
-## Translation files
+### Translation files
 
 If you have added custom text, make sure to wrap it in `_()` where `_` is
 gettext_lazy (`from django.utils.translation import gettext_lazy as _`).
 
 How to create translation file:
 
-* Navigate to `ai_django_core/ai_django_core` (the inner directory!)
+* Navigate to `{{ package_name|replace("_", "-") }}` (the inner directory!)
 * `python manage.py makemessages -l de`
-* Have a look at the new/changed files within `ai_django_core/ai_django_core/locale`
+* Have a look at the new/changed files within `{{ package_name|replace("_", "-") }}/locale`
 
 How to compile translation files:
 
-* Navigate to `ai_django_core/ai_django_core` (the inner directory!)
+* Navigate to `{{ package_name|replace("_", "-") }}` (the inner directory!)
 * `python manage.py compilemessages`
-* Have a look at the new/changed files within `ai_django_core/ai_django_core/locale`
+* Have a look at the new/changed files within `{{ package_name|replace("_", "-") }}/locale`
 
-## Publish to ReadTheDocs.io
+### Publish to ReadTheDocs.io
 
 - Fetch the latest changes in GitHub mirror and push them
 - Trigger new build at ReadTheDocs.io (follow instructions in admin panel at RTD) if the GitHub webhook is not yet set
   up.
 
-## Publish to PyPi
+### Publish to PyPi
 
 - Update documentation about new/changed functionality
 

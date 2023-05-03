@@ -49,8 +49,4 @@ todo:
 
 ## Changelog
 
-**23.5.2**
-* Templates render a trailing newline (to conform with Python linting)
-
-**23.5.1**
-* Initial release
+Can be found at [GitHub](https://github.com/ambient-innovation/ambient-package-update/blob/master/CHANGES.md).
