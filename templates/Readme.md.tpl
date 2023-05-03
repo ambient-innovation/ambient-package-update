@@ -2,13 +2,15 @@
 [![Downloads](https://pepy.tech/badge/{{ package_name|replace("_", "-") }})](https://pepy.tech/project/{{ package_name|replace("_", "-") }})
 [![Documentation Status](https://readthedocs.org/projects/{{ package_name|replace("_", "-") }}/badge/?version=latest)](https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/?badge=latest)
 
-**Class-based emails including a test suite for Django**
+**{{ readme_content.tagline }}**
 
 Full documentation for the project is available at [readthedocs.io](https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/index.html).
 
 Created and maintained by [Ambient Digital](https://ambient.digital).
 
 ---
+
+{{ readme_content.content }}
 
 # Installation
 
@@ -28,7 +30,7 @@ Created and maintained by [Ambient Digital](https://ambient.digital).
         '{{ package_name }}',
     )
      ````
-  
+
 # Contribute
 
 ## Setup package for development
@@ -45,6 +47,13 @@ Created and maintained by [Ambient Digital](https://ambient.digital).
   `-e /Users/workspace/{{ package_name|replace("_", "-") }}` or via pip  `pip install -e /Users/workspace/{{ package_name|replace("_", "-") }}`
 - Ensure the code passes the tests
 - Create a pull request
+
+## Run tests
+
+- Run tests
+  ````
+  pytest --ds settings tests
+  ````
 
 ## Git hooks (via pre-commit)
 

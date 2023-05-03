@@ -1,15 +1,16 @@
 import datetime
 import os
 import subprocess
+import sys
+from importlib import import_module
 from pathlib import Path
 
 import typer
 from jinja2 import Template
 
-from metadata import get_metadata, get_package_list
+from ambient_package_update.metadata.package import PackageMetadata
 
 app = typer.Typer()
-
 
 """
 def deploy_to_test_pypi(package_name: str):
@@ -39,7 +40,28 @@ def release_all_packages():
     for package in get_package_list():
         release_package(package_name=package)
 
+
+@app.command()
+def build_all_docs():
+    for package in get_package_list():
+        run_tests(package_name=package)
+
+@app.command()
+def run_all_tests():
+    for package in get_package_list():
+        run_tests(package_name=package)
+
+
 """
+
+
+@app.command()
+def get_metadata(package_name: str) -> PackageMetadata:
+    sys.path.append(f"../{package_name}/.ambient-package-update")
+    m = import_module('metadata')
+    sys.path.pop()
+
+    return m.METADATA
 
 
 @app.command()
@@ -57,12 +79,12 @@ def render_templates(package_name: str):
         j2_template = Template(template.read_text())
         j2_template.globals['current_year'] = datetime.datetime.now(tz=datetime.UTC).date().year
 
-        rendered_string = j2_template.render(get_metadata(package_name))
+        rendered_string = j2_template.render(get_metadata(package_name).__dict__)
 
         relative_template_path = str(template).replace('templates', '')
 
         print(relative_template_path)
-        rendered_file_path = f'./{package_name}/{relative_template_path[:-4]}'
+        rendered_file_path = f'../{package_name}/{relative_template_path[:-4]}'
         with open(rendered_file_path, 'w') as f:
             f.write(rendered_string)
 
@@ -75,12 +97,6 @@ def render_templates(package_name: str):
 def build_docs(package_name: str):
     print(f'Building docs for package "{package_name}"')
     subprocess.call(f"cd ../{package_name} && sphinx-build docs/ docs/_build/html/", shell=True)
-
-
-@app.command()
-def build_all_docs():
-    for package in get_package_list():
-        run_tests(package_name=package)
 
 
 @app.command()
@@ -98,12 +114,6 @@ def run_tests(package_name: str):
     subprocess.call(f"pip install {dependency_list}", shell=True)
 
     subprocess.call(f"cd ../{package_name} && pytest --ds settings tests", shell=True)
-
-
-@app.command()
-def run_all_tests():
-    for package in get_package_list():
-        run_tests(package_name=package)
 
 
 if __name__ == "__main__":

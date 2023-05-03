@@ -27,7 +27,6 @@ settings.configure(
         'django.contrib.staticfiles',
         '{{ package_name }}',
     ],
-    EMAIL_BACKEND_REDIRECT_ADDRESS='',
     SECRET_KEY='ASDFjklö123456890',
 )
 django.setup()
