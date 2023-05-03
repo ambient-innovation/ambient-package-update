@@ -13,5 +13,5 @@ DEV_DEPENDENCIES = [
     'm2r2==0.3.1',
     'mistune<2.0.0',  # fixes a problem mit m2r2
     # Build
-    'ambient-package-update~=23.05.1',
+    'ambient-package-update~=23.5.1',
 ]

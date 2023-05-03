@@ -76,7 +76,7 @@ def render_templates(package_name: str):
 
     print(f'Start rending distribution templates for package "{package_name}".')
     for template in template_list:
-        j2_template = Template(template.read_text())
+        j2_template = Template(template.read_text(), keep_trailing_newline=True)
         j2_template.globals['current_year'] = datetime.datetime.now(tz=datetime.UTC).date().year
 
         rendered_string = j2_template.render(get_metadata(package_name).__dict__)

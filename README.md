@@ -14,7 +14,7 @@ This repository will help keep all Python packages maintained by
 
 ## Versioning
 
-This project follows the CalVer versioning pattern: `YY.0M.[RELEASE]`
+This project follows the CalVer versioning pattern: `YY.MM.[RELEASE]`
 
 ## Usage
 
@@ -49,5 +49,8 @@ todo:
 
 ## Changelog
 
-**23.05.1**
+**23.5.2**
+* Templates render a trailing newline (to conform with Python linting)
+
+**23.5.1**
 * Initial release
