@@ -11,6 +11,7 @@ from metadata import get_metadata, get_package_list
 app = typer.Typer()
 
 
+"""
 def deploy_to_test_pypi(package_name: str):
     subprocess.run("echo 'Publishing to test pypi'")
     subprocess.run(f"cd {package_name} && flit publish --repository testpypi")
@@ -19,6 +20,26 @@ def deploy_to_test_pypi(package_name: str):
 def deploy_to_prod_pypi(package_name: str):
     subprocess.run("echo 'Publishing to production pypi'")
     subprocess.run(f"cd {package_name} && flit publish")
+
+
+@app.command()
+def release_package(package_name: str):
+    # Render templates
+    render_templates(package_name=package_name)
+
+    # Deploy to PyPI TEST
+    deploy_to_test_pypi(package_name=package_name)
+
+    # Deploy to PyPI PROD
+    deploy_to_prod_pypi(package_name=package_name)
+
+
+@app.command()
+def release_all_packages():
+    for package in get_package_list():
+        release_package(package_name=package)
+
+"""
 
 
 @app.command()
@@ -51,27 +72,9 @@ def render_templates(package_name: str):
 
 
 @app.command()
-def release_package(package_name: str):
-    # Render templates
-    render_templates(package_name=package_name)
-
-    # Deploy to PyPI TEST
-    deploy_to_test_pypi(package_name=package_name)
-
-    # Deploy to PyPI PROD
-    deploy_to_prod_pypi(package_name=package_name)
-
-
-@app.command()
-def release_all_packages():
-    for package in get_package_list():
-        release_package(package_name=package)
-
-
-@app.command()
 def build_docs(package_name: str):
     print(f'Building docs for package "{package_name}"')
-    subprocess.call(f"cd {package_name} && sphinx-build docs/ docs/_build/html/", shell=True)
+    subprocess.call(f"cd ../{package_name} && sphinx-build docs/ docs/_build/html/", shell=True)
 
 
 @app.command()
@@ -94,7 +97,7 @@ def run_tests(package_name: str):
     dependency_list = ' '.join(f'"{d}"' for d in dependency_list)
     subprocess.call(f"pip install {dependency_list}", shell=True)
 
-    subprocess.call(f"cd {package_name} && pytest --ds settings tests", shell=True)
+    subprocess.call(f"cd ../{package_name} && pytest --ds settings tests", shell=True)
 
 
 @app.command()
@@ -102,10 +105,6 @@ def run_all_tests():
     for package in get_package_list():
         run_tests(package_name=package)
 
-
-# todo render sphinx docs (and print link so you can click on the index.html?) -> move some files to templates
-# todo write Readme template
-# todo github pipeline: linting, tests per package
 
 if __name__ == "__main__":
     app()

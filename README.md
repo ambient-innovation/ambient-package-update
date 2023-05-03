@@ -9,13 +9,47 @@ This repository will help keep all Python packages maintained by
 2. Navigate into the project directory
 3. Execute scripts/setup_venv.ps1 (on Windows) or rename the file to "setup_venv.sh" and execute it for macOS and UNIX
 
-# Usage
+## Versioning
+
+This project follows the CalVer versioning pattern: `YY.0M.[RELEASE]`
+
+## Usage
 
 todos:
 - write usage paragraph
 - package oder kein package?
+- update-script/typer einbauen (zielt aktuell noch auf lokal)
 - package-readme braucht mehr variablen für den title
 - package-readme hat dopplungen zu docs und enthält zeug, das nicht da drinstehen muss
 - metadata-dataclasses 
 - metadata aufteilen in file, das in jedem package liegt
 - ambient-toolbox branch löschen und nur rest von core da ablegen
+
+## Contribution
+
+### Publish to PyPi
+
+- Update documentation about new/changed functionality
+
+- Update the `Changelog`
+
+- Increment version in main `__init__.py`
+
+- Create pull request / merge to master
+
+- This project uses the flit package to publish to PyPI. Thus publishing should be as easy as running:
+  ```
+  flit publish
+  ```
+
+  To publish to TestPyPI use the following ensure that you have set up your .pypirc as
+  shown [here](https://flit.readthedocs.io/en/latest/upload.html#using-pypirc) and use the following command:
+
+  ```
+  flit publish --repository testpypi
+  ```
+
+## Changelog
+
+**23.05.1**
+* Initial release

@@ -1,13 +1,93 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "ambient_package_update"
 
 [project]
 name = "ambient-package-update"
-version = "1.0.0"
+authors = [
+    {'name' = 'Ambient Digital', 'email' = 'hello@ambient.digital'},
+]
+readme = "README.md"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Utilities",
+]
+dynamic = ["version", "description"]
+license = {"file" = "LICENSE.md"}
 dependencies = [
-    # Deployment
     'typer~=0.7',
     'Jinja2~=3.1',
     'flit~=3.8',
+    # Linting
+    'pre-commit~=3.2',
+    'black~=23.3',
 ]
+
+[project.urls]
+'Documentation' = 'https://github.com/ambient-innovation/ambient-package-update/blob/master/README.md'
+'Maintained by' = 'https://ambient.digital/'
+'Bugtracker' = 'https://github.com/ambient-innovation/ambient-package-update/issues'
+'Changelog' = 'https://github.com/ambient-innovation/ambient-package-update/blob/master/README.md#Changelog'
+
+[tool.black]
+line-length = 120
+multi_line_output = 3
+skip-string-normalization = true
+include_trailing_comma = true
+
+[tool.ruff]
+# Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
+select = ["E", "F", "W", "N", "I", "B", "A", "DTZ", "DJ"]
+ignore = [
+    'N999',     # Project name contains underscore, not fixable
+    'A003',     # Django attributes shadow python builtins
+    'DJ001',    # Django model text-based fields shouldn't be nullable
+]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable =["E", "F", "W", "N", "I", "B", "A", "DTZ", "DJ"]
+unfixable = []
+
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "*/migrations/*"
+]
+
+# Same as Black.
+line-length = 120
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Assume Python 3.11
+target-version = "py311"
