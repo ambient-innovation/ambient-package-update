@@ -17,6 +17,7 @@ classifiers = [
     "Framework :: Django :: 3.2",
     "Framework :: Django :: 4.0",
     "Framework :: Django :: 4.1",
+    "Framework :: Django :: 4.2",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
@@ -45,6 +46,7 @@ dependencies = [{% for dependency in dependencies %}
 name = "{{ package_name }}"
 
 [project.urls]
+'Homepage' = 'https://github.com/ambient-innovation/{{ package_name|replace("_", "-") }}/'
 'Documentation' = 'https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/index.html'
 'Maintained by' = 'https://ambient.digital/'
 'Bugtracker' = 'https://github.com/ambient-innovation/{{ package_name|replace("_", "-") }}/issues'
@@ -104,7 +106,7 @@ target-version = "py311"
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py{38,39,310,311}-django{22,30,31,32,40,41}
+envlist = py{38,39,310,311}-django{22,30,31,32,40,41,42}
 isolated_build = True
 
 [testenv]
@@ -115,6 +117,7 @@ deps =
     django32: Django>=3.2,<3.3
     django40: Django>=4.0,<4.1
     django41: Django>=4.1,<4.2
+    django42: Django>=4.2,<4.3
 extras = {% for area, dependency_list in optional_dependencies.items() %}{{ area }},{% endfor %}
 commands =
     pytest --ds settings tests

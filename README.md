@@ -22,6 +22,7 @@ This project follows the CalVer versioning pattern: `YY.MM.[RELEASE]`
 
 todo:
 - write usage paragraph
+- docs how to create a new package
 - create template dirs if not existing (without .github/workflows it's failing)
 - package-readme hat dopplungen zu docs und enthält zeug, das nicht da drinstehen muss
 - ambient-toolbox branch löschen und nur rest von core da ablegen

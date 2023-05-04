@@ -36,6 +36,7 @@ dependencies = [
 ]
 
 [project.urls]
+'Homepage' = 'https://github.com/ambient-innovation/ambient-package-update/'
 'Documentation' = 'https://github.com/ambient-innovation/ambient-package-update/blob/master/README.md'
 'Maintained by' = 'https://ambient.digital/'
 'Bugtracker' = 'https://github.com/ambient-innovation/ambient-package-update/issues'
