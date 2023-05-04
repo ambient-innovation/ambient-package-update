@@ -1,5 +1,9 @@
 # Changelog
 
+**23.5.5**
+* Django 4.2
+* Linter updates
+
 **23.5.4**
 * Improved documentation
 * Added further code quality templates
