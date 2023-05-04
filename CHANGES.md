@@ -1,5 +1,9 @@
 # Changelog
 
+**23.5.4**
+* Improved documentation
+* Added further code quality templates
+
 **23.5.3**
 * Improved rendered readme file
 

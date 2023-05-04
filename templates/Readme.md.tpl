@@ -36,7 +36,7 @@
 
 - Create a Python virtualenv and activate it
 - Install "pip-tools" with `pip install pip-tools`
-- Compile the requirements with `pip-compile --extra dev -o requirements.txt pyproject.toml --resolver=backtracking`
+- Compile the requirements with `pip-compile --extra {% for area, dependency_list in optional_dependencies.items() %}{{ area }},{% endfor %} -o requirements.txt pyproject.toml --resolver=backtracking`
 - Sync the dependencies with your virtualenv with `pip-sync`
 
 ### Add functionality
@@ -91,15 +91,15 @@ gettext_lazy (`from django.utils.translation import gettext_lazy as _`).
 
 How to create translation file:
 
-* Navigate to `{{ package_name|replace("_", "-") }}` (the inner directory!)
+* Navigate to `{{ package_name|replace("_", "-") }}`
 * `python manage.py makemessages -l de`
-* Have a look at the new/changed files within `{{ package_name|replace("_", "-") }}/locale`
+* Have a look at the new/changed files within `{{ package_name }}/locale`
 
 How to compile translation files:
 
-* Navigate to `{{ package_name|replace("_", "-") }}` (the inner directory!)
+* Navigate to `{{ package_name|replace("_", "-") }}`
 * `python manage.py compilemessages`
-* Have a look at the new/changed files within `{{ package_name|replace("_", "-") }}/locale`
+* Have a look at the new/changed files within `{{ package_name }}/locale`
 
 ### Publish to ReadTheDocs.io
 
