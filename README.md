@@ -8,9 +8,9 @@ This repository will help keep all Python packages maintained by
 
 ## Installation
 
-1. Ensure you have installed Python >=3.10 and the binary is in your system path
+1. Ensure you have installed Python >=3.11 and the binary is in your system path
 2. Navigate into the project directory
-3. Execute scripts/setup_venv.ps1 (on Windows) or rename the file to "setup_venv.sh" and execute it for macOS and UNIX
+3. Execute scripts/setup_venv.ps1 on Windows or scripts/setup_venv_unix.sh on Unix/macOS
 
 ## Versioning
 
@@ -18,7 +18,8 @@ This project follows the CalVer versioning pattern: `YY.MM.[RELEASE]`
 
 ## Usage
 
-* python .\main.py render-templates [PACKAGE_NAME]
+1. Activate the python venv `source ./venv/bin/activate`
+2. Execute with `python main.py render-templates [PACKAGE_NAME]`
 
 todo:
 - write usage paragraph

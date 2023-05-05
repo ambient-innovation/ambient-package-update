@@ -1,7 +1,7 @@
-import datetime
 import os
 import subprocess
 import sys
+from datetime import datetime, timezone
 from importlib import import_module
 from pathlib import Path
 
@@ -77,7 +77,7 @@ def render_templates(package_name: str):
     print(f'Start rending distribution templates for package "{package_name}".')
     for template in template_list:
         j2_template = Template(template.read_text(), keep_trailing_newline=True)
-        j2_template.globals['current_year'] = datetime.datetime.now(tz=datetime.UTC).date().year
+        j2_template.globals['current_year'] = datetime.now(tz=timezone.utc).date().year
 
         rendered_string = j2_template.render(get_metadata(package_name).__dict__)
 
