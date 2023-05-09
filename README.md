@@ -50,6 +50,8 @@ todo:
 
 - Increment version in main `__init__.py`
 
+- Increment version of this package in dependencies in `ambient_package_update/metadata/constants.py`
+
 - Create pull request / merge to master
 
 - This project uses the flit package to publish to PyPI. Thus publishing should be as easy as running:

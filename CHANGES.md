@@ -1,5 +1,8 @@
 # Changelog
 
+**23.5.7**
+* Updated docs about package dependency to updater
+
 **23.5.6**
 * Updated project readme
 * Updated package readme template
