@@ -1,3 +1,5 @@
+from ambient_package_update import __version__
+
 DEV_DEPENDENCIES = [
     # Test runner
     'freezegun~=1.2',
@@ -13,5 +15,5 @@ DEV_DEPENDENCIES = [
     'm2r2==0.3.1',
     'mistune<2.0.0',  # fixes a problem mit m2r2
     # Build
-    'ambient-package-update~=23.5.7',
+    f'ambient-package-update~={__version__}',
 ]

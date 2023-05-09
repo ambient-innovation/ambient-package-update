@@ -1,5 +1,8 @@
 # Changelog
 
+**23.5.9 (2023-05-09)**
+* Dynamically imported package dependency version of this package to avoid forgetting to update it
+
 **23.5.8 (2023-05-09)**
 * Improved UX of template rendering command
 * Updated meta docs how to create a new package
