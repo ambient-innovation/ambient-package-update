@@ -6,23 +6,35 @@
 This repository will help keep all Python packages maintained by 
 [Ambient Digital](https://ambient.digital) tidy and up-to-date.
 
-## Installation
+This package will render all required configuration and installation files for your target package.
 
-1. Ensure you have installed Python >=3.11 and the binary is in your system path
-2. Navigate into the project directory
-3. Execute scripts/setup_venv.ps1 on Windows or scripts/setup_venv_unix.sh on Unix/macOS
+Typical use-cases:
+* A new Python or Django version was release
+* A Python or Django version was deprecated
+* You want to update the Sphinx documentation builder
+* You want to update the linter versions
+* You want to add the third-party dependencies
 
 ## Versioning
 
 This project follows the CalVer versioning pattern: `YY.MM.[RELEASE]`
 
+# Installation
+
+1. Ensure you have installed Python >=3.11 and the binary is in your system path
+2. Clone this package from GitHub
+3. Navigate into the project directory
+4. Execute scripts/setup_venv.ps1 on Windows or scripts/setup_venv_unix.sh on Unix/macOS
+
 ## Usage
 
-1. Activate the python venv `source ./venv/bin/activate`
-2. Execute with `python main.py render-templates [PACKAGE_NAME]`
+* Navigate to the main directory of this package
+* Activate your virtualenv
+* Run `python .\main.py render-templates [PACKAGE_NAME]`
+* Open your target package in the IDE, validate the changes and increment the version accordingly
+* Release a new version of your target package
 
 todo:
-- write usage paragraph
 - docs how to create a new package
 - create template dirs if not existing (without .github/workflows it's failing)
 - package-readme hat dopplungen zu docs und enthält zeug, das nicht da drinstehen muss
