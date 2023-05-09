@@ -1,6 +1,7 @@
 # Changelog
 
 **23.5.8 (2023-05-09)**
+* Improved UX of template rendering command
 * Updated meta docs how to create a new package
 
 **23.5.7 (2023-05-09)**
