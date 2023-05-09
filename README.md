@@ -26,7 +26,9 @@ This project follows the CalVer versioning pattern: `YY.MM.[RELEASE]`
 3. Navigate into the project directory
 4. Execute scripts/setup_venv.ps1 on Windows or scripts/setup_venv_unix.sh on Unix/macOS
 
-## Usage
+## How to update a package
+
+These steps will tell you how to update a package which was created by using this updater.
 
 * Navigate to the main directory of this package
 * Activate your virtualenv
@@ -34,11 +36,52 @@ This project follows the CalVer versioning pattern: `YY.MM.[RELEASE]`
 * Open your target package in the IDE, validate the changes and increment the version accordingly
 * Release a new version of your target package
 
-todo:
-- docs how to create a new package
-- create template dirs if not existing (without .github/workflows it's failing)
-- package-readme hat dopplungen zu docs und enthält zeug, das nicht da drinstehen muss
-- ambient-toolbox branch löschen und nur rest von core da ablegen
+## How to create a new package
+
+Just follow these steps if you want to create a new package and maintain it using this updater.
+
+* Create a new repo at GitHub
+* Check out the new repository in the same directory this updater lives in (not inside the updater!)
+* Create a directory ".ambient-package-update" and create a file "metadata.py" inside.
+
+```python
+from ambient_package_update.metadata.author import PackageAuthor
+from ambient_package_update.metadata.constants import DEV_DEPENDENCIES
+from ambient_package_update.metadata.package import PackageMetadata
+from ambient_package_update.metadata.readme import ReadmeContent
+from ambient_package_update.metadata.ruff_ignored_inspection import RuffIgnoredInspection
+
+METADATA = PackageMetadata(
+    package_name='my_package_name',
+    authors=[
+        PackageAuthor(
+            name='Ambient Digital',
+            email='hello@ambient.digital',
+        ),
+    ],
+    development_status='5 - Production/Stable',
+    readme_content=ReadmeContent(
+        tagline='A fancy tagline for your new package',
+        content="""A multiline string containing specific things you want to have in your package readme.
+""",
+    ),
+    dependencies=[
+        'my_dependency>=1.0',
+    ],
+    optional_dependencies={
+        'dev': [
+            *DEV_DEPENDENCIES,
+        ],
+        # you might add further extras here
+    },
+    ruff_ignore_list=[
+        RuffIgnoredInspection(key='XYZ', comment="Reason why we need this exception"),
+        
+    ],
+)
+```
+ 
+* Finally, follow the steps of the section above (`How to update a package`).
 
 ## Contribution
 

@@ -58,7 +58,10 @@ def run_all_tests():
 @app.command()
 def get_metadata(package_name: str) -> PackageMetadata:
     sys.path.append(f"../{package_name}/.ambient-package-update")
-    m = import_module('metadata')
+    try:
+        m = import_module('metadata')
+    except ModuleNotFoundError as e:
+        raise RuntimeError('Please create a directory ".ambient-package-update" and add a "metadata.py".') from e
     sys.path.pop()
 
     return m.METADATA
@@ -84,7 +87,11 @@ def render_templates(package_name: str):
         relative_template_path = str(template).replace('templates', '')
 
         print(relative_template_path)
+
         rendered_file_path = f'../{package_name}/{relative_template_path[:-4]}'
+        # Create missing directories
+        os.makedirs(os.path.dirname(rendered_file_path), exist_ok=True)
+
         with open(rendered_file_path, 'w') as f:
             f.write(rendered_string)
 
