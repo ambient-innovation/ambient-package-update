@@ -1,5 +1,10 @@
 # Changelog
 
+**23.5.6**
+* Updated project readme
+* Updated package readme template
+* Added UNIX script for local setup
+
 **23.5.5**
 * Django 4.2
 * Linter updates
