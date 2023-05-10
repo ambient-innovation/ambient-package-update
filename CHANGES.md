@@ -1,5 +1,10 @@
 # Changelog
 
+**23.5.10 (2023-05-10)**
+* Sorted shell scripts in by OS
+* Added script to update all supported target packages
+* Updated linting
+
 **23.5.9 (2023-05-09)**
 * Dynamically imported package dependency version of this package to avoid forgetting to update it
 
