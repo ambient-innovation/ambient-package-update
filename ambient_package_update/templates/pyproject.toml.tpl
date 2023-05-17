@@ -54,6 +54,7 @@ name = "{{ package_name }}"
 
 
 [tool.black]
+extend-exclude = '''.*/migrations/.*'''
 line-length = 120
 multi_line_output = 3
 skip-string-normalization = true
