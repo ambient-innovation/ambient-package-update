@@ -10,6 +10,8 @@ from jinja2 import Template
 
 from ambient_package_update.metadata.package import PackageMetadata
 
+BASE_PATH = Path(__file__).parent
+
 app = typer.Typer()
 
 """
@@ -56,8 +58,8 @@ def run_all_tests():
 
 
 @app.command()
-def get_metadata(package_name: str) -> PackageMetadata:
-    sys.path.append(f"../{package_name}/.ambient-package-update")
+def get_metadata() -> PackageMetadata:
+    sys.path.append("./.ambient-package-update")
     try:
         m = import_module('metadata')
     except ModuleNotFoundError as e:
@@ -68,8 +70,8 @@ def get_metadata(package_name: str) -> PackageMetadata:
 
 
 @app.command()
-def render_templates(package_name: str):
-    template_path = './templates'
+def render_templates():
+    template_path = BASE_PATH / "templates"
 
     template_list = []
     for path, subdirs, files in os.walk(template_path):
@@ -77,25 +79,26 @@ def render_templates(package_name: str):
         for file in files:
             template_list.append(Path(f"{path}/{file}"))
 
-    print(f'Start rending distribution templates for package "{package_name}".')
+    print('Start rending distribution templates.')
+    metadata_dict = get_metadata().__dict__
     for template in template_list:
         j2_template = Template(template.read_text(), keep_trailing_newline=True)
         j2_template.globals['current_year'] = datetime.now(tz=timezone.utc).date().year
 
-        rendered_string = j2_template.render(get_metadata(package_name).__dict__)
+        rendered_string = j2_template.render(metadata_dict)
 
-        relative_template_path = str(template).replace('templates', '')
+        relative_template_path = str(Path(template).relative_to(template_path))[:-4]
 
-        print(relative_template_path)
-
-        rendered_file_path = f'../{package_name}/{relative_template_path[:-4]}'
         # Create missing directories
-        os.makedirs(os.path.dirname(rendered_file_path), exist_ok=True)
+        print(relative_template_path)
+        relative_template_dir = os.path.dirname(relative_template_path)
+        if relative_template_dir:
+            os.makedirs(os.path.dirname(relative_template_path), exist_ok=True)
 
-        with open(rendered_file_path, 'w') as f:
+        with open(relative_template_path, 'w') as f:
             f.write(rendered_string)
 
-        abs_path = Path(rendered_file_path).resolve()
+        abs_path = Path(relative_template_path).resolve()
         print(f'> Successfully rendered template "{abs_path}".')
     print('Rendering finished.')
 
@@ -107,20 +110,20 @@ def build_docs(package_name: str):
 
 
 @app.command()
-def run_tests(package_name: str):
-    print(f'Running tests for package "{package_name}"')
+def run_tests():
+    print('Running tests')
 
-    package_data = get_metadata(package_name)
-    dependency_list = package_data['dependencies']
+    package_data = get_metadata()
+    dependency_list = package_data.dependencies
 
-    if package_data['optional_dependencies']:
-        for _, opt_dependency in package_data['optional_dependencies'].items():
+    if package_data.optional_dependencies:
+        for _, opt_dependency in package_data.optional_dependencies.items():
             dependency_list += opt_dependency
 
     dependency_list = ' '.join(f'"{d}"' for d in dependency_list)
     subprocess.call(f"pip install {dependency_list}", shell=True)
 
-    subprocess.call(f"cd ../{package_name} && pytest --ds settings tests", shell=True)
+    subprocess.call("pytest --ds settings tests", shell=True)
 
 
 if __name__ == "__main__":

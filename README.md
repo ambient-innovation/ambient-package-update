@@ -19,21 +19,15 @@ Typical use-cases:
 
 This project follows the CalVer versioning pattern: `YY.MM.[RELEASE]`
 
-# Installation
-
-1. Ensure you have installed Python >=3.11 and the binary is in your system path
-2. Clone this package from GitHub
-3. Navigate into the project directory
-4. Execute scripts/setup_venv.ps1 on Windows or scripts/setup_venv_unix.sh on Unix/macOS
 
 ## How to update a package
 
 These steps will tell you how to update a package which was created by using this updater.
 
-* Navigate to the main directory of this package
+* Navigate to the main directory of **your** package
 * Activate your virtualenv
-* Run `python .\main.py render-templates [PACKAGE_NAME]`
-* Open your target package in the IDE, validate the changes and increment the version accordingly
+* Run `python -m ambient_package_update.cli render-templates`
+* Validate the changes and increment the version accordingly
 * Release a new version of your target package
 
 ## How to create a new package
@@ -81,6 +75,11 @@ METADATA = PackageMetadata(
 )
 ```
  
+* Install the `ambient_package_update` package
+  ```
+  # ideally in a virtual environment
+  pip instal ambient_package_update
+  ```
 * Finally, follow the steps of the section above (`How to update a package`).
 
 ## Contribution
