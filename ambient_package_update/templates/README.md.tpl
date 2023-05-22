@@ -13,6 +13,9 @@
 
 ## Installation
 
+{% if readme_content.installation %}
+  {{ readme_content.installation }}
+{% else %}
 - Install the package via pip:
 
   `pip install {{ package_name|replace("_", "-") }}`
@@ -29,6 +32,7 @@
         '{{ package_name }}',
     )
      ````
+{% endif %}
 
 ## Contribute
 

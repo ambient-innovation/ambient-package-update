@@ -54,6 +54,8 @@ name = "{{ package_name }}"
 
 
 [tool.black]
+# use force-exclude, so that black also applies exclude when run using pre-commit: https://github.com/psf/black/issues/395
+force-exclude = '''.*/migrations/.*'''
 line-length = 120
 multi_line_output = 3
 skip-string-normalization = true
