@@ -10,7 +10,7 @@ This package will render all required configuration and installation files for y
 
 Typical use-cases:
 
-- A new Python or Django version was release
+- A new Python or Django version was released
 - A Python or Django version was deprecated
 - You want to update the Sphinx documentation builder
 - You want to update the linter versions
