@@ -1,5 +1,10 @@
 # Changelog
 
+**23.5.11 (2023-05-10)**
+* Improved templating and add more possible meta information
+* Updated flit base version
+* Improved CLI and documentation
+
 **23.5.10 (2023-05-10)**
 * Sorted shell scripts in by OS
 * Added script to update all supported target packages
