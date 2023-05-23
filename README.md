@@ -80,6 +80,9 @@ METADATA = PackageMetadata(
   # ideally in a virtual environment
   pip install ambient-package-update
   ```
+- Add `docs/index.rst` and link your readme and changelog to have a basic documentation (surely, you can add or write
+  more custom docs if you want!)
+- Enable the readthedocs hook in your GitHub repo to update your documentation on a commit basis
 - Finally, follow the steps of the section above (`How to update a package`).
 
 ## Contribution

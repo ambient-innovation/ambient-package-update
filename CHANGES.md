@@ -1,5 +1,9 @@
 # Changelog
 
+**23.5.12 (2023-05-10)**
+* Added docs about adding documentation to your package
+* Removed deprecated shell scripts for local development
+
 **23.5.11 (2023-05-10)**
 * Improved templating and add more possible meta information
 * Updated flit base version
