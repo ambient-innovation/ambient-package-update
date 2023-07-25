@@ -26,13 +26,13 @@ classifiers = [
 dynamic = ["version", "description"]
 license = {"file" = "LICENSE.md"}
 dependencies = [
-    'typer~=0.7',
+    'typer~=0.9',
     'Jinja2~=3.1',
-    'flit~=3.8',
-    'keyring~=23.13',
+    'flit~=3.9',
+    'keyring~=24.2',
     # Linting
-    'pre-commit~=3.2',
-    'black~=23.3',
+    'pre-commit~=3.3',
+    'black~=23.7',
 ]
 
 [project.urls]

@@ -87,6 +87,21 @@ METADATA = PackageMetadata(
 
 ## Contribution
 
+### Dependency updates
+
+The dependencies of this package are being maintained with `pip-tools`. 
+
+> pip install -U pip-tools
+
+To add/update/remove a package, please do so in the main `pyproject.toml`. Afterward, call the following command to
+reflect your changes in the `requirements.txt`.
+
+> pip-compile --upgrade
+
+To install the packages, run:
+
+> pip-sync
+
 ### Publish to PyPi
 
 - Update documentation about new/changed functionality

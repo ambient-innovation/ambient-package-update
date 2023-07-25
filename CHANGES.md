@@ -1,5 +1,11 @@
 # Changelog
 
+**23.7.1 (2023-07-25)**
+* Dropped Django version 2.2, 3.0, 3.1, 4.0 due to deprecation
+* Updated pre-commit linter versions
+* Updated versions for meta package
+* Added installation docs to Readme file
+
 **23.5.12 (2023-05-10)**
 * Added docs about adding documentation to your package
 * Removed deprecated shell scripts for local development
