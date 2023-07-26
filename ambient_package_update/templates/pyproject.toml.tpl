@@ -12,9 +12,7 @@ classifiers = [
     "Development Status :: {{ development_status }}",
     "Environment :: Web Environment",
     "Framework :: Django",
-    "Framework :: Django :: 3.1",
     "Framework :: Django :: 3.2",
-    "Framework :: Django :: 4.0",
     "Framework :: Django :: 4.1",
     "Framework :: Django :: 4.2",
     "Intended Audience :: Developers",
@@ -107,7 +105,7 @@ target-version = "py311"
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py{38,39,310,311}-django{22,30,31,32,40,41,42}
+envlist = py{38,39,310,311}-django{32,41,42}
 isolated_build = True
 
 [testenv]

@@ -1,5 +1,8 @@
 # Changelog
 
+**23.7.2 (2023-07-25)**
+* Bugfix with supported Django versions
+
 **23.7.1 (2023-07-25)**
 * Dropped Django version 2.2, 3.0, 3.1, 4.0 due to deprecation
 * Updated pre-commit linter versions
