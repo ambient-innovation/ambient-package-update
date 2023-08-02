@@ -1,7 +1,6 @@
-[![pypi](https://img.shields.io/pypi/v/{{ package_name|replace("_", "-") }}.svg)](https://pypi.python.org/pypi/{{ package_name|replace("_", "-") }}/)
+[![PyPI release](https://img.shields.io/pypi/v/{{ package_name|replace("_", "-") }}.svg)](https://img.shields.io/pypi/v/{{ package_name|replace("_", "-") }}.svg)
 [![Downloads](https://pepy.tech/badge/{{ package_name|replace("_", "-") }})](https://pepy.tech/project/{{ package_name|replace("_", "-") }})
 [![Documentation Status](https://readthedocs.org/projects/{{ package_name|replace("_", "-") }}/badge/?version=latest)](https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/?badge=latest)
-[![PyPI release](https://img.shields.io/pypi/v/{{ package_name|replace("_", "-") }}.svg)](https://img.shields.io/pypi/v/{{ package_name|replace("_", "-") }}.svg)
 
 {{ readme_content.tagline }}
 

@@ -1,6 +1,5 @@
-[![pypi](https://img.shields.io/pypi/v/ambient-package-update.svg)](https://pypi.python.org/pypi/ambient-package-update/)
-[![Downloads](https://pepy.tech/badge/ambient-package-update)](https://pepy.tech/project/ambient-package-update)
 [![PyPI release](https://img.shields.io/pypi/v/ambient-package-update.svg)](https://img.shields.io/pypi/v/ambient-package-update.svg)
+[![Downloads](https://pepy.tech/badge/ambient-package-update)](https://pepy.tech/project/ambient-package-update)
 
 # Ambient Package Update
 

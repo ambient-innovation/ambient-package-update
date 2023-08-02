@@ -1,5 +1,8 @@
 # Changelog
 
+**23.7.4 (2023-08-02)**
+* Removed duplicated badges
+
 **23.7.3 (2023-08-02)**
 * Updated linters
 * Updated readme to show that this is a general purpose package
