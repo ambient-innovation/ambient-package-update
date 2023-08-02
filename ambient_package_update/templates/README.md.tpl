@@ -1,6 +1,11 @@
 [![pypi](https://img.shields.io/pypi/v/{{ package_name|replace("_", "-") }}.svg)](https://pypi.python.org/pypi/{{ package_name|replace("_", "-") }}/)
 [![Downloads](https://pepy.tech/badge/{{ package_name|replace("_", "-") }})](https://pepy.tech/project/{{ package_name|replace("_", "-") }})
 [![Documentation Status](https://readthedocs.org/projects/{{ package_name|replace("_", "-") }}/badge/?version=latest)](https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/?badge=latest)
+[![PyPI release](https://img.shields.io/pypi/v/{{ package_name|replace("_", "-") }}.svg)](https://img.shields.io/pypi/v/{{ package_name|replace("_", "-") }}.svg)
+
+.. image::
+   :target: https://github.com/jazzband/django-axes/actions
+   :alt:
 
 {{ readme_content.tagline }}
 

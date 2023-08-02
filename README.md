@@ -1,10 +1,11 @@
 [![pypi](https://img.shields.io/pypi/v/ambient-package-update.svg)](https://pypi.python.org/pypi/ambient-package-update/)
 [![Downloads](https://pepy.tech/badge/ambient-package-update)](https://pepy.tech/project/ambient-package-update)
+[![PyPI release](https://img.shields.io/pypi/v/ambient-package-update.svg)](https://img.shields.io/pypi/v/ambient-package-update.svg)
 
 # Ambient Package Update
 
-This repository will help keep all Python packages maintained by
-[Ambient Digital](https://ambient.digital) tidy and up-to-date.
+This repository will help keep all Python packages following a certain basic structure tidy and up-to-date. It's being 
+maintained by [Ambient Digital](https://ambient.digital). 
 
 This package will render all required configuration and installation files for your target package.
 

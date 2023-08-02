@@ -1,6 +1,11 @@
 # Changelog
 
-**23.7.2 (2023-07-25)**
+**23.7.3 (2023-08-02)**
+* Updated linters
+* Updated readme to show that this is a general purpose package
+* Added PyPI badge to rendered readme
+
+* **23.7.2 (2023-07-25)**
 * Bugfix with supported Django versions
 
 **23.7.1 (2023-07-25)**
