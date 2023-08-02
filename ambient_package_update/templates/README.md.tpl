@@ -3,10 +3,6 @@
 [![Documentation Status](https://readthedocs.org/projects/{{ package_name|replace("_", "-") }}/badge/?version=latest)](https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/?badge=latest)
 [![PyPI release](https://img.shields.io/pypi/v/{{ package_name|replace("_", "-") }}.svg)](https://img.shields.io/pypi/v/{{ package_name|replace("_", "-") }}.svg)
 
-.. image::
-   :target: https://github.com/jazzband/django-axes/actions
-   :alt:
-
 {{ readme_content.tagline }}
 
 * [PyPI](https://pypi.org/project/{{ package_name|replace("_", "-") }}/)
