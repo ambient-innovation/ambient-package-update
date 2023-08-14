@@ -1,7 +1,7 @@
 # Changelog
 
-**23.8.2 (2023-08-14)**
-* Updated changelog
+**23.8.3 (2023-08-14)**
+* Fixed linting bug in Sphinx config
 
 **23.8.1 (2023-08-14)**
 * Extended ruff linting
