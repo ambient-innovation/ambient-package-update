@@ -60,13 +60,13 @@ include_trailing_comma = true
 
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
-select = ["E", "F", "W", "N", "I", "B", "A", "DTZ", "DJ"]
+select = ["E", "F", "W", "N", "I", "B", "A", "DTZ", "DJ", "RUF100", "YTT", "C4", "PIE", "INT", "PGH"]
 ignore = [{% for ruff_ignore in ruff_ignore_list %}
     '{{ ruff_ignore.key }}', # {{ ruff_ignore.comment }}{% endfor %}
 ]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
-fixable =["E", "F", "W", "N", "I", "B", "A", "DTZ", "DJ"]
+fixable = ["E", "F", "W", "N", "I", "B", "A", "DTZ", "DJ", "RUF100", "YTT", "C4", "PIE", "INT", "PGH"]
 unfixable = []
 
 exclude = [
