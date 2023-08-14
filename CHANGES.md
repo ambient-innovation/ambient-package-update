@@ -1,5 +1,12 @@
 # Changelog
 
+**23.8.2 (2023-08-14)**
+* Updated changelog
+
+**23.8.1 (2023-08-14)**
+* Extended ruff linting
+* Updated linter packages
+
 **23.7.4 (2023-08-02)**
 * Removed duplicated badges
 
