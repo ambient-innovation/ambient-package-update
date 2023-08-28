@@ -17,3 +17,6 @@ DEV_DEPENDENCIES = [
     # Build
     f'ambient-package-update~={__version__}',
 ]
+
+LICENSE_MIT = "MIT"
+LICENSE_GPL = "GPL"

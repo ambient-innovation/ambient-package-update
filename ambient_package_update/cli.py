@@ -1,7 +1,7 @@
 import os
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from importlib import import_module
 from pathlib import Path
 
@@ -13,48 +13,6 @@ from ambient_package_update.metadata.package import PackageMetadata
 BASE_PATH = Path(__file__).parent
 
 app = typer.Typer()
-
-"""
-def deploy_to_test_pypi(package_name: str):
-    subprocess.run("echo 'Publishing to test pypi'")
-    subprocess.run(f"cd {package_name} && flit publish --repository testpypi")
-
-
-def deploy_to_prod_pypi(package_name: str):
-    subprocess.run("echo 'Publishing to production pypi'")
-    subprocess.run(f"cd {package_name} && flit publish")
-
-
-@app.command()
-def release_package(package_name: str):
-    # Render templates
-    render_templates(package_name=package_name)
-
-    # Deploy to PyPI TEST
-    deploy_to_test_pypi(package_name=package_name)
-
-    # Deploy to PyPI PROD
-    deploy_to_prod_pypi(package_name=package_name)
-
-
-@app.command()
-def release_all_packages():
-    for package in get_package_list():
-        release_package(package_name=package)
-
-
-@app.command()
-def build_all_docs():
-    for package in get_package_list():
-        run_tests(package_name=package)
-
-@app.command()
-def run_all_tests():
-    for package in get_package_list():
-        run_tests(package_name=package)
-
-
-"""
 
 
 @app.command()
@@ -69,37 +27,56 @@ def get_metadata() -> PackageMetadata:
     return m.METADATA
 
 
+def get_template_path() -> Path:
+    return BASE_PATH / "templates"
+
+
+def create_rendered_file(*, template: Path, relative_target_path: Path) -> None:
+    """
+    Takes a template Path object and renders a template in the target package.
+    """
+    metadata_dict = get_metadata().__dict__
+
+    j2_template = Template(template.read_text(), keep_trailing_newline=True)
+    j2_template.globals['current_year'] = datetime.now(tz=UTC).date().year
+
+    rendered_string = j2_template.render(metadata_dict)
+
+    # Create missing directories
+    print(relative_target_path)
+    relative_target_dir = os.path.dirname(relative_target_path)
+    if relative_target_dir:
+        os.makedirs(os.path.dirname(relative_target_path), exist_ok=True)
+
+    with open(relative_target_path, 'w') as f:
+        f.write(rendered_string)
+
+    abs_path = Path(relative_target_path).resolve()
+    print(f'> Successfully rendered template "{abs_path}".')
+
+
 @app.command()
 def render_templates():
-    template_path = BASE_PATH / "templates"
-
     template_list = []
-    for path, subdirs, files in os.walk(template_path):
+    # Collect all template files and add them to "template_list"
+    for path, subdirs, files in os.walk(get_template_path()):
         print(path, subdirs, files)
         for file in files:
             template_list.append(Path(f"{path}/{file}"))
 
     print('Start rending distribution templates.')
-    metadata_dict = get_metadata().__dict__
+
     for template in template_list:
-        j2_template = Template(template.read_text(), keep_trailing_newline=True)
-        j2_template.globals['current_year'] = datetime.now(tz=timezone.utc).date().year
+        create_rendered_file(
+            template=template, relative_target_path=str(Path(template).relative_to(get_template_path()))[:-4]
+        )
 
-        rendered_string = j2_template.render(metadata_dict)
+    # License file is conditional so we have to render it separately
+    metadata_dict = get_metadata().__dict__
+    create_rendered_file(
+        template=BASE_PATH / f"licenses/{metadata_dict['license']}.md", relative_target_path='LICENSE.md'
+    )
 
-        relative_template_path = str(Path(template).relative_to(template_path))[:-4]
-
-        # Create missing directories
-        print(relative_template_path)
-        relative_template_dir = os.path.dirname(relative_template_path)
-        if relative_template_dir:
-            os.makedirs(os.path.dirname(relative_template_path), exist_ok=True)
-
-        with open(relative_template_path, 'w') as f:
-            f.write(rendered_string)
-
-        abs_path = Path(relative_template_path).resolve()
-        print(f'> Successfully rendered template "{abs_path}".')
     print('Rendering finished.')
 
 

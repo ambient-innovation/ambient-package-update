@@ -1,5 +1,10 @@
 # Changelog
 
+**23.8.4 (2023-08-28)**
+* Licenses can now be chosen (MIT or GPL)
+* Integrated PyUpgrade linter via ruff for updater-package
+* Updated linter packages
+
 **23.8.3 (2023-08-14)**
 * Fixed linting bug in Sphinx config
 
