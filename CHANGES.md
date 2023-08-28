@@ -1,6 +1,7 @@
 # Changelog
 
 **23.8.4 (2023-08-28)**
+* **Breaking change:** Added company field in package metadata
 * Licenses can now be chosen (MIT or GPL)
 * Integrated PyUpgrade linter via ruff for updater-package
 * Updated linter packages
