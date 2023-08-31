@@ -1,5 +1,8 @@
 # Changelog
 
+**23.8.5 (2023-08-31)**
+* Fixed a bug with the URL of the download badge in the Readme template
+
 **23.8.4 (2023-08-28)**
 * **Breaking change:** Added company field in package metadata
 * Licenses can now be chosen (MIT or GPL)
