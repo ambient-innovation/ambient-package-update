@@ -8,6 +8,7 @@ from pathlib import Path
 import typer
 from jinja2 import Template
 
+from ambient_package_update.metadata.constants import LICENSE_GPL
 from ambient_package_update.metadata.package import PackageMetadata
 
 BASE_PATH = Path(__file__).parent
@@ -31,7 +32,7 @@ def get_template_path() -> Path:
     return BASE_PATH / "templates"
 
 
-def create_rendered_file(*, template: Path, relative_target_path: Path) -> None:
+def create_rendered_file(*, template: Path, relative_target_path: Path | str) -> None:
     """
     Takes a template Path object and renders a template in the target package.
     """
@@ -39,6 +40,9 @@ def create_rendered_file(*, template: Path, relative_target_path: Path) -> None:
 
     j2_template = Template(template.read_text(), keep_trailing_newline=True)
     j2_template.globals['current_year'] = datetime.now(tz=UTC).date().year
+    j2_template.globals['license_label'] = (
+        "GNU General Public License (GPL)" if metadata_dict['license'] == LICENSE_GPL else "MIT License"
+    )
 
     rendered_string = j2_template.render(metadata_dict)
 

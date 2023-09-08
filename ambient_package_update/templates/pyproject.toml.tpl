@@ -16,7 +16,7 @@ classifiers = [
     "Framework :: Django :: 4.1",
     "Framework :: Django :: 4.2",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: {{ license_label }}",
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python",

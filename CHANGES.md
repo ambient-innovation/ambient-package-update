@@ -1,5 +1,8 @@
 # Changelog
 
+**23.9.2 (2023-09-08)**
+* Added license label to pyproject.toml dynamically
+
 **23.9.1 (2023-09-08)**
 * Added black badge for Readme files
 
