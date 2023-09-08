@@ -1,5 +1,8 @@
 # Changelog
 
+**23.9.1 (2023-09-08)**
+* Added black badge for Readme files
+
 **23.8.5 (2023-08-31)**
 * Fixed a bug with the URL of the download badge in the Readme template
 
