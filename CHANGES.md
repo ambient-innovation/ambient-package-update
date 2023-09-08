@@ -1,5 +1,8 @@
 # Changelog
 
+**23.9.4 (2023-09-08)**
+* Fixed configuration bug for GitHub actions
+
 **23.9.3 (2023-09-08)**
 * Used improved black mirror for pre-commit
 
