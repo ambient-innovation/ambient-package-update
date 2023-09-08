@@ -1,5 +1,8 @@
 # Changelog
 
+**23.9.3 (2023-09-08)**
+* Used improved black mirror for pre-commit
+
 **23.9.2 (2023-09-08)**
 * Added license label to pyproject.toml dynamically
 
