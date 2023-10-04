@@ -1,5 +1,9 @@
 # Changelog
 
+**23.10.1 (2023-10-04)**
+* Added Python 3.12 support
+* Updated linting packages
+
 **23.9.5 (2023-09-08)**
 * Adjusted scripts directory structure (by OS)
 
