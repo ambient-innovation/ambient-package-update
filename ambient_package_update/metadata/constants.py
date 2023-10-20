@@ -5,17 +5,31 @@ DEV_DEPENDENCIES = [
     'freezegun~=1.2',
     'pytest-django~=4.5',
     'pytest-mock~=3.10',
+    'coverage~=7.3',
     # Linting
-    'pre-commit~=3.2',
-    'black~=23.3',
+    'pre-commit~=3.5',
+    'black~=23.10',
     # Documentation
-    'Django~=3.2',
     'sphinx==4.2.0',
     'sphinx-rtd-theme==1.0.0',
     'm2r2==0.3.1',
     'mistune<2.0.0',  # fixes a problem mit m2r2
     # Build
     f'ambient-package-update~={__version__}',
+]
+
+SUPPORTED_DJANGO_VERSIONS = [
+    '3.2',
+    '4.1',
+    '4.2',
+]
+
+SUPPORTED_PYTHON_VERSIONS = [
+    '3.8',
+    '3.9',
+    '3.10',
+    '3.11',
+    '3.12',
 ]
 
 LICENSE_MIT = "MIT"

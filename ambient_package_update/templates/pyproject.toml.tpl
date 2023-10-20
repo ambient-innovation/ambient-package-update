@@ -11,21 +11,15 @@ readme = "README.md"
 classifiers = [
     "Development Status :: {{ development_status }}",
     "Environment :: Web Environment",
-    "Framework :: Django",
-    "Framework :: Django :: 3.2",
-    "Framework :: Django :: 4.1",
-    "Framework :: Django :: 4.2",
+    "Framework :: Django",{% for django_version in supported_django_versions %}
+    "Framework :: Django :: {{ django_version }}",{% endfor %}
     "Intended Audience :: Developers",
     "License :: OSI Approved :: {{ license_label }}",
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3",{% for python_version in supported_python_versions %}
+    "Programming Language :: Python :: {{ python_version }}",{% endfor %}
     "Topic :: Utilities",
 ]
 dynamic = ["version", "description"]
@@ -77,8 +71,9 @@ select = [
     "PIE",     # Bunch of useful rules
     # "SIM",     # Simplifies your code
     "INT",     # Validates your gettext translation strings
+    "PERF",    # PerfLint
     "PGH",     # No all-purpose "# noqa" and eval validation
-    # "UP",      # PyUpgrade
+    "PL",      # PyLint
 ]
 ignore = [{% for ruff_ignore in ruff_ignore_list %}
     '{{ ruff_ignore.key }}', # {{ ruff_ignore.comment }}{% endfor %}
@@ -102,8 +97,9 @@ fixable = [
     "PIE",     # Bunch of useful rules
     # "SIM",     # Simplifies your code
     "INT",     # Validates your gettext translation strings
+    "PERF",    # PerfLint
     "PGH",     # No all-purpose "# noqa" and eval validation
-    # "UP",      # PyUpgrade
+    "PL",      # PyLint
 ]
 unfixable = []
 
@@ -148,19 +144,13 @@ isolated_build = True
 
 [testenv]
 # Django deprecation overview: https://www.djangoproject.com/download/
-deps =
-    django32: Django>=3.2,<3.3
-    django41: Django>=4.1,<4.2
-    django42: Django>=4.2,<4.3
+deps ={% for django_version in supported_django_versions %}
+    django{{ django_version|replace(".", "") }}: Django=={{ django_version }}.*{% endfor %}
 extras = {% for area, dependency_list in optional_dependencies.items() %}{{ area }},{% endfor %}
 commands =
-    pytest --ds settings tests
+    coverage run -m pytest --ds settings tests
 
 [gh-actions]
-python =
-    3.8: py38
-    3.9: py39
-    3.10: py310
-    3.11: py311
-    3.12: py312
+python ={% for python_version in supported_python_versions %}
+    {{ python_version }}: py{{ python_version|replace(".", "") }}{% endfor %}
 """

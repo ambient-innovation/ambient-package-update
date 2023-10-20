@@ -3,6 +3,7 @@ import subprocess
 import sys
 from datetime import UTC, datetime
 from importlib import import_module
+from os.path import basename
 from pathlib import Path
 
 import typer
@@ -44,10 +45,10 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
         "GNU General Public License (GPL)" if metadata_dict['license'] == LICENSE_GPL else "MIT License"
     )
 
+    print(f"> Rendering template {basename(template)!r}...")
     rendered_string = j2_template.render(metadata_dict)
 
     # Create missing directories
-    print(relative_target_path)
     relative_target_dir = os.path.dirname(relative_target_path)
     if relative_target_dir:
         os.makedirs(os.path.dirname(relative_target_path), exist_ok=True)
@@ -65,8 +66,7 @@ def render_templates():
     # Collect all template files and add them to "template_list"
     for path, subdirs, files in os.walk(get_template_path()):
         print(path, subdirs, files)
-        for file in files:
-            template_list.append(Path(f"{path}/{file}"))
+        [template_list.append(Path(f"{path}/{file}")) for file in files]
 
     print('Start rending distribution templates.')
 
@@ -98,7 +98,7 @@ def run_tests():
     dependency_list = package_data.dependencies
 
     if package_data.optional_dependencies:
-        for _, opt_dependency in package_data.optional_dependencies.items():
+        for opt_dependency in package_data.optional_dependencies.values():
             dependency_list += opt_dependency
 
     dependency_list = ' '.join(f'"{d}"' for d in dependency_list)
