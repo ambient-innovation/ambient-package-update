@@ -1,5 +1,13 @@
 # Changelog
 
+**23.10.2 (2023-10-20)**
+* Add coverage check to CI pipeline
+* Enforced 100% coverage and added badge
+* Updated dependencies and linters
+* Made supported Django and Python versions compatible
+* Added pip-tools script to install all dependencies
+* Added "PL" and "PERF" rules for ruff
+
 **23.10.1 (2023-10-04)**
 * Added Python 3.12 support
 * Updated linting packages
