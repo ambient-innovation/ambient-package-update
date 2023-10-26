@@ -1,5 +1,8 @@
 # Changelog
 
+**23.10.5 (2023-10-26)**
+* Fixed RTD build
+
 **23.10.4 (2023-10-26)**
 * Fixed migration validator to GitHub actions
 
