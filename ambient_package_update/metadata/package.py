@@ -14,6 +14,7 @@ class PackageMetadata:
     authors: list[PackageAuthor]
     development_status: str
     readme_content: ReadmeContent
+    has_migrations: bool
     dependencies: list[str]
     supported_django_versions: list[str]
     supported_python_versions: list[str]

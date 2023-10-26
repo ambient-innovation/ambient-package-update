@@ -16,8 +16,8 @@
 
 ## Installation
 
-{% if readme_content.installation %}
-  {{ readme_content.installation }}
+{% if readme_content.custom_installation %}
+{{ readme_content.custom_installation }}
 {% else %}
 - Install the package via pip:
 
@@ -35,6 +35,14 @@
         '{{ package_name }}',
     )
      ````
+
+{% if has_migrations %}
+- Apply migrations by running:
+
+  `python ./manage.py migrate`
+{% endif %}
+
+{% if readme_content.additional_installation %}{{ readme_content.additional_installation }}{% endif %}
 {% endif %}
 
 ## Contribute

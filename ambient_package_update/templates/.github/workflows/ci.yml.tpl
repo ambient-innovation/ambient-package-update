@@ -48,7 +48,9 @@ jobs:
       - name: Run Tests
         env:
           TOXENV: django${% raw %}{{ matrix.django-version }}{% endraw %}
-        run: tox
+        run: tox{% if has_migrations %}
+      - name: Validate migration integrity
+        run: python manage.py makemigrations --check --dry-run{% endif %}
       - name: Upload coverage data
         uses: actions/upload-artifact@v3
         with:
@@ -76,13 +78,5 @@ jobs:
 
       - name: Combine coverage and fail if it's <100%
         run: |
-          # python -m coverage combine
           python -m coverage html --skip-covered --skip-empty
           python -m coverage report --fail-under=100
-
-      - name: Upload HTML report
-        if: ${% raw %}{{ failure() }}{% endraw %}
-        uses: actions/upload-artifact@v3
-        with:
-          name: html-report
-          path: htmlcov

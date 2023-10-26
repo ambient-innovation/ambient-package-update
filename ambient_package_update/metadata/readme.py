@@ -6,4 +6,5 @@ from typing import Optional
 class ReadmeContent:
     tagline: str
     content: Optional[str] = None
-    installation: Optional[str] = None
+    custom_installation: Optional[str] = None
+    additional_installation: Optional[str] = None

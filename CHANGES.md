@@ -1,5 +1,13 @@
 # Changelog
 
+**23.10.3 (2023-10-26)**
+* Added custom_installation metadata (renamed from `installation`)
+* Added additional_information metadata
+* Added flag for rendering migration related things in metadata
+* Added migration validator to GitHub actions
+* Removed HTML coverage report in GitHub actions
+* Updated readthedocs.yml template
+
 **23.10.2 (2023-10-20)**
 * Add coverage check to CI pipeline
 * Enforced 100% coverage and added badge
