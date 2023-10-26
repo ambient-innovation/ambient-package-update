@@ -1,5 +1,8 @@
 # Changelog
 
+**23.10.4 (2023-10-26)**
+* Fixed migration validator to GitHub actions
+
 **23.10.3 (2023-10-26)**
 * Added custom_installation metadata (renamed from `installation`)
 * Added additional_information metadata

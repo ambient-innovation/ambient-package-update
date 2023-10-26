@@ -21,6 +21,24 @@ jobs:
       - name: Run pre-commit hooks
         run: pre-commit run --all-files --hook-stage push
 
+  {% if has_migrations %}
+  validate_migrations:
+    name: Validate migrations
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install -U pip-tools && pip-compile --extra {% for area, dependency_list in optional_dependencies.items() %}{{ area }},{% endfor %} -o requirements.txt pyproject.toml --resolver=backtracking && pip-sync
+
+      - name: Validate migration integrity
+        run: python manage.py makemigrations --check --dry-run
+  {% endif %}
+
   tests:
     name: Python ${% raw %}{{ matrix.python-version }}{% endraw %}, django ${% raw %}{{ matrix.django-version }}{% endraw %}
     runs-on: ubuntu-22.04
@@ -48,9 +66,7 @@ jobs:
       - name: Run Tests
         env:
           TOXENV: django${% raw %}{{ matrix.django-version }}{% endraw %}
-        run: tox{% if has_migrations %}
-      - name: Validate migration integrity
-        run: python manage.py makemigrations --check --dry-run{% endif %}
+        run: tox
       - name: Upload coverage data
         uses: actions/upload-artifact@v3
         with:
