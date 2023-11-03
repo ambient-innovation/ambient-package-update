@@ -1,5 +1,8 @@
 # Changelog
 
+**23.10.7 (2023-11-03)**
+* Fixed bug in coverage configuration
+
 **23.10.6 (2023-11-03)**
 * Replaced `black` formatter with `ruff format`
 * Improved coverage configuration
