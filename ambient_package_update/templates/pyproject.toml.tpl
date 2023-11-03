@@ -44,15 +44,6 @@ name = "{{ package_name }}"
 'Bugtracker' = 'https://github.com/ambient-innovation/{{ package_name|replace("_", "-") }}/issues'
 'Changelog' = 'https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/features/changelog.html'
 
-
-[tool.black]
-# use force-exclude, so that black also applies exclude when run using pre-commit: https://github.com/psf/black/issues/395
-force-exclude = '''.*/migrations/.*'''
-line-length = 120
-multi_line_output = 3
-skip-string-normalization = true
-include_trailing_comma = true
-
 [tool.ruff]
 select = [
     "E",       # pycodestyle errors
@@ -135,6 +126,19 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 # Assume Python 3.12
 target-version = "py312"
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
 
 [tool.tox]
 legacy_tox_ini = """

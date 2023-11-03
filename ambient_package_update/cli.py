@@ -21,7 +21,7 @@ app = typer.Typer()
 def get_metadata() -> PackageMetadata:
     sys.path.append("./.ambient-package-update")
     try:
-        m = import_module('metadata')
+        m = import_module("metadata")
     except ModuleNotFoundError as e:
         raise RuntimeError('Please create a directory ".ambient-package-update" and add a "metadata.py".') from e
     sys.path.pop()
@@ -40,9 +40,9 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
     metadata_dict = get_metadata().__dict__
 
     j2_template = Template(template.read_text(), keep_trailing_newline=True)
-    j2_template.globals['current_year'] = datetime.now(tz=UTC).date().year
-    j2_template.globals['license_label'] = (
-        "GNU General Public License (GPL)" if metadata_dict['license'] == LICENSE_GPL else "MIT License"
+    j2_template.globals["current_year"] = datetime.now(tz=UTC).date().year
+    j2_template.globals["license_label"] = (
+        "GNU General Public License (GPL)" if metadata_dict["license"] == LICENSE_GPL else "MIT License"
     )
 
     print(f"> Rendering template {basename(template)!r}...")
@@ -53,7 +53,7 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
     if relative_target_dir:
         os.makedirs(os.path.dirname(relative_target_path), exist_ok=True)
 
-    with open(relative_target_path, 'w') as f:
+    with open(relative_target_path, "w") as f:
         f.write(rendered_string)
 
     abs_path = Path(relative_target_path).resolve()
@@ -68,7 +68,7 @@ def render_templates():
         print(path, subdirs, files)
         [template_list.append(Path(f"{path}/{file}")) for file in files]
 
-    print('Start rending distribution templates.')
+    print("Start rending distribution templates.")
 
     for template in template_list:
         create_rendered_file(
@@ -78,10 +78,10 @@ def render_templates():
     # License file is conditional so we have to render it separately
     metadata_dict = get_metadata().__dict__
     create_rendered_file(
-        template=BASE_PATH / f"licenses/{metadata_dict['license']}.md", relative_target_path='LICENSE.md'
+        template=BASE_PATH / f"licenses/{metadata_dict['license']}.md", relative_target_path="LICENSE.md"
     )
 
-    print('Rendering finished.')
+    print("Rendering finished.")
 
 
 @app.command()
@@ -92,7 +92,7 @@ def build_docs(package_name: str):
 
 @app.command()
 def run_tests():
-    print('Running tests')
+    print("Running tests")
 
     package_data = get_metadata()
     dependency_list = package_data.dependencies
@@ -101,7 +101,7 @@ def run_tests():
         for opt_dependency in package_data.optional_dependencies.values():
             dependency_list += opt_dependency
 
-    dependency_list = ' '.join(f'"{d}"' for d in dependency_list)
+    dependency_list = " ".join(f'"{d}"' for d in dependency_list)
     subprocess.call(f"pip install {dependency_list}", shell=True)
 
     subprocess.call("pytest --ds settings tests", shell=True)
