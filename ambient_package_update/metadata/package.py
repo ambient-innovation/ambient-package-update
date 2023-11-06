@@ -18,6 +18,7 @@ class PackageMetadata:
     dependencies: list[str]
     supported_django_versions: list[str]
     supported_python_versions: list[str]
+    min_coverage: float = 100.0
     license: str = LICENSE_MIT
     license_year: int = datetime.datetime.now(tz=datetime.UTC).year
     optional_dependencies: dict[str, list[str]] = None

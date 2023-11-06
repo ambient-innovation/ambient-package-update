@@ -55,6 +55,7 @@ select = [
     "A",       # flake8-builtins
     "DTZ",     # flake8-datetimez
     "DJ",      # flake8-django
+    "TD",      # flake8-to-do
     "RUF100",  # Removes unnecessary "#noqa" comments
     "YTT",     # Avoid non-future-prove usages of "sys"
     # "FBT",     # Protects you from the "boolean trap bug"
@@ -81,6 +82,7 @@ fixable = [
     "A",       # flake8-builtins
     "DTZ",     # flake8-datetimez
     "DJ",      # flake8-django
+    "TD",      # flake8-to-do
     "RUF100",  # Removes unnecessary "#noqa" comments
     "YTT",     # Avoid non-future-prove usages of "sys"
     # "FBT",     # Protects you from the "boolean trap bug"

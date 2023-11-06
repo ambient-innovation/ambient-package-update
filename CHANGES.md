@@ -1,5 +1,9 @@
 # Changelog
 
+**23.10.8 (2023-11-06)**
+* Minimum coverage new configurable
+* Added `flake8-todo` to Ruff rules
+
 **23.10.7 (2023-11-03)**
 * Fixed bug in coverage configuration
 
