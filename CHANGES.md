@@ -1,6 +1,9 @@
 # Changelog
 
-**23.10.8 (2023-11-06)**
+**23.11.1 (2023-11-17)**
+* Improved Readme template
+
+* **23.10.8 (2023-11-06)**
 * Minimum coverage new configurable
 * Added `flake8-todo` to Ruff rules
 
