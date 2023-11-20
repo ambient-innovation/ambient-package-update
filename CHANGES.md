@@ -1,5 +1,9 @@
 # Changelog
 
+**23.11.2 (2023-11-20)**
+* Added typer as package dev dependency
+* Improved Readme template
+
 **23.11.1 (2023-11-17)**
 * Improved Readme template
 

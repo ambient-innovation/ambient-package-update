@@ -1,6 +1,8 @@
 from ambient_package_update import __version__
 
 DEV_DEPENDENCIES = [
+    # Updater
+    "typer~=0.9"
     # Test runner
     "freezegun~=1.2",
     "pytest-django~=4.5",

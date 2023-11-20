@@ -20,7 +20,6 @@ jobs:
 
       - name: Run pre-commit hooks
         run: pre-commit run --all-files --hook-stage push
-
   {% if has_migrations %}
   validate_migrations:
     name: Validate migrations
@@ -36,8 +35,7 @@ jobs:
         run: python -m pip install -U pip-tools && pip-compile --extra {% for area, dependency_list in optional_dependencies.items() %}{{ area }},{% endfor %} -o requirements.txt pyproject.toml --resolver=backtracking && pip-sync
 
       - name: Validate migration integrity
-        run: python manage.py makemigrations --check --dry-run
-  {% endif %}
+        run: python manage.py makemigrations --check --dry-run{% endif %}
 
   tests:
     name: Python ${% raw %}{{ matrix.python-version }}{% endraw %}, django ${% raw %}{{ matrix.django-version }}{% endraw %}
