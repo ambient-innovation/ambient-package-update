@@ -1,5 +1,8 @@
 # Changelog
 
+**23.12.2 (2023-12-04)**
+* Fixed test pipeline configuration
+
 **23.12.1 (2023-12-04)**
 * Added Django 5.0 support
 * Updated Ruff version
