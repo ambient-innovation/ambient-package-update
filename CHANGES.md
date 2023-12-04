@@ -1,5 +1,9 @@
 # Changelog
 
+**23.12.1 (2023-12-04)**
+* Added Django 5.0 support
+* Updated Ruff version
+
 **23.11.2 (2023-11-20)**
 * Added typer as package dev dependency
 * Improved Readme template
