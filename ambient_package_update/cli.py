@@ -39,6 +39,11 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
     """
     metadata_dict = get_metadata().__dict__
 
+    # Special case: We might want to set an explicit GitHub package name
+    metadata_dict["github_package_name"] = (
+        metadata_dict["github_package_name"] if metadata_dict["github_package_name"] else metadata_dict["package_name"]
+    )
+
     j2_template = Template(template.read_text(), keep_trailing_newline=True)
     j2_template.globals["current_year"] = datetime.now(tz=UTC).date().year
     j2_template.globals["license_label"] = (

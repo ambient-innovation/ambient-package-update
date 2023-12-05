@@ -16,6 +16,8 @@ DEV_DEPENDENCIES = [
     "sphinx-rtd-theme==1.0.0",
     "m2r2==0.3.1",
     "mistune<2.0.0",  # fixes a problem mit m2r2
+    # Release
+    "flit~=3.9",
     # Build
     f"ambient-package-update~={__version__}",
 ]

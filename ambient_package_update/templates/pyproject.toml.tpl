@@ -38,10 +38,10 @@ dependencies = [{% for dependency in dependencies %}
 name = "{{ package_name }}"
 
 [project.urls]
-'Homepage' = 'https://github.com/ambient-innovation/{{ package_name|replace("_", "-") }}/'
+'Homepage' = 'https://github.com/ambient-innovation/{{ github_package_name|replace("_", "-") }}/'
 'Documentation' = 'https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/index.html'
 'Maintained by' = 'https://ambient.digital/'
-'Bugtracker' = 'https://github.com/ambient-innovation/{{ package_name|replace("_", "-") }}/issues'
+'Bugtracker' = 'https://github.com/ambient-innovation/{{ github_package_name|replace("_", "-") }}/issues'
 'Changelog' = 'https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/features/changelog.html'
 
 [tool.ruff]

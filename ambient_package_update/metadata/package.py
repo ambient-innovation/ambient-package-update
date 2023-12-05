@@ -21,5 +21,6 @@ class PackageMetadata:
     min_coverage: float = 100.0
     license: str = LICENSE_MIT
     license_year: int = datetime.datetime.now(tz=datetime.UTC).year
+    github_package_name: str = None
     optional_dependencies: dict[str, list[str]] = None
     ruff_ignore_list: list[RuffIgnoredInspection] = None

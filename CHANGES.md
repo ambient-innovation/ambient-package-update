@@ -1,5 +1,9 @@
 # Changelog
 
+**23.12.4 (2023-12-05)**
+* Added optional GitHub package name
+* Added "flit" to package dev dependencies
+
 **23.12.3 (2023-12-05)**
 * Dependency-Constants updated
 
