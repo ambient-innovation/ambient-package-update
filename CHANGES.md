@@ -1,5 +1,8 @@
 # Changelog
 
+**23.12.3 (2023-12-05)**
+* Dependency-Constants updated
+
 **23.12.2 (2023-12-04)**
 * Fixed test pipeline configuration
 

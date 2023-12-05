@@ -4,13 +4,13 @@ DEV_DEPENDENCIES = [
     # Updater
     "typer~=0.9",
     # Test runner
-    "freezegun~=1.2",
-    "pytest-django~=4.5",
-    "pytest-mock~=3.10",
+    "freezegun~=1.3",
+    "pytest-django~=4.7",
+    "pytest-mock~=3.12",
     "coverage~=7.3",
     # Linting
     "pre-commit~=3.5",
-    "ruff~=0.1",
+    "ruff~=0.1.7",
     # Documentation
     "sphinx==4.2.0",
     "sphinx-rtd-theme==1.0.0",
