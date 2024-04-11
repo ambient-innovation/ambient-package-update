@@ -1,5 +1,8 @@
 # Changelog
 
+**24.4.3 (2024-04-11)**
+* Linting fixes 😎
+
 **24.4.2 (2024-04-11)**
 * Updated Changelog.md
 
