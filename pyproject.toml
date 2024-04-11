@@ -48,7 +48,7 @@ dev = [
 'Changelog' = 'https://github.com/ambient-innovation/ambient-package-update/blob/master/CHANGES.md'
 
 [tool.ruff]
-select = [
+lint.select = [
     "E",       # pycodestyle errors
     "W",       # pycodestyle warnings
     "F",       # Pyflakes
@@ -70,14 +70,14 @@ select = [
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
 ]
-ignore = [
+lint.ignore = [
     'N999',     # Project name contains underscore, not fixable
     'A003',     # Django attributes shadow python builtins
     'DJ001',    # Django model text-based fields shouldn't be nullable
 ]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
-fixable = [
+lint.fixable = [
     "E",       # pycodestyle errors
     "W",       # pycodestyle warnings
     "F",       # Pyflakes
@@ -99,7 +99,7 @@ fixable = [
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
 ]
-unfixable = []
+lint.unfixable = []
 
 exclude = [
     ".bzr",

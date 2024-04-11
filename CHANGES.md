@@ -1,5 +1,8 @@
 # Changelog
 
+**24.4.4 (2024-04-11)**
+* Updated ruff configuration
+
 **24.4.3 (2024-04-11)**
 * Linting fixes 😎
 

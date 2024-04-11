@@ -45,7 +45,7 @@ name = "{{ package_name }}"
 'Changelog' = 'https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/features/changelog.html'
 
 [tool.ruff]
-select = [
+lint.select = [
     "E",       # pycodestyle errors
     "W",       # pycodestyle warnings
     "F",       # Pyflakes
@@ -67,12 +67,12 @@ select = [
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
 ]
-ignore = [{% for ruff_ignore in ruff_ignore_list %}
+lint.ignore = [{% for ruff_ignore in ruff_ignore_list %}
     '{{ ruff_ignore.key }}', # {{ ruff_ignore.comment }}{% endfor %}
 ]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
-fixable = [
+lint.fixable = [
     "E",       # pycodestyle errors
     "W",       # pycodestyle warnings
     "F",       # Pyflakes
@@ -94,7 +94,7 @@ fixable = [
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
 ]
-unfixable = []
+lint.unfixable = []
 
 exclude = [
     ".bzr",
