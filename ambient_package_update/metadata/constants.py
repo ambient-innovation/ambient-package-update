@@ -12,9 +12,9 @@ DEV_DEPENDENCIES = [
     "pre-commit~=3.5",
     "ruff~=0.1.7",
     # Documentation
-    "sphinx==4.2.0",
-    "sphinx-rtd-theme==1.0.0",
-    "m2r2==0.3.1",
+    'sphinx~=7.1',
+    'sphinx-rtd-theme~=2.0',
+    'm2r2==0.3.3.post2',
     "mistune<2.0.0",  # fixes a problem mit m2r2
     # Release
     "flit~=3.9",
@@ -23,8 +23,6 @@ DEV_DEPENDENCIES = [
 ]
 
 SUPPORTED_DJANGO_VERSIONS = [
-    "3.2",
-    "4.1",
     "4.2",
     "5.0",
 ]

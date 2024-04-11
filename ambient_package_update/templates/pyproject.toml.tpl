@@ -160,3 +160,10 @@ commands =
 python ={% for python_version in supported_python_versions %}
     {{ python_version }}: py{{ python_version|replace(".", "") }}{% endfor %}
 """
+
+[tool.pytest.ini_options]
+python_files = [
+    "tests.py",
+    "test_*.py",
+    "*_tests.py",
+]
