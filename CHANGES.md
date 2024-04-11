@@ -1,5 +1,14 @@
 # Changelog
 
+**24.4.2 (2024-04-11)**
+* Updated Changelog.md
+
+**24.4.1 (2024-04-11)**
+* Dropped Django 3.2 & 4.1
+* Updated linters
+* Updated some GitHub actions
+* Moved pytest config to pyproject.toml
+
 **23.12.4 (2023-12-05)**
 * Added optional GitHub package name
 * Added "flit" to package dev dependencies
