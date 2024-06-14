@@ -8,3 +8,4 @@ class ReadmeContent:
     content: Optional[str] = None
     custom_installation: Optional[str] = None
     additional_installation: Optional[str] = None
+    uses_internationalisation: bool = True

@@ -46,12 +46,6 @@ jobs:
         django-version: [{% for django_version in supported_django_versions %}'{{ django_version|replace(".", "") }}', {% endfor %}]
 
         exclude:
-          - python-version: '3.12'
-            django-version: 32
-          - python-version: '3.11'
-            django-version: 32
-          - python-version: '3.10'
-            django-version: 32
           - python-version: '3.8'
             django-version: 50
           - python-version: '3.9'

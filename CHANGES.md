@@ -1,5 +1,12 @@
 # Changelog
 
+**24.6.1 (2024-06-14)**
+* Added `module_name` variable to Package metadata
+* Added opt-out for internationalisation content in Readme-file
+* Removed fixed links to Ambient as a maintainer in templates
+* Updated linters
+* Removed Django 3.2 from test matrix
+
 **24.4.4 (2024-04-11)**
 * Updated ruff configuration
 

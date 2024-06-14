@@ -37,7 +37,7 @@ from {{ package_name }} import __version__  # noqa: E402
 
 project = "{{ package_name|replace("_", "-") }}"
 copyright = "{{ current_year }}, Ambient Innovation: GmbH"  # noqa: A001
-author = "Ambient Innovation: GmbH <hello@ambient.digital>"
+author = "{{ maintainer.name }} <{{ maintainer.email }}>"
 version = __version__
 release = __version__
 

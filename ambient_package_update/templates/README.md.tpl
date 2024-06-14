@@ -10,7 +10,7 @@
 * [PyPI](https://pypi.org/project/{{ package_name|replace("_", "-") }}/)
 * [GitHub](https://github.com/ambient-innovation/{{ github_package_name|replace("_", "-") }})
 * [Full documentation](https://{{ package_name|replace("_", "-") }}.readthedocs.io/en/latest/index.html)
-* Creator & Maintainer: [Ambient Digital](https://ambient.digital)
+* Creator & Maintainer: [{{ maintainer.name }}]({{ maintainer.url }})
 
 {{ readme_content.content }}
 
@@ -105,6 +105,7 @@ Example: run all hooks of pre-push stage
 - To build the documentation run: `sphinx-build docs/ docs/_build/html/`.
 - Open `docs/_build/html/index.html` to see the documentation.
 
+{% if readme_content.uses_internationalisation %}
 ### Translation files
 
 If you have added custom text, make sure to wrap it in `_()` where `_` is
@@ -121,6 +122,7 @@ How to compile translation files:
 * Navigate to `{{ package_name|replace("_", "-") }}`
 * `python manage.py compilemessages`
 * Have a look at the new/changed files within `{{ package_name }}/locale`
+{% endif %}
 
 ### Publish to ReadTheDocs.io
 
