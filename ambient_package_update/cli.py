@@ -46,7 +46,13 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
     )
 
     env = Environment(
-        loader=FileSystemLoader([TEMPLATE_PATH]), autoescape=select_autoescape()
+        loader=FileSystemLoader(
+            [
+                ".ambient-package-update/templates",
+                TEMPLATE_PATH,
+            ]
+        ),
+        autoescape=select_autoescape(),
     )
 
     j2_template = env.get_template(str(template))
