@@ -25,13 +25,13 @@ settings.configure(
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
-        "{{ package_name }}",
+        "{{ module_name }}",
     ],
     SECRET_KEY="ASDFjklö123456890",
 )
 django.setup()
 
-from {{ package_name }} import __version__  # noqa: E402
+from {{ module_name }} import __version__  # noqa: E402
 
 # -- Project information -----------------------------------------------------
 
