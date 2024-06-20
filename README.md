@@ -89,9 +89,41 @@ METADATA = PackageMetadata(
 
 ### Customizing the templates
 
-The templates are located in the `ambient_package_update/templates` directory.
-You can overwrite them by creating a `.ambient-package-update/templates` directory in your project 
+The default templates are located in the `ambient_package_update/templates` directory.
+You can overwrite them by creating a `.ambient-package-update/templates` directory in your project
 and create a new file with the same name as the template you want to overwrite.
+The following templates are available:
+
+```
+├── docs
+│   ├── conf.py.tpl
+│   ├── make.bat.tpl
+│   └── Makefile.tpl
+├── MANIFEST.in.tpl
+├── pyproject.toml.tpl
+├── README.md.tpl
+├── scripts
+│   ├── unix
+│   │   ├── install_requirements.sh.tpl
+│   │   └── publish_to_pypi.sh.tpl
+│   └── windows
+│       ├── install_requirements.ps1.tpl
+│       └── publish_to_pypi.ps1.tpl
+├── setup.cfg.tpl
+└── snippets
+    ├── badges.tpl
+    ├── content.tpl
+    ├── contribute.tpl
+    ├── empty.tpl
+    ├── installation.tpl
+    ├── licenses
+    │   ├── GPL.md
+    │   └── MIT.md
+    ├── links.tpl
+    ├── maintenance.tpl
+    ├── publish.tpl
+    └── tagline.tpl
+```
 
 ## Contribution
 
