@@ -22,5 +22,3 @@
 
   `python ./manage.py migrate`
 {% endif %}
-
-{% if readme_content.additional_installation %}{{ readme_content.additional_installation }}{% endif %}

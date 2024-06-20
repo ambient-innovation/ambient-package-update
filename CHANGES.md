@@ -1,5 +1,11 @@
 # Changelog
 
+**24.6.3 (2024-06-20)**
+* Removed `custom_installation` and `additional_installation` from class `ReadmeContent`
+
+**24.6.2 (2024-06-20)**
+* Added new feature of customizable templates
+
 **24.6.1 (2024-06-14)**
 * Added `module_name` variable to Package metadata
 * Added opt-out for internationalisation content in Readme-file
