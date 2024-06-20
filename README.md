@@ -5,8 +5,8 @@
 
 # Ambient Package Update
 
-This repository will help keep all Python packages following a certain basic structure tidy and up-to-date. It's being 
-maintained by [Ambient Digital](https://ambient.digital). 
+This repository will help keep all Python packages following a certain basic structure tidy and up-to-date. It's being
+maintained by [Ambient Digital](https://ambient.digital).
 
 This package will render all required configuration and installation files for your target package.
 
@@ -87,11 +87,17 @@ METADATA = PackageMetadata(
 - Enable the readthedocs hook in your GitHub repo to update your documentation on a commit basis
 - Finally, follow the steps of the section above (`How to update a package`).
 
+### Customizing the templates
+
+The templates are located in the `ambient_package_update/templates` directory.
+You can overwrite them by creating a `.ambient-package-update/templates` directory in your project 
+and create a new file with the same name as the template you want to overwrite.
+
 ## Contribution
 
 ### Dependency updates
 
-The dependencies of this package are being maintained with `pip-tools`. 
+The dependencies of this package are being maintained with `pip-tools`.
 
 > pip install -U pip-tools
 

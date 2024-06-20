@@ -2,8 +2,8 @@
 {{ readme_content.tagline }}
 {% include "snippets/links.tpl" %}
 
-{% include readme_content.content_template|default("snippets/content.tpl") %}
-{% include readme_content.installation_template|default("snippets/empty.tpl") %}
-{% include readme_content.contribute_template|default("snippets/empty.tpl") %}
-{% include readme_content.publish_template|default("snippets/empty.tpl") %}
-{% include readme_content.maintenance_template|default("snippets/empty.tpl") %}
+{% include "snippets/content.tpl" %}
+{% include "snippets/installation.tpl" %}
+{% include "snippets/contribute.tpl" %}
+{% include "snippets/publish.tpl" %}
+{% include "snippets/maintenance.tpl" %}
