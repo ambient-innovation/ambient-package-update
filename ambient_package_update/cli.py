@@ -7,12 +7,13 @@ from os.path import basename
 from pathlib import Path
 
 import typer
-from jinja2 import Template
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from ambient_package_update.metadata.constants import LICENSE_GPL
 from ambient_package_update.metadata.package import PackageMetadata
 
 BASE_PATH = Path(__file__).parent
+TEMPLATE_PATH = BASE_PATH / "templates"
 
 app = typer.Typer()
 
@@ -23,14 +24,12 @@ def get_metadata() -> PackageMetadata:
     try:
         m = import_module("metadata")
     except ModuleNotFoundError as e:
-        raise RuntimeError('Please create a directory ".ambient-package-update" and add a "metadata.py".') from e
+        raise RuntimeError(
+            'Please create a directory ".ambient-package-update" and add a "metadata.py".'
+        ) from e
     sys.path.pop()
 
     return m.METADATA
-
-
-def get_template_path() -> Path:
-    return BASE_PATH / "templates"
 
 
 def create_rendered_file(*, template: Path, relative_target_path: Path | str) -> None:
@@ -41,13 +40,28 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
 
     # Special case: We might want to set an explicit GitHub package name
     metadata_dict["github_package_name"] = (
-        metadata_dict["github_package_name"] if metadata_dict["github_package_name"] else metadata_dict["package_name"]
+        metadata_dict["github_package_name"]
+        if metadata_dict["github_package_name"]
+        else metadata_dict["package_name"]
     )
 
-    j2_template = Template(template.read_text(), keep_trailing_newline=True)
+    env = Environment(
+        loader=FileSystemLoader(
+            [
+                ".ambient-package-update/templates",
+                TEMPLATE_PATH,
+            ]
+        ),
+        autoescape=select_autoescape(),
+        keep_trailing_newline=True,
+    )
+
+    j2_template = env.get_template(str(template).replace("\\", "/"))
     j2_template.globals["current_year"] = datetime.now(tz=UTC).date().year
     j2_template.globals["license_label"] = (
-        "GNU General Public License (GPL)" if metadata_dict["license"] == LICENSE_GPL else "MIT License"
+        "GNU General Public License (GPL)"
+        if metadata_dict["license"] == LICENSE_GPL
+        else "MIT License"
     )
 
     print(f"> Rendering template {basename(template)!r}...")
@@ -67,23 +81,30 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
 
 @app.command()
 def render_templates():
-    template_list = []
     # Collect all template files and add them to "template_list"
-    for path, subdirs, files in os.walk(get_template_path()):
-        print(path, subdirs, files)
-        [template_list.append(Path(f"{path}/{file}")) for file in files]
+    template_list = [
+        str(Path(Path(path).relative_to(TEMPLATE_PATH), file))
+        for path, subdirs, files in os.walk(TEMPLATE_PATH)
+        for file in files
+        if "snippets" not in path
+    ]
+
+    for template in template_list:
+        print(f"> Found template {template!r}...")
 
     print("Start rending distribution templates.")
 
     for template in template_list:
         create_rendered_file(
-            template=template, relative_target_path=str(Path(template).relative_to(get_template_path()))[:-4]
+            template=template,
+            relative_target_path=template.removesuffix(".tpl"),
         )
 
     # License file is conditional so we have to render it separately
     metadata_dict = get_metadata().__dict__
     create_rendered_file(
-        template=BASE_PATH / f"licenses/{metadata_dict['license']}.md", relative_target_path="LICENSE.md"
+        template=f"snippets/licenses/{metadata_dict['license']}.md",
+        relative_target_path="LICENSE.md",
     )
 
     print("Rendering finished.")
@@ -92,7 +113,9 @@ def render_templates():
 @app.command()
 def build_docs(package_name: str):
     print(f'Building docs for package "{package_name}"')
-    subprocess.call(f"cd ../{package_name} && sphinx-build docs/ docs/_build/html/", shell=True)
+    subprocess.call(
+        f"cd ../{package_name} && sphinx-build docs/ docs/_build/html/", shell=True
+    )
 
 
 @app.command()

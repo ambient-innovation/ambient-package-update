@@ -4,7 +4,8 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ReadmeContent:
-    tagline: str
+    # Variables that are used in the default templates
+    tagline: str = None
     content: Optional[str] = None
     custom_installation: Optional[str] = None
     additional_installation: Optional[str] = None
