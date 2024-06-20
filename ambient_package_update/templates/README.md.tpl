@@ -1,5 +1,5 @@
 {% include "snippets/badges.tpl" %}
-{{ readme_content.tagline }}
+{% include "snippets/tagline.tpl"%}
 {% include "snippets/links.tpl" %}
 
 {% include "snippets/content.tpl" %}
