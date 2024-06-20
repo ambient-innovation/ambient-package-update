@@ -56,7 +56,7 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
         keep_trailing_newline=True,
     )
 
-    j2_template = env.get_template(str(template))
+    j2_template = env.get_template(str(template).replace("\\", "/"))
     j2_template.globals["current_year"] = datetime.now(tz=UTC).date().year
     j2_template.globals["license_label"] = (
         "GNU General Public License (GPL)"
