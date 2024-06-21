@@ -1,5 +1,8 @@
 # Changelog
 
+**24.6.4 (2024-06-21)**
+* Added linter `blacken-docs` to pre-commit template
+
 **24.6.3 (2024-06-20)**
 * Removed `custom_installation` and `additional_installation` from class `ReadmeContent`
 

@@ -45,34 +45,35 @@ from ambient_package_update.metadata.author import PackageAuthor
 from ambient_package_update.metadata.constants import DEV_DEPENDENCIES
 from ambient_package_update.metadata.package import PackageMetadata
 from ambient_package_update.metadata.readme import ReadmeContent
-from ambient_package_update.metadata.ruff_ignored_inspection import RuffIgnoredInspection
+from ambient_package_update.metadata.ruff_ignored_inspection import (
+    RuffIgnoredInspection,
+)
 
 METADATA = PackageMetadata(
-    package_name='my_package_name',
+    package_name="my_package_name",
     authors=[
         PackageAuthor(
-            name='Ambient Digital',
-            email='hello@ambient.digital',
+            name="Ambient Digital",
+            email="hello@ambient.digital",
         ),
     ],
-    development_status='5 - Production/Stable',
+    development_status="5 - Production/Stable",
     readme_content=ReadmeContent(
-        tagline='A fancy tagline for your new package',
+        tagline="A fancy tagline for your new package",
         content="""A multiline string containing specific things you want to have in your package readme.
 """,
     ),
     dependencies=[
-        'my_dependency>=1.0',
+        "my_dependency>=1.0",
     ],
     optional_dependencies={
-        'dev': [
+        "dev": [
             *DEV_DEPENDENCIES,
         ],
         # you might add further extras here
     },
     ruff_ignore_list=[
-        RuffIgnoredInspection(key='XYZ', comment="Reason why we need this exception"),
-
+        RuffIgnoredInspection(key="XYZ", comment="Reason why we need this exception"),
     ],
 )
 ```
