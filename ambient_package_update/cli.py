@@ -24,7 +24,9 @@ def get_metadata() -> PackageMetadata:
     try:
         m = import_module("metadata")
     except ModuleNotFoundError as e:
-        raise RuntimeError('Please create a directory ".ambient-package-update" and add a "metadata.py".') from e
+        raise RuntimeError(
+            'Please create a directory ".ambient-package-update" and add a "metadata.py".'
+        ) from e
     sys.path.pop()
 
     return m.METADATA
@@ -38,7 +40,9 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
 
     # Special case: We might want to set an explicit GitHub package name
     metadata_dict["github_package_name"] = (
-        metadata_dict["github_package_name"] if metadata_dict["github_package_name"] else metadata_dict["package_name"]
+        metadata_dict["github_package_name"]
+        if metadata_dict["github_package_name"]
+        else metadata_dict["package_name"]
     )
 
     env = Environment(
@@ -55,7 +59,9 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
     j2_template = env.get_template(str(template).replace("\\", "/"))
     j2_template.globals["current_year"] = datetime.now(tz=UTC).date().year
     j2_template.globals["license_label"] = (
-        "GNU General Public License (GPL)" if metadata_dict["license"] == LICENSE_GPL else "MIT License"
+        "GNU General Public License (GPL)"
+        if metadata_dict["license"] == LICENSE_GPL
+        else "MIT License"
     )
 
     print(f"> Rendering template {basename(template)!r}...")
@@ -73,13 +79,12 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
     print(f'> Successfully rendered template "{abs_path}".')
 
 
-@app.command(name="list-templates")
-def get_template_list() -> list[str]:
+def get_template_list(*, include_snippets: bool = False) -> list[str]:
     template_list = [
         str(Path(Path(path).relative_to(TEMPLATE_PATH), file))
         for path, subdirs, files in os.walk(TEMPLATE_PATH)
         for file in files
-        if "snippets" not in path
+        if include_snippets or "snippets" not in path
     ]
     return template_list
 
@@ -113,7 +118,9 @@ def render_templates():
 @app.command()
 def build_docs(package_name: str):
     print(f'Building docs for package "{package_name}"')
-    subprocess.call(f"cd ../{package_name} && sphinx-build docs/ docs/_build/html/", shell=True)
+    subprocess.call(
+        f"cd ../{package_name} && sphinx-build docs/ docs/_build/html/", shell=True
+    )
 
 
 @app.command()
@@ -135,7 +142,7 @@ def run_tests():
 
 @app.command()
 def eject_template():
-    template_list = get_template_list()
+    template_list = get_template_list(include_snippets=True)
 
     for i, template in enumerate(template_list, start=1):
         print(f"{i:>2}) {template}")
