@@ -152,8 +152,9 @@ def eject_template():
 
     contents = Path(TEMPLATE_PATH / template).read_text()
 
-    os.makedirs(".ambient-package-update/templates", exist_ok=True)
-    (Path(".ambient-package-update/templates") / template).write_text(contents)
+    output = Path(".ambient-package-update/templates") / template
+    os.makedirs(output.parent, exist_ok=True)
+    output.write_text(contents)
 
 
 if __name__ == "__main__":
