@@ -90,7 +90,17 @@ METADATA = PackageMetadata(
 
 ### Customizing the templates
 
-The default templates are located in the `ambient_package_update/templates` directory.
+To customize the templates, you can use the `eject-template` command.
+Simply run
+
+```bash
+python -m ambient_package_update.cli eject-template
+```
+
+from the root of your project and select the template you want to eject.
+The chosen template will be copied to `.ambient-package-update/templates`, ready to be customized.
+
+If you want to overwrite template manually, you can find the default templates in the `ambient_package_update/templates` directory.
 You can overwrite them by creating a `.ambient-package-update/templates` directory in your project
 and create a new file with the same name as the template you want to overwrite.
 The following templates are available:

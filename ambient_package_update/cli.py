@@ -73,15 +73,21 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
     print(f'> Successfully rendered template "{abs_path}".')
 
 
-@app.command()
-def render_templates():
-    # Collect all template files and add them to "template_list"
+@app.command(name="list-templates")
+def get_template_list() -> list[str]:
     template_list = [
         str(Path(Path(path).relative_to(TEMPLATE_PATH), file))
         for path, subdirs, files in os.walk(TEMPLATE_PATH)
         for file in files
         if "snippets" not in path
     ]
+    return template_list
+
+
+@app.command()
+def render_templates():
+    # Collect all template files and add them to "template_list"
+    template_list = get_template_list()
 
     for template in template_list:
         print(f"> Found template {template!r}...")
@@ -125,6 +131,29 @@ def run_tests():
     subprocess.call(f"pip install {dependency_list}", shell=True)
 
     subprocess.call("pytest --ds settings tests", shell=True)
+
+
+@app.command()
+def eject_template():
+    template_list = get_template_list()
+
+    for i, template in enumerate(template_list, start=1):
+        print(f"{i:>2}) {template}")
+
+    template_no = typer.prompt("Choose template")
+    template_no = int(template_no)
+
+    if template_no > len(template_list):
+        raise typer.Abort("Invalid template number")
+
+    print(f"Ejecting template {template_list[template_no-1]}")
+
+    template = template_list[template_no - 1]
+
+    contents = Path(TEMPLATE_PATH / template).read_text()
+
+    os.makedirs(".ambient-package-update/templates", exist_ok=True)
+    (Path(".ambient-package-update/templates") / template).write_text(contents)
 
 
 if __name__ == "__main__":
