@@ -3,7 +3,7 @@ requires = ["flit_core>=3.4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "{{ package_name|replace("_", "-") }}"
+name = "{{ package_name }}"
 authors = [{% for author in authors %}
     {'name' = '{{ author.name }}', 'email' = '{{ author.email }}'},{% endfor %}
 ]
@@ -35,7 +35,7 @@ dependencies = [{% for dependency in dependencies %}
 ]{% endfor %}{% endif %}
 
 [tool.flit.module]
-name = "{{ package_name }}"
+name = "{{ module_name }}"
 
 [project.urls]
 'Homepage' = 'https://github.com/ambient-innovation/{{ github_package_name|replace("_", "-") }}/'

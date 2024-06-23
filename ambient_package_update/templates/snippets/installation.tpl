@@ -2,18 +2,18 @@
 
 - Install the package via pip:
 
-  `pip install {{ package_name|replace("_", "-") }}`
+  `pip install {{ package_name }}`
 
   or via pipenv:
 
-  `pipenv install {{ package_name|replace("_", "-") }}`
+  `pipenv install {{ package_name }}`
 
 - Add module to `INSTALLED_APPS` within the main django `settings.py`:
 
     ````
     INSTALLED_APPS = (
         ...
-        '{{ package_name }}',
+        '{{ module_name }}',
     )
      ````
 
