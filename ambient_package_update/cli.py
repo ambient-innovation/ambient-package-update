@@ -24,9 +24,7 @@ def get_metadata() -> PackageMetadata:
     try:
         m = import_module("metadata")
     except ModuleNotFoundError as e:
-        raise RuntimeError(
-            'Please create a directory ".ambient-package-update" and add a "metadata.py".'
-        ) from e
+        raise RuntimeError('Please create a directory ".ambient-package-update" and add a "metadata.py".') from e
     sys.path.pop()
 
     return m.METADATA
@@ -40,9 +38,7 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
 
     # Special case: We might want to set an explicit GitHub package name
     metadata_dict["github_package_name"] = (
-        metadata_dict["github_package_name"]
-        if metadata_dict["github_package_name"]
-        else metadata_dict["package_name"]
+        metadata_dict["github_package_name"] if metadata_dict["github_package_name"] else metadata_dict["package_name"]
     )
 
     env = Environment(
@@ -59,9 +55,7 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
     j2_template = env.get_template(str(template).replace("\\", "/"))
     j2_template.globals["current_year"] = datetime.now(tz=UTC).date().year
     j2_template.globals["license_label"] = (
-        "GNU General Public License (GPL)"
-        if metadata_dict["license"] == LICENSE_GPL
-        else "MIT License"
+        "GNU General Public License (GPL)" if metadata_dict["license"] == LICENSE_GPL else "MIT License"
     )
 
     print(f"> Rendering template {basename(template)!r}...")
@@ -118,9 +112,7 @@ def render_templates():
 @app.command()
 def build_docs(package_name: str):
     print(f'Building docs for package "{package_name}"')
-    subprocess.call(
-        f"cd ../{package_name} && sphinx-build docs/ docs/_build/html/", shell=True
-    )
+    subprocess.call(f"cd ../{package_name} && sphinx-build docs/ docs/_build/html/", shell=True)
 
 
 @app.command()
