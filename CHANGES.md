@@ -1,5 +1,10 @@
 # Changelog
 
+**24.6.5 (2024-06-24)**
+* Added `eject-templates` command
+* Fixed issue with `module_name`
+* Updated dev dependencies in template toml
+
 **24.6.4 (2024-06-21)**
 * Added linter `blacken-docs` to pre-commit template
 

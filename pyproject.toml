@@ -30,14 +30,14 @@ dependencies = []
 [project.optional-dependencies]
 dev = [
     # Rendering
-    'typer~=0.9',
-    'Jinja2~=3.1',
+    "typer~=0.9",
+    "Jinja2~=3.1",
     # Deploy
-    'flit~=3.9',
-    'keyring~=24.2',
+    "flit~=3.9",
+    "keyring~=25.2",
     # Linting
-    'pre-commit~=3.5',
-    'ruff~=0.1',
+    "pre-commit~=3.7",
+    "ruff~=0.4",
 ]
 
 [project.urls]
@@ -129,7 +129,7 @@ exclude = [
 line-length = 120
 
 # Allow unused variables when underscore-prefixed.
-dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 # Assume Python 3.12
 target-version = "py312"

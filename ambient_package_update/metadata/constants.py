@@ -9,8 +9,8 @@ DEV_DEPENDENCIES = [
     "pytest-mock~=3.12",
     "coverage~=7.3",
     # Linting
-    "pre-commit~=3.5",
-    "ruff~=0.1.7",
+    "pre-commit~=3.7",
+    "ruff~=0.4",
     # Documentation
     "sphinx~=7.1",
     "sphinx-rtd-theme~=2.0",
@@ -18,6 +18,7 @@ DEV_DEPENDENCIES = [
     "mistune<2.0.0",  # fixes a problem mit m2r2
     # Release
     "flit~=3.9",
+    "keyring~=25.2",
     # Build
     f"ambient-package-update~={__version__}",
 ]
