@@ -64,7 +64,6 @@ lint.select = [
     "PERF",    # PerfLint
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
-    "D",       # Pydocstyle
     "LOG",     # flake8-logging
     "TID",     # flake8-tidy-imports
     "PLR2004", # Magic numbers
@@ -97,7 +96,6 @@ lint.fixable = [
     "PERF",    # PerfLint
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
-    "D",       # Pydocstyle
     "LOG",     # flake8-logging
     "TID",     # flake8-tidy-imports
     "PLR2004", # Magic numbers
@@ -156,7 +154,6 @@ line-ending = "auto"
 
 [tool.tox]
 legacy_tox_ini = """
-
 [testenv]
 # Django deprecation overview: https://www.djangoproject.com/download/
 deps ={% for django_version in supported_django_versions %}

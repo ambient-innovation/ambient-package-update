@@ -1,5 +1,8 @@
 # Changelog
 
+**24.7.3 (2024-07-15)**
+* Removed Pydocstyle linting rules
+
 **24.7.2 (2024-07-15)**
 * Text change in coverage action
 * Removed deprecated tox configuration
