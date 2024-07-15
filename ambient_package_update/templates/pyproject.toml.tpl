@@ -56,16 +56,22 @@ lint.select = [
     "DTZ",     # flake8-datetimez
     "DJ",      # flake8-django
     "TD",      # flake8-to-do
-    "RUF100",  # Removes unnecessary "#noqa" comments
+    "RUF",     # Ruff-specific rules
     "YTT",     # Avoid non-future-prove usages of "sys"
-    # "FBT",     # Protects you from the "boolean trap bug"
     "C4",      # Checks for unnecessary conversions
     "PIE",     # Bunch of useful rules
-    # "SIM",     # Simplifies your code
     "INT",     # Validates your gettext translation strings
     "PERF",    # PerfLint
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
+    "D",       # Pydocstyle
+    "LOG",     # flake8-logging
+    "TID",     # flake8-tidy-imports
+    "PLR2004", # Magic numbers
+    "BLE",     # Checks for except clauses that catch all exceptions
+    "ANN401",  # Checks that function arguments are annotated with a more specific type than Any
+    "TRY",     # Clean try/except
+    "ERA",     # Commented out code
 ]
 lint.ignore = [{% for ruff_ignore in ruff_ignore_list %}
     '{{ ruff_ignore.key }}', # {{ ruff_ignore.comment }}{% endfor %}
@@ -83,16 +89,22 @@ lint.fixable = [
     "DTZ",     # flake8-datetimez
     "DJ",      # flake8-django
     "TD",      # flake8-to-do
-    "RUF100",  # Removes unnecessary "#noqa" comments
+    "RUF",     # Ruff-specific rules
     "YTT",     # Avoid non-future-prove usages of "sys"
-    # "FBT",     # Protects you from the "boolean trap bug"
     "C4",      # Checks for unnecessary conversions
     "PIE",     # Bunch of useful rules
-    # "SIM",     # Simplifies your code
     "INT",     # Validates your gettext translation strings
     "PERF",    # PerfLint
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
+    "D",       # Pydocstyle
+    "LOG",     # flake8-logging
+    "TID",     # flake8-tidy-imports
+    "PLR2004", # Magic numbers
+    "BLE",     # Checks for except clauses that catch all exceptions
+    "ANN401",  # Checks that function arguments are annotated with a more specific type than Any
+    "TRY",     # Clean try/except
+    "ERA",     # Commented out code
 ]
 lint.unfixable = []
 
@@ -145,7 +157,7 @@ line-ending = "auto"
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py{38,39,310,311}-django{32,41,42}
+envlist = py{39,310,311}-django{32,41,42}
 isolated_build = True
 
 [testenv]

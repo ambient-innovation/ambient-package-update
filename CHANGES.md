@@ -1,5 +1,10 @@
 # Changelog
 
+
+**24.7.1 (2024-07-15)**
+* Dropped Python 3.8 support
+* Added loads of Ruff linting rules
+
 **24.6.5 (2024-06-24)**
 * Added `eject-templates` command
 * Fixed issue with `module_name`
