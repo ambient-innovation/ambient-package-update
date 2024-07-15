@@ -86,7 +86,7 @@ jobs:
         with:
           name: coverage-data
 
-      - name: Combine coverage and fail if it's <100%
+      - name: Combine coverage and fail if it's <{{ min_coverage }}%
         run: |
           python -m coverage html --skip-covered --skip-empty
           python -m coverage report --fail-under={{ min_coverage }}

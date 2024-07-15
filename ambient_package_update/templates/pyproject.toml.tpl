@@ -156,9 +156,6 @@ line-ending = "auto"
 
 [tool.tox]
 legacy_tox_ini = """
-[tox]
-envlist = py{39,310,311}-django{32,41,42}
-isolated_build = True
 
 [testenv]
 # Django deprecation overview: https://www.djangoproject.com/download/

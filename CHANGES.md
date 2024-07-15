@@ -1,5 +1,8 @@
 # Changelog
 
+**24.7.2 (2024-07-15)**
+* Text change in coverage action
+* Removed deprecated tox configuration
 
 **24.7.1 (2024-07-15)**
 * Dropped Python 3.8 support
