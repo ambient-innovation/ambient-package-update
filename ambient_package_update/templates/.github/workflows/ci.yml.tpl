@@ -65,7 +65,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-data
-          path: '.coverage${{ matrix.python-version }}-${{ matrix.django-version }}*'
+          path: '.coverage{% raw %}${{ matrix.python-version }}-${{ matrix.django-version }}{% endraw %}*'
 
   coverage:
     name: Coverage

@@ -1,5 +1,8 @@
 # Changelog
 
+**24.7.5 (2024-07-16)**
+* Bugfix with GitHub action runner variable
+
 **24.7.4 (2024-07-16)**
 * Updated GitHub actions for coverage jobs
 
