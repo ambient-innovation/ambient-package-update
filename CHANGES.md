@@ -1,5 +1,8 @@
 # Changelog
 
+**24.7.4 (2024-07-16)**
+* Updated GitHub actions for coverage jobs
+
 **24.7.3 (2024-07-15)**
 * Removed Pydocstyle linting rules
 
