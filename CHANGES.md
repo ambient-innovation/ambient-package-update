@@ -1,5 +1,8 @@
 # Changelog
 
+**24.7.6 (2024-07-16)**
+* Bugfix with GitHub actions
+
 **24.7.5 (2024-07-16)**
 * Bugfix with GitHub action runner variable
 

@@ -38,7 +38,7 @@ jobs:
         run: python manage.py makemigrations --check --dry-run{% endif %}
 
   tests:
-    name: Python ${% raw %}{{ matrix.python-version }}{% endraw %}, django ${% raw %}{{ matrix.django-version }}{% endraw %}
+    name: Python {% raw %}${{ matrix.python-version }}{% endraw %}, django {% raw %}${{ matrix.django-version }}{% endraw %}
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -54,18 +54,18 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v5
         with:
-          python-version: ${% raw %}{{ matrix.python-version }}{% endraw %}
+          python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
       - name: Install tox
         run: pip install tox
       - name: Run Tests
         env:
-          TOXENV: django${% raw %}{{ matrix.django-version }}{% endraw %}
+          TOXENV: django{% raw %}${{ matrix.django-version }}{% endraw %}
         run: tox
       - name: Upload coverage data
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-data
-          path: '.coverage{% raw %}${{ matrix.python-version }}-${{ matrix.django-version }}{% endraw %}*'
+          name: coverage-data-{% raw %}${{ matrix.python-version }}-${{ matrix.django-version }}{% endraw %}
+          path: '.coverage*'
 
   coverage:
     name: Coverage
@@ -84,7 +84,8 @@ jobs:
       - name: Download data
         uses: actions/download-artifact@v4
         with:
-          name: coverage-data
+          pattern: coverage-data*
+          merge-multiple: true
 
       - name: Combine coverage and fail if it's <{{ min_coverage }}%
         run: |
