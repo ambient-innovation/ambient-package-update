@@ -1,5 +1,3 @@
-from ambient_package_update import __version__
-
 DEV_DEPENDENCIES = [
     # Updater
     "typer~=0.9",
@@ -20,7 +18,7 @@ DEV_DEPENDENCIES = [
     "flit~=3.9",
     "keyring~=25.2",
     # Build
-    f"ambient-package-update~={__version__}",
+    "ambient-package-update==*",
 ]
 
 SUPPORTED_DJANGO_VERSIONS = [

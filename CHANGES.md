@@ -1,5 +1,13 @@
 # Changelog
 
+**24.7.7 (2024-07-18)**
+
+* Added SECURITY.md to templates
+* Added new meta variable `github_package_group` to enable package maintenance not by Ambient
+* Replaced fixed updater dependency version with asterisk import to avoid crashing pipelines due to pip caching in
+  GitHub actions
+* Updated linters
+
 **24.7.6 (2024-07-16)**
 * Bugfix with GitHub actions
 

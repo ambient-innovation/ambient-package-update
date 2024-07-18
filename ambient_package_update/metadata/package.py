@@ -23,14 +23,17 @@ class PackageMetadata:
     dependencies: list[str]
     supported_django_versions: list[str]
     supported_python_versions: list[str]
+    github_package_group: str
     min_coverage: float = 100.0
     license: str = LICENSE_MIT
     license_year: int = datetime.datetime.now(tz=datetime.UTC).year
-    module_name: Optional[str] = None
     github_package_name: str = None
+    module_name: Optional[str] = None
     optional_dependencies: dict[str, list[str]] = None
     ruff_ignore_list: list[RuffIgnoredInspection] = None
 
     def __post_init__(self):
         if not self.module_name:
             self.module_name = self.package_name.replace("-", "_")
+        if not self.github_package_name:
+            self.github_package_name = self.package_name.replace("_", "-")
