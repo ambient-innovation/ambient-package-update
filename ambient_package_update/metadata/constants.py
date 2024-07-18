@@ -18,7 +18,7 @@ DEV_DEPENDENCIES = [
     "flit~=3.9",
     "keyring~=25.2",
     # Build
-    "ambient-package-update==*",
+    "ambient-package-update",
 ]
 
 SUPPORTED_DJANGO_VERSIONS = [
