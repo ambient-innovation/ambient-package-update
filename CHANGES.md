@@ -1,5 +1,9 @@
 # Changelog
 
+**24.8.1 (2024-08-12)**
+* Added Django 5.1 support
+* Linter updates
+
 **24.7.8 (2024-07-18)**
 * Fixed a bug with dependency to this package
 
