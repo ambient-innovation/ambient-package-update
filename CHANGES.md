@@ -1,5 +1,8 @@
 # Changelog
 
+**24.8.2 (2024-08-12)**
+* Added test matrix exception for Python 3.9 and Django 5.1
+
 **24.8.1 (2024-08-12)**
 * Added Django 5.1 support
 * Linter updates
