@@ -3,7 +3,7 @@ requires = ["flit_core>=3.4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "{{ package_name }}"
+name = "{{ package_name|replace("_", "-") }}"
 authors = [{% for author in authors %}
     {'name' = '{{ author.name }}', 'email' = '{{ author.email }}'},{% endfor %}
 ]

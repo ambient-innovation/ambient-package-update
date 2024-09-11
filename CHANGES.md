@@ -1,5 +1,9 @@
 # Changelog
 
+**24.9.1 (2024-08-12)**
+* Fixed issue with package name having underscores instead of hyphens
+* Linter updates
+
 **24.8.2 (2024-08-12)**
 * Added test matrix exception for Python 3.9 and Django 5.1
 

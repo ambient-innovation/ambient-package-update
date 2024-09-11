@@ -1,3 +1,3 @@
 """Ambient package update tool for clean and swift maintenance"""
 
-__version__ = "24.8.2"
+__version__ = "24.9.1"
