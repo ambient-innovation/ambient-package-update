@@ -173,3 +173,37 @@ python_files = [
     "test_*.py",
     "*_tests.py",
 ]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+source = [
+    "{{ package_name }}",
+    "tests",
+]
+omit = [
+  "setup.py",
+  "*_test.py",
+  "tests.py",
+  "testapp/*",
+  "tests/*",
+]
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+# Regexes for lines to exclude from consideration
+exclude_also = [
+    # Don't complain if tests don't hit defensive assertion code:
+    "raise AssertionError",
+    "raise NotImplementedError",
+    # Don't check type hinting imports
+    "if typing.TYPE_CHECKING:",
+    "if TYPE_CHECKING:",
+]
+
+[tool.coverage.path]
+source = [
+    "{{ package_name }}",
+    ".tox/**/site-packages",
+]

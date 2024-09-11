@@ -67,7 +67,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-data-{% raw %}${{ matrix.python-version }}-${{ matrix.django-version }}{% endraw %}
-          path: '.coverage*'
+          path: '{% raw %}${{ github.workspace }}{% endraw %}/.coverage.*'
+          include-hidden-files: true
+          if-no-files-found: error
 
   coverage:
     name: Coverage
@@ -86,10 +88,14 @@ jobs:
       - name: Download data
         uses: actions/download-artifact@v4
         with:
-          pattern: coverage-data*
+          path: {% raw %}${{ github.workspace }}{% endraw %}
+          pattern: coverage-data-*
           merge-multiple: true
 
       - name: Combine coverage and fail if it's <{{ min_coverage }}%
         run: |
+          python -m coverage combine
           python -m coverage html --skip-covered --skip-empty
           python -m coverage report --fail-under={{ min_coverage }}
+          echo "## Coverage summary" >> $GITHUB_STEP_SUMMARY
+          python -m coverage report --format=markdown >> $GITHUB_STEP_SUMMARY

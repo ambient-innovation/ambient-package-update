@@ -1,6 +1,9 @@
 # Changelog
 
-**24.9.1 (2024-08-12)**
+**24.9.2 (2024-09-11)**
+* Fixed coverage setup in pipeline
+
+**24.9.1 (2024-09-11)**
 * Fixed issue with package name having underscores instead of hyphens
 * Linter updates
 
