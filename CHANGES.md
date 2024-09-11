@@ -1,5 +1,8 @@
 # Changelog
 
+**24.9.3 (2024-09-11)**
+* Added GitHub action trigger for PRs
+
 **24.9.2 (2024-09-11)**
 * Fixed coverage setup in pipeline
 
