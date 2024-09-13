@@ -1,5 +1,9 @@
 # Changelog
 
+**24.9.4 (2024-09-11)**
+* Added `lstrip_blocks` to Jinja renderer
+* Set package stability to "production"
+
 **24.9.3 (2024-09-11)**
 * Added GitHub action trigger for PRs
 

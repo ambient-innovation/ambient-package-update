@@ -50,6 +50,7 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
         ),
         autoescape=select_autoescape(),
         keep_trailing_newline=True,
+        lstrip_blocks=True,
     )
 
     j2_template = env.get_template(str(template).replace("\\", "/"))
