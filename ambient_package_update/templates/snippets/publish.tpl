@@ -12,7 +12,7 @@
 
 - Increment version in main `__init__.py`
 
-- Create pull request / merge to master
+- Create pull request / merge to {{ main_branch }}
 
 - This project uses the flit package to publish to PyPI. Thus publishing should be as easy as running:
   ```

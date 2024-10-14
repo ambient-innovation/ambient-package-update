@@ -1,5 +1,11 @@
 # Changelog
 
+**24.10.1 (2024-10-08)**
+* Added Python 3.13 support
+* Added Djade linter to pre-commit
+* Improved GitHub action triggers
+* Updated dev dependencies and linters
+
 **24.9.4 (2024-09-11)**
 * Added `lstrip_blocks` to Jinja renderer
 * Set package stability to "production"

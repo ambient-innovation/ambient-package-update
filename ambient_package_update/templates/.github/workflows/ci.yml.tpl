@@ -2,7 +2,8 @@ name: Unit tests
 
 on:
   push:
-    branches: [ '**' ]
+    branches:
+    - {{ main_branch }}
   pull_request:
 
 jobs:

@@ -1,14 +1,14 @@
 DEV_DEPENDENCIES = [
     # Updater
-    "typer~=0.9",
+    "typer~=0.12",
     # Test runner
-    "freezegun~=1.3",
-    "pytest-django~=4.7",
-    "pytest-mock~=3.12",
+    "freezegun~=1.5",
+    "pytest-django~=4.9",
+    "pytest-mock~=3.14",
     "coverage~=7.6",
     # Linting
-    "pre-commit~=3.7",
-    "ruff~=0.4",
+    "pre-commit~=4.0",
+    "ruff~=0.6",
     # Documentation
     "sphinx~=7.1",
     "sphinx-rtd-theme~=2.0",
@@ -16,7 +16,7 @@ DEV_DEPENDENCIES = [
     "mistune<2.0.0",  # fixes a problem mit m2r2
     # Release
     "flit~=3.9",
-    "keyring~=25.2",
+    "keyring~=25.4",
     # Build
     "ambient-package-update",
 ]
@@ -32,6 +32,7 @@ SUPPORTED_PYTHON_VERSIONS = [
     "3.10",
     "3.11",
     "3.12",
+    "3.13",
 ]
 
 LICENSE_MIT = "MIT"

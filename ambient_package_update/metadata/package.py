@@ -27,6 +27,7 @@ class PackageMetadata:
     min_coverage: float = 100.0
     license: str = LICENSE_MIT
     license_year: int = datetime.datetime.now(tz=datetime.UTC).year
+    main_branch: str = "master"
     github_package_name: str = None
     module_name: Optional[str] = None
     optional_dependencies: dict[str, list[str]] = None
