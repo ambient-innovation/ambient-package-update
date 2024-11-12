@@ -1,5 +1,8 @@
 # Changelog
 
+**24.11.1 (2024-11-12)**
+* Added branch naming convention checker via pre-commit
+
 **24.10.1 (2024-10-08)**
 * Added Python 3.13 support
 * Added Djade linter to pre-commit
