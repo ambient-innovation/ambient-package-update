@@ -8,7 +8,7 @@ on:
 
 jobs:
   linting:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
@@ -25,7 +25,7 @@ jobs:
   {% if has_migrations %}
   validate_migrations:
     name: Validate migrations
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
@@ -41,7 +41,7 @@ jobs:
 
   tests:
     name: Python {% raw %}${{ matrix.python-version }}{% endraw %}, django {% raw %}${{ matrix.django-version }}{% endraw %}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         python-version: [{% for python_version in supported_python_versions %}'{{ python_version }}', {% endfor %}]
@@ -75,7 +75,7 @@ jobs:
 
   coverage:
     name: Coverage
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs: tests
     steps:
       - uses: actions/checkout@v4

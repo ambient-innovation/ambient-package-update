@@ -1,5 +1,8 @@
 # Changelog
 
+**24.11.2 (2024-11-15)**
+* Updated Ubuntu images to latest 24.04 from 22.04
+
 **24.11.1 (2024-11-12)**
 * Added branch naming convention checker via pre-commit
 
