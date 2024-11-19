@@ -178,7 +178,7 @@ python_files = [
 branch = true
 parallel = true
 source = [
-    "{{ package_name }}",
+    "{{ module_name }}",
     "tests",
 ]
 omit = [
@@ -204,6 +204,6 @@ exclude_also = [
 
 [tool.coverage.path]
 source = [
-    "{{ package_name }}",
+    "{{ module_name }}",
     ".tox/**/site-packages",
 ]

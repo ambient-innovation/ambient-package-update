@@ -1,5 +1,10 @@
 # Changelog
 
+**24.11.3 (2024-11-19)**
+* Fixed a bug with switched `package_name` and `module_name` variables in templates
+* Updated linters
+* Improved some readme texts
+
 **24.11.2 (2024-11-15)**
 * Updated Ubuntu images to latest 24.04 from 22.04
 

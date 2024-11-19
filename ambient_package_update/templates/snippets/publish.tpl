@@ -14,12 +14,12 @@
 
 - Create pull request / merge to {{ main_branch }}
 
-- This project uses the flit package to publish to PyPI. Thus publishing should be as easy as running:
+- This project uses the flit package to publish to PyPI. Thus, publishing should be as easy as running:
   ```
   flit publish
   ```
 
-  To publish to TestPyPI use the following ensure that you have set up your .pypirc as
+  To publish to TestPyPI use the following to ensure that you have set up your .pypirc as
   shown [here](https://flit.readthedocs.io/en/latest/upload.html#using-pypirc) and use the following command:
 
   ```

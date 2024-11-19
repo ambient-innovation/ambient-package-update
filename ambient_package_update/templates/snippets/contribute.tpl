@@ -68,11 +68,11 @@ How to create translation file:
 
 * Navigate to `{{ package_name|replace("_", "-") }}`
 * `python manage.py makemessages -l de`
-* Have a look at the new/changed files within `{{ package_name }}/locale`
+* Have a look at the new/changed files within `{{ module_name }}/locale`
 
 How to compile translation files:
 
 * Navigate to `{{ package_name|replace("_", "-") }}`
 * `python manage.py compilemessages`
-* Have a look at the new/changed files within `{{ package_name }}/locale`
+* Have a look at the new/changed files within `{{ module_name }}/locale`
 {% endif %}
