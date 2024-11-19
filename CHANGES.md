@@ -1,5 +1,8 @@
 # Changelog
 
+**24.11.4 (2024-11-19)**
+* Added .gitignore template
+
 **24.11.3 (2024-11-19)**
 * Fixed a bug with switched `package_name` and `module_name` variables in templates
 * Updated linters
