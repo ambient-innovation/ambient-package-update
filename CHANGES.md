@@ -1,5 +1,8 @@
 # Changelog
 
+**24.11.6 (2024-11-20)**
+* Fixed a bug in ".gitignore" template
+
 **24.11.5 (2024-11-20)**
 * Improved usage of `blacken-docs`
 * Fixed a naming issue with security template
