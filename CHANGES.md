@@ -1,5 +1,10 @@
 # Changelog
 
+**24.11.7 (2024-11-20)**
+* Added possibility to add script executables
+* Added flag for non-django packages
+* Fixed a "None" value on empty Readme content template
+
 **24.11.6 (2024-11-20)**
 * Fixed a bug in ".gitignore" template
 

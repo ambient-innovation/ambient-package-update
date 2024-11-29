@@ -28,6 +28,9 @@ dependencies = [{% for dependency in dependencies %}
     '{{ dependency }}',{% endfor %}
 ]
 
+{% for script_executable in script_executables %}
+scripts.{{ script_executable.name }} = "{{ script_executable.import_path }}"{% endfor %}
+
 {% if optional_dependencies %}
 [project.optional-dependencies]{% for area, dependency_list in optional_dependencies.items() %}
 {{ area }} = [{% for dependency in dependency_list %}
@@ -160,7 +163,7 @@ deps ={% for django_version in supported_django_versions %}
     django{{ django_version|replace(".", "") }}: Django=={{ django_version }}.*{% endfor %}
 extras = {% for area, dependency_list in optional_dependencies.items() %}{{ area }},{% endfor %}
 commands =
-    coverage run -m pytest --ds settings tests
+    coverage run -m pytest {% if is_django_package %}--ds settings{% endif %}tests
 
 [gh-actions]
 python ={% for python_version in supported_python_versions %}

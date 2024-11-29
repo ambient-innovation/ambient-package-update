@@ -1,1 +1,1 @@
-{{ readme_content.content }}
+{{ readme_content.content or "" }}
