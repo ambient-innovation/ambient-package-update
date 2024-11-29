@@ -54,10 +54,13 @@ def create_rendered_file(*, template: Path | str, relative_target_path: Path | s
     )
 
     j2_template = env.get_template(str(template).replace("\\", "/"))
+
+    # Get version from file
     variable_namespace = {}
     with open(Path.cwd() / metadata_dict["module_name"] / "__init__.py") as f:
-        exec(f.read(), {}, variable_namespace)  # Führt den Code in einem isolierten Namespace aus
+        exec(f.read(), {}, variable_namespace)
     j2_template.globals["version"] = variable_namespace["__version__"]
+
     j2_template.globals["current_year"] = datetime.now(tz=UTC).date().year
     j2_template.globals["license_label"] = (
         "GNU General Public License (GPL)" if metadata_dict["license"] == LICENSE_GPL else "MIT License"
