@@ -1,6 +1,10 @@
 # Changelog
 
-**24.11.7 (2024-11-20)**
+**24.11.8 (2024-11-29)**
+* Added version variable to template context
+* Small code improvements in rendering logic
+
+**24.11.7 (2024-11-29)**
 * Added possibility to add script executables
 * Added flag for non-django packages
 * Fixed a "None" value on empty Readme content template

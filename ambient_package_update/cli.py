@@ -30,7 +30,7 @@ def get_metadata() -> PackageMetadata:
     return m.METADATA
 
 
-def create_rendered_file(*, template: Path, relative_target_path: Path | str) -> None:
+def create_rendered_file(*, template: Path | str, relative_target_path: Path | str) -> None:
     """
     Takes a template Path object and renders a template in the target package.
     """
@@ -54,6 +54,10 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
     )
 
     j2_template = env.get_template(str(template).replace("\\", "/"))
+    variable_namespace = {}
+    with open(Path.cwd() / metadata_dict["module_name"] / "__init__.py") as f:
+        exec(f.read(), {}, variable_namespace)  # Führt den Code in einem isolierten Namespace aus
+    j2_template.globals["version"] = variable_namespace["__version__"]
     j2_template.globals["current_year"] = datetime.now(tz=UTC).date().year
     j2_template.globals["license_label"] = (
         "GNU General Public License (GPL)" if metadata_dict["license"] == LICENSE_GPL else "MIT License"
@@ -74,7 +78,7 @@ def create_rendered_file(*, template: Path, relative_target_path: Path | str) ->
     print(f'> Successfully rendered template "{abs_path}".')
 
 
-def get_template_list(*, include_snippets: bool = False) -> list[str]:
+def get_template_list(*, include_snippets: bool = False) -> list[str | Path]:
     template_list = [
         str(Path(Path(path).relative_to(TEMPLATE_PATH), file))
         for path, subdirs, files in os.walk(TEMPLATE_PATH)
@@ -100,7 +104,7 @@ def render_templates():
             relative_target_path=template.removesuffix(".tpl"),
         )
 
-    # License file is conditional so we have to render it separately
+    # The licence file is conditional, so we have to render it separately
     metadata_dict = get_metadata().__dict__
     create_rendered_file(
         template=f"snippets/licenses/{metadata_dict['license']}.md",
