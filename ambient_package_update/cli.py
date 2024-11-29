@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 import sys
 from datetime import UTC, datetime
@@ -56,10 +57,11 @@ def create_rendered_file(*, template: Path | str, relative_target_path: Path | s
     j2_template = env.get_template(str(template).replace("\\", "/"))
 
     # Get version from file
-    variable_namespace = {}
+    regex = r'__version__\s*=\s*"(\d+\.\d+\.\d+)"'
     with open(Path.cwd() / metadata_dict["module_name"] / "__init__.py") as f:
-        exec(f.read(), {}, variable_namespace)
-    j2_template.globals["version"] = variable_namespace["__version__"]
+        match = re.search(regex, f.read())
+    if match:
+        j2_template.globals["version"] = match[1]
 
     j2_template.globals["current_year"] = datetime.now(tz=UTC).date().year
     j2_template.globals["license_label"] = (

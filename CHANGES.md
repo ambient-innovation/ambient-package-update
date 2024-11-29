@@ -1,5 +1,8 @@
 # Changelog
 
+**24.11.9 (2024-11-29)**
+* Improvement for version parsing
+
 **24.11.8 (2024-11-29)**
 * Added version variable to template context
 * Small code improvements in rendering logic
