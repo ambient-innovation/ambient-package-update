@@ -69,6 +69,7 @@ lint.select = [
     "PERF",    # PerfLint
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
+    "INP"      # Ban PEP-420 implicit namespace packages
 ]
 lint.ignore = [
     'N999',     # Project name contains underscore, not fixable
@@ -98,6 +99,7 @@ lint.fixable = [
     "PERF",    # PerfLint
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
+    "INP"      # Ban PEP-420 implicit namespace packages
 ]
 lint.unfixable = []
 

@@ -34,7 +34,7 @@ class PackageMetadata:
     module_name: Optional[str] = None
     optional_dependencies: dict[str, list[str]] = None
     ruff_ignore_list: list[RuffIgnoredInspection] = None
-    script_executables: list[ScriptExecutable] = None
+    script_executables: list[ScriptExecutable] = dataclasses.field(default_factory=list)
 
     def __post_init__(self):
         if not self.module_name:

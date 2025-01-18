@@ -74,6 +74,7 @@ lint.select = [
     "ANN401",  # Checks that function arguments are annotated with a more specific type than Any
     "TRY",     # Clean try/except
     "ERA",     # Commented out code
+    "INP"      # Ban PEP-420 implicit namespace packages
 ]
 lint.ignore = [{% for ruff_ignore in ruff_ignore_list %}
     '{{ ruff_ignore.key }}', # {{ ruff_ignore.comment }}{% endfor %}
@@ -106,6 +107,7 @@ lint.fixable = [
     "ANN401",  # Checks that function arguments are annotated with a more specific type than Any
     "TRY",     # Clean try/except
     "ERA",     # Commented out code
+    "INP"      # Ban PEP-420 implicit namespace packages
 ]
 lint.unfixable = []
 
@@ -155,6 +157,31 @@ skip-magic-trailing-comma = false
 # Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
 
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = [
+  # Allow seemingly unused imports
+  "F401",
+]
+
+"**/tests/**/test_*.py" = [
+  # Allow boolean positional params in tests (for assertIs())
+  "FBT003",
+]
+
+"scripts/*.py" = [
+  # Checks for packages that are missing an __init__.py file
+  "INP001",
+]
+
+".ambient-package-update/*.py" = [
+  # Checks for packages that are missing an __init__.py file
+  "INP001",
+]
+
+"docs/*.py" = [
+  # Checks for packages that are missing an __init__.py file
+  "INP001",
+]
 [tool.tox]
 legacy_tox_ini = """
 [testenv]

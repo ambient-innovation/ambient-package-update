@@ -1,5 +1,12 @@
 # Changelog
 
+**25.1.1 (2025-01-18)**
+* Fixed a bug with newly added script tags in package metadata
+* Removed irrelevant configuration from editorconfig
+* Changed order of ruff and ruff-format to avoid having to solve fixable errors manually
+* Excluded Python 3.13 for Django 4.2 and 5.0, since it's not officially being supported
+* Added new ruff linter `INP` to ban "PEP-420" implicit namespace packages
+
 **24.11.9 (2024-11-29)**
 * Improvement for version parsing
 

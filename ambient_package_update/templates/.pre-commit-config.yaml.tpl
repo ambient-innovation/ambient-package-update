@@ -5,11 +5,11 @@ repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.7.4
     hooks:
+      # Run the Ruff formatter.
+      - id: ruff-format
       # Run the Ruff linter.
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
-      # Run the Ruff formatter.
-      - id: ruff-format
 
   - repo: https://github.com/adamchainz/blacken-docs
     rev: 1.19.1
