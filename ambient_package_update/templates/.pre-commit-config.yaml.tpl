@@ -17,7 +17,7 @@ repos:
       - id: blacken-docs
         additional_dependencies:
         - black==24.10.0
-        files: '(?:README\.md|docs\/.*\.(?:md|rst))'
+        files: '(?:README\.md|\.ambient-package-update\/templates\/snippets\/.*\.tpl|docs\/.*\.(?:md|rst))'
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.19.0

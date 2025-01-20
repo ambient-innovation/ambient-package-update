@@ -1,5 +1,8 @@
 # Changelog
 
+**25.1.2 (2025-01-20)**
+* Blacken-docs formatter now runs on "template/snippets" as well
+
 **25.1.1 (2025-01-18)**
 * Fixed a bug with newly added script tags in package metadata
 * Removed irrelevant configuration from editorconfig
