@@ -1,5 +1,8 @@
 # Changelog
 
+**25.1.4 (2025-01-23)**
+* Fixed other occurrence of template bug with test command
+
 **25.1.3 (2025-01-23)**
 * Fixed template bug with test command
 
