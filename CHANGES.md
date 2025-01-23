@@ -1,5 +1,8 @@
 # Changelog
 
+**25.1.3 (2025-01-23)**
+* Fixed template bug with test command
+
 **25.1.2 (2025-01-20)**
 * Blacken-docs formatter now runs on "template/snippets" as well
 

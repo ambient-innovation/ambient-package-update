@@ -24,7 +24,7 @@
 
 - Check coverage
   ````
-  coverage run -m pytest {% if is_django_package %}--ds settings{% endif %}tests
+  coverage run -m pytest {% if is_django_package %}--ds settings {% endif %}tests
   coverage report -m
   ````
 
