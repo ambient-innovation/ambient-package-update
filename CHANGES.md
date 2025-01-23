@@ -1,5 +1,8 @@
 # Changelog
 
+**25.1.5 (2025-01-23)**
+* Fixed a typo in the text matrix setup
+
 **25.1.4 (2025-01-23)**
 * Fixed other occurrence of template bug with test command
 

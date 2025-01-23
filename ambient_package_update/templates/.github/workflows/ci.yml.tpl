@@ -53,9 +53,9 @@ jobs:
           - python-version: '3.9'
             django-version: 51
           - python-version: "3.13"
-            django: "4.2"
+            django-version: 42
           - python-version: "3.13"
-            django: "5.0"
+            django-version: 50
 
     steps:
       - uses: actions/checkout@v4
