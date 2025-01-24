@@ -25,13 +25,14 @@ classifiers = [
 ]
 dynamic = ["version", "description"]
 license = {"file" = "LICENSE.md"}
-dependencies = []
-
-[project.optional-dependencies]
-dev = [
+dependencies = [
     # Rendering
     "typer~=0.9",
     "Jinja2~=3.1",
+]
+
+[project.optional-dependencies]
+dev = [
     # Deploy
     "flit~=3.9",
     "keyring~=25.2",

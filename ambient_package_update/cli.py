@@ -155,7 +155,7 @@ def eject_template():
     if template_no > len(template_list):
         raise typer.Abort("Invalid template number")
 
-    print(f"Ejecting template {template_list[template_no-1]}")
+    print(f"Ejecting template {template_list[template_no - 1]}")
 
     template = template_list[template_no - 1]
 

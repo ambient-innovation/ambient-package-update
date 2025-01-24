@@ -1,5 +1,15 @@
 # Changelog
 
+**25.1.6 (2025-01-24)**
+* **Breaking change:** Renamed "company" field in package metadata to "licenser"
+* **Breaking change:** Renamed "is_django_package" field in package metadata to "tests_require_django"
+* **Breaking change:** Removed "freezegun" from dev dependencies
+* Added development status classifiers constants
+* Moved "typer" and "jinja2" to project dependencies
+* Added shebang to UNIX scripts
+* Added "gitignore_list" to package metadata to set custom exclude patterns
+* Linter updates
+
 **25.1.5 (2025-01-23)**
 * Fixed a typo in the text matrix setup
 
