@@ -157,7 +157,6 @@ _build
 # Test databases
 *.sqlite
 
-# Custom patterns
-{% for pattern in gitignore_list %}
+{% if gitignore_list %}# Custom patterns{% for pattern in gitignore_list %}
 {{ pattern }}
-{% endfor %}
+{% endfor %}{% endif %}

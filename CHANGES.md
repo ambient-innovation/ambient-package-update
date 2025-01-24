@@ -1,5 +1,8 @@
 # Changelog
 
+**25.1.7 (2025-01-24)**
+* Small rendering bugfixes 
+
 **25.1.6 (2025-01-24)**
 * **Breaking change:** Renamed "company" field in package metadata to "licenser"
 * **Breaking change:** Renamed "is_django_package" field in package metadata to "tests_require_django"
