@@ -15,7 +15,7 @@ from ambient_package_update.metadata.ruff_ignored_inspection import (
 @dataclasses.dataclass
 class PackageMetadata:
     package_name: str
-    company: str
+    licenser: str
     authors: list[PackageAuthor]
     maintainer: PackageMaintainer
     development_status: str
@@ -29,12 +29,13 @@ class PackageMetadata:
     license: str = LICENSE_MIT
     license_year: int = datetime.datetime.now(tz=datetime.UTC).year
     main_branch: str = "master"
-    is_django_package: bool = True
+    tests_require_django: bool = True
     github_package_name: str = None
     module_name: Optional[str] = None
     optional_dependencies: dict[str, list[str]] = None
     ruff_ignore_list: list[RuffIgnoredInspection] = None
     script_executables: list[ScriptExecutable] = dataclasses.field(default_factory=list)
+    gitignore_list: list[str] = dataclasses.field(default_factory=list)
 
     def __post_init__(self):
         if not self.module_name:

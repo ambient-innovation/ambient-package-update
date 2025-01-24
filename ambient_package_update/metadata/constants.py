@@ -2,7 +2,6 @@ DEV_DEPENDENCIES = [
     # Updater
     "typer~=0.12",
     # Test runner
-    "freezegun~=1.5",
     "pytest-django~=4.9",
     "pytest-mock~=3.14",
     "coverage~=7.6",
@@ -37,3 +36,7 @@ SUPPORTED_PYTHON_VERSIONS = [
 
 LICENSE_MIT = "MIT"
 LICENSE_GPL = "GPL"
+
+DEPLOYMENT_STATUS_ALPHA = "3 - Alpha"
+DEPLOYMENT_STATUS_BETA = "4 - Beta"
+DEPLOYMENT_STATUS_STABLE = "5 - Production/Stable"

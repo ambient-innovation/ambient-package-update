@@ -156,3 +156,8 @@ _build
 
 # Test databases
 *.sqlite
+
+# Custom patterns
+{% for pattern in gitignore_list %}
+{{ pattern }}
+{% endfor %}
