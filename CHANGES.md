@@ -1,5 +1,8 @@
 # Changelog
 
+**25.1.8 (2025-01-27)**
+* Removed pre-commit stage parameter where it wasn't necessary
+
 **25.1.7 (2025-01-24)**
 * Small rendering bugfixes 
 

@@ -24,14 +24,12 @@ repos:
     hooks:
       - id: pyupgrade
         args: [ --py{{ supported_python_versions.0|replace(".", "") }}-plus ]
-        stages: [ pre-push ]
 
   - repo: https://github.com/adamchainz/django-upgrade
     rev: 1.22.2
     hooks:
       - id: django-upgrade
         args: [--target-version, "{{ supported_django_versions.0 }}"]
-        stages: [ pre-push ]
 
   - repo: https://github.com/adamchainz/djade-pre-commit
     rev: 1.3.2

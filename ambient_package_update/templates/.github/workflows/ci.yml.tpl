@@ -21,7 +21,7 @@ jobs:
         run: pip install pre-commit
 
       - name: Run pre-commit hooks
-        run: pre-commit run --all-files --hook-stage push
+        run: pre-commit run --all-files
   {% if has_migrations %}
   validate_migrations:
     name: Validate migrations
