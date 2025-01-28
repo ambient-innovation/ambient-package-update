@@ -1,5 +1,8 @@
 # Changelog
 
+**25.1.9 (2025-01-28)**
+* Fixed pre-commit hook trigger
+
 **25.1.8 (2025-01-27)**
 * Removed pre-commit stage parameter where it wasn't necessary
 
