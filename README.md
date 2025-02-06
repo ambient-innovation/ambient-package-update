@@ -47,6 +47,7 @@ from ambient_package_update.metadata.package import PackageMetadata
 from ambient_package_update.metadata.readme import ReadmeContent
 from ambient_package_update.metadata.ruff_ignored_inspection import (
     RuffIgnoredInspection,
+    RuffFilePatternIgnoredInspection,
 )
 
 METADATA = PackageMetadata(
@@ -72,8 +73,20 @@ METADATA = PackageMetadata(
         ],
         # you might add further extras here
     },
+    # Example of a global ruff ignore
     ruff_ignore_list=[
         RuffIgnoredInspection(key="XYZ", comment="Reason why we need this exception"),
+    ],
+    # Example of a file-based ruff ignore
+    ruff_file_based_ignore_list=[
+        RuffFilePatternIgnoredInspection(
+            pattern="**/tests/missing_init/*.py",
+            rules=[
+                RuffIgnoredInspection(
+                    key="INP001", comment="Missing by design for a test case"
+                ),
+            ],
+        ),
     ],
 )
 ```

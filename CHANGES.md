@@ -1,5 +1,9 @@
 # Changelog
 
+**25.2.1 (2025-02-06)**
+* Added configuration for ruff for file-based ignore rules (`PackageMetadata.ruff_file_based_ignore_list`)
+* Fixed double-newline in .gitignore template
+
 **25.1.9 (2025-01-28)**
 * Fixed pre-commit hook trigger
 

@@ -77,7 +77,7 @@ lint.select = [
     "INP"      # Ban PEP-420 implicit namespace packages
 ]
 lint.ignore = [{% for ruff_ignore in ruff_ignore_list %}
-    '{{ ruff_ignore.key }}', # {{ ruff_ignore.comment }}{% endfor %}
+    "{{ ruff_ignore.key }}", # {{ ruff_ignore.comment }}{% endfor %}
 ]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
@@ -162,26 +162,27 @@ line-ending = "auto"
   # Allow seemingly unused imports
   "F401",
 ]
-
 "**/tests/**/test_*.py" = [
   # Allow boolean positional params in tests (for assertIs())
   "FBT003",
 ]
-
 "scripts/*.py" = [
   # Checks for packages that are missing an __init__.py file
   "INP001",
 ]
-
 ".ambient-package-update/*.py" = [
   # Checks for packages that are missing an __init__.py file
   "INP001",
 ]
-
 "docs/*.py" = [
   # Checks for packages that are missing an __init__.py file
   "INP001",
 ]
+{% if ruff_file_based_ignore_list %}{% for ruff_file_ignore in ruff_file_based_ignore_list %}"{{ ruff_file_ignore.pattern }}" = [{% for ruff_rule in ruff_file_ignore.rules %}
+  # {{ ruff_rule.comment }}
+  "{{ ruff_rule.key }}",{% endfor %}
+]{% endfor %}
+{% endif %}
 [tool.tox]
 legacy_tox_ini = """
 [testenv]

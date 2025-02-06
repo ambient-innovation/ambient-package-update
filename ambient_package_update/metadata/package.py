@@ -8,6 +8,7 @@ from ambient_package_update.metadata.executables import ScriptExecutable
 from ambient_package_update.metadata.maintainer import PackageMaintainer
 from ambient_package_update.metadata.readme import ReadmeContent
 from ambient_package_update.metadata.ruff_ignored_inspection import (
+    RuffFilePatternIgnoredInspection,
     RuffIgnoredInspection,
 )
 
@@ -34,6 +35,7 @@ class PackageMetadata:
     module_name: Optional[str] = None
     optional_dependencies: dict[str, list[str]] = None
     ruff_ignore_list: list[RuffIgnoredInspection] = None
+    ruff_file_based_ignore_list: list[RuffFilePatternIgnoredInspection] = None
     script_executables: list[ScriptExecutable] = dataclasses.field(default_factory=list)
     gitignore_list: list[str] = dataclasses.field(default_factory=list)
 
