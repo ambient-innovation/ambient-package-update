@@ -1,9 +1,12 @@
 # Changelog
 
-**25.4.2 (2025-04-02)**
+**25.4.3 (2025-04-03)**
+* Fixed wrong config for Django 5.2, not excluding Python 3.9
+
+**25.4.2 (2025-04-03)**
 * Updated linter versions in pre-commit template
 
-**25.4.1 (2025-04-02)**
+**25.4.1 (2025-04-03)**
 * Added Django 5.2 to test matrix
 * Dropped Django 5.0 from test matrix
 * Dropped linters `django-upgrade` and `djade` for this (!) meta-package since we don't use Django here
