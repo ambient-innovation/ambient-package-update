@@ -1,5 +1,8 @@
 # Changelog
 
+**25.4.2 (2025-04-02)**
+* Updated linter versions in pre-commit template
+
 **25.4.1 (2025-04-02)**
 * Added Django 5.2 to test matrix
 * Dropped Django 5.0 from test matrix
