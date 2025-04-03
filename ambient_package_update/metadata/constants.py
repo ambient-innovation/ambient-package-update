@@ -22,8 +22,8 @@ DEV_DEPENDENCIES = [
 
 SUPPORTED_DJANGO_VERSIONS = [
     "4.2",
-    "5.0",
     "5.1",
+    "5.2",
 ]
 
 SUPPORTED_PYTHON_VERSIONS = [

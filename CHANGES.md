@@ -1,5 +1,10 @@
 # Changelog
 
+**25.4.1 (2025-04-02)**
+* Added Django 5.2 to test matrix
+* Dropped Django 5.0 from test matrix
+* Dropped linters `django-upgrade` and `djade` for this (!) meta-package since we don't use Django here
+
 **25.2.2 (2025-02-06)**
 * Fixed double-newline in .gitignore template
 
