@@ -1,13 +1,13 @@
-## Contribute
+# Contribute
 
-### Setup package for development
+## Setup package for development
 
 - Create a Python virtualenv and activate it
 - Install "pip-tools" with `pip install -U pip-tools`
 - Compile the requirements with `pip-compile --extra {% for area, dependency_list in optional_dependencies.items() %}{{ area }},{% endfor %} -o requirements.txt pyproject.toml --resolver=backtracking`
 - Sync the dependencies with your virtualenv with `pip-sync`
 
-### Add functionality
+## Add functionality
 
 - Create a new branch for your feature
 - Change the dependency in your requirements.txt to a local (editable) one that points to your local file system:
@@ -15,7 +15,7 @@
 - Ensure the code passes the tests
 - Create a pull request
 
-### Run tests
+## Run tests
 
 - Run tests
   ````
@@ -28,7 +28,7 @@
   coverage report -m
   ````
 
-### Git hooks (via pre-commit)
+## Git hooks (via pre-commit)
 
 We use pre-push hooks to ensure that only linted code reaches our remote repository and pipelines aren't triggered in
 vain.
@@ -53,7 +53,7 @@ Example: run all hooks of pre-push stage
 
     pre-commit run --all-files --hook-stage push
 
-### Update documentation
+## Update documentation
 
 - To build the documentation, run: `sphinx-build docs/ docs/_build/html/`.
 - Open `docs/_build/html/index.html` to see the documentation.
