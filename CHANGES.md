@@ -2,6 +2,7 @@
 
 **25.5.1 (2025-05-09)**
 * **Breaking change:** Added `CONTRIBUTING.md` and moved README content
+* Added ruff "C90" rule
 
 **25.4.3 (2025-04-03)**
 * Fixed wrong config for Django 5.2, not excluding Python 3.9

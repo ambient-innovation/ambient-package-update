@@ -74,7 +74,8 @@ lint.select = [
     "ANN401",  # Checks that function arguments are annotated with a more specific type than Any
     "TRY",     # Clean try/except
     "ERA",     # Commented out code
-    "INP"      # Ban PEP-420 implicit namespace packages
+    "INP",     # Ban PEP-420 implicit namespace packages
+    "C90",     # McCabe code complexity
 ]
 lint.ignore = [{% for ruff_ignore in ruff_ignore_list %}
     "{{ ruff_ignore.key }}", # {{ ruff_ignore.comment }}{% endfor %}
@@ -107,7 +108,8 @@ lint.fixable = [
     "ANN401",  # Checks that function arguments are annotated with a more specific type than Any
     "TRY",     # Clean try/except
     "ERA",     # Commented out code
-    "INP"      # Ban PEP-420 implicit namespace packages
+    "INP",     # Ban PEP-420 implicit namespace packages
+    "C90",     # McCabe code complexity
 ]
 lint.unfixable = []
 
