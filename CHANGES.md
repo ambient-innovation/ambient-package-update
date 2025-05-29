@@ -1,5 +1,8 @@
 # Changelog
 
+**25.5.2 (2025-05-29)**
+* Updated dependencies and meta dependencies
+
 **25.5.1 (2025-05-09)**
 * **Breaking change:** Added `CONTRIBUTING.md` and moved README content
 * Added ruff "C90" rule
