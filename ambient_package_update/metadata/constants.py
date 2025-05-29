@@ -6,16 +6,16 @@ DEV_DEPENDENCIES = [
     "pytest-mock~=3.14",
     "coverage~=7.6",
     # Linting
-    "pre-commit~=4.0",
-    "ruff~=0.6",
+    "pre-commit~=5.0",
+    "ruff~=0.11",
     # Documentation
     "sphinx~=7.1",
     "sphinx-rtd-theme~=2.0",
     "m2r2==0.3.3.post2",
     "mistune<2.0.0",  # fixes a problem mit m2r2
     # Release
-    "flit~=3.9",
-    "keyring~=25.4",
+    "flit~=3.12",
+    "keyring~=25.6",
     # Build
     "ambient-package-update",
 ]
