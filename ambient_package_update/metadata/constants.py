@@ -6,7 +6,7 @@ DEV_DEPENDENCIES = [
     "pytest-mock~=3.14",
     "coverage~=7.6",
     # Linting
-    "pre-commit~=5.0",
+    "pre-commit~=4.2",
     "ruff~=0.11",
     # Documentation
     "sphinx~=7.1",
