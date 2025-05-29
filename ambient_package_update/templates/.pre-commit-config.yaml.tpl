@@ -8,7 +8,7 @@ repos:
       # Run the Ruff formatter.
       - id: ruff-format
       # Run the Ruff linter.
-      - id: ruff
+      - id: ruff-check
         args: [--fix, --exit-non-zero-on-fix]
 
   - repo: https://github.com/adamchainz/blacken-docs

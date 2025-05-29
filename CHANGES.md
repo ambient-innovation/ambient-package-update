@@ -1,5 +1,8 @@
 # Changelog
 
+**25.5.4 (2025-05-29)**
+* Updated ruff checker pre-commit identifier
+
 **25.5.3 (2025-05-29)**
 * Fixed wrong version number for pre-commit dev dependency
 
