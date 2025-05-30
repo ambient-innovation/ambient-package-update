@@ -1,7 +1,7 @@
 # Changelog
 
 **25.5.7 (2025-05-30)**
-* Removed "don't commit to branch" linter since it's breaking the process 
+* Removed "don't commit to branch" linter since it's breaking the process
 
 **25.5.6 (2025-05-30)**
 * Fixed pre-commit setup issue
