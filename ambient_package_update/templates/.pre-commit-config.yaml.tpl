@@ -45,10 +45,21 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
+      - id: check-ast
+      - id: check-builtin-literals
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
       - id: no-commit-to-branch
         args:
           [
             "--pattern",
             '^^(?!(?:feature|hotfix|bugfix|refactor|maintenance)/[\w\d\-_#]+).*$',
           ]
-        stages: [ pre-commit ]
+      - id: trailing-whitespace

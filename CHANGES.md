@@ -1,5 +1,8 @@
 # Changelog
 
+**25.5.5 (2025-05-30)**
+* Added many pre-commit default linters
+
 **25.5.4 (2025-05-29)**
 * Updated ruff checker pre-commit identifier
 
@@ -37,7 +40,7 @@
 * Removed pre-commit stage parameter where it wasn't necessary
 
 **25.1.7 (2025-01-24)**
-* Small rendering bugfixes 
+* Small rendering bugfixes
 
 **25.1.6 (2025-01-24)**
 * **Breaking change:** Renamed "company" field in package metadata to "licenser"
