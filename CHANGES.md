@@ -1,5 +1,8 @@
 # Changelog
 
+**25.5.6 (2025-05-30)**
+* Fixed pre-commit setup issue
+
 **25.5.5 (2025-05-30)**
 * Added many pre-commit default linters
 
