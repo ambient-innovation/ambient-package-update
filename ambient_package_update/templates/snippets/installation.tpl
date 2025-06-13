@@ -10,12 +10,12 @@
 
 - Add module to `INSTALLED_APPS` within the main django `settings.py`:
 
-    ```python
-    INSTALLED_APPS = (
-        # ...
-        "{{ module_name }}",
-    )
-    ```
+```python
+INSTALLED_APPS = (
+    # ...
+    "{{ module_name }}",
+)
+```
 
 {% if has_migrations %}
 - Apply migrations by running:

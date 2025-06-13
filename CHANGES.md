@@ -1,5 +1,10 @@
 # Changelog
 
+**25.6.2 (2025-06-13)**
+* Added post-processing to avoid too many newlines in rendered files
+* Added post-processing to ensure a single newline at the end of a file
+* Changed Python snippet for installation to be valid Python
+
 **25.6.1 (2025-06-13)**
 * Fixed version mismatch with flit
 

@@ -71,6 +71,12 @@ def create_rendered_file(*, template: Path | str, relative_target_path: Path | s
     print(f"> Rendering template {basename(template)!r}...")
     rendered_string = j2_template.render(metadata_dict)
 
+    # Post-processing: Remove multiple newlines
+    rendered_string = re.sub(r"\n{2,}", "\n\n", rendered_string)
+
+    # Post-processing: Ensure one newline at file end
+    rendered_string = re.sub(r"\n{2}$", "\n", rendered_string)
+
     # Create missing directories
     relative_target_dir = os.path.dirname(relative_target_path)
     if relative_target_dir:
