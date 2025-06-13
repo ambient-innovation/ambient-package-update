@@ -1,5 +1,8 @@
 # Changelog
 
+**25.6.1 (2025-06-13)**
+* Fixed version mismatch with flit
+
 **25.5.7 (2025-05-30)**
 * Removed "don't commit to branch" linter since it's breaking the process
 
