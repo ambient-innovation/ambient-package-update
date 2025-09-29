@@ -1,5 +1,9 @@
 # Changelog
 
+**25.9.1 (2025-09-29)**
+* Added PyPI classifier for inactive projects
+* Updated pre-commit hooks for meta package
+
 **25.6.2 (2025-06-13)**
 * Added post-processing to avoid too many newlines in rendered files
 * Added post-processing to ensure a single newline at the end of a file

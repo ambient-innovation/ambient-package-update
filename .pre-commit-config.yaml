@@ -3,7 +3,7 @@
 
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.11
+    rev: v0.13.2
     hooks:
       # Run the Ruff formatter.
       - id: ruff-format
@@ -12,7 +12,7 @@ repos:
         args: [--fix, --exit-non-zero-on-fix]
 
   - repo: https://github.com/adamchainz/blacken-docs
-    rev: 1.19.1
+    rev: 1.20.0
     hooks:
       - id: blacken-docs
         additional_dependencies:
@@ -26,7 +26,7 @@ repos:
         args: [ --py39-plus ]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-ast
       - id: check-builtin-literals
