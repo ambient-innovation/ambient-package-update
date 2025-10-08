@@ -21,6 +21,7 @@ class PackageMetadata:
     maintainer: PackageMaintainer
     development_status: str
     readme_content: ReadmeContent
+    claim: str
     has_migrations: bool
     dependencies: list[str]
     supported_django_versions: list[str]

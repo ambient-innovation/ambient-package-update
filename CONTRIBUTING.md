@@ -33,13 +33,6 @@ This package uses [uv](https://github.com/astral-sh/uv) for dependency managemen
   uv build
   ```
 
-  - To publish to TestPyPI use the following to ensure that you have set up your .pypirc as
-  shown [here](https://flit.readthedocs.io/en/latest/upload.html#using-pypirc) and use the following command:
-
-  ```bash
-  uv publish --repository testpypi
-  ```
-
 ### Publishing to PyPI
 
 To publish to the production PyPI:

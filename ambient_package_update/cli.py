@@ -99,6 +99,46 @@ def get_template_list(*, include_snippets: bool = False) -> list[str | Path]:
     return template_list
 
 
+def setup_package_basics(metadata_dict: dict) -> None:
+    """
+    Create package folder and __init__.py with claim and version if they don't exist.
+    Updates claim in existing __init__.py files.
+    """
+    module_name = metadata_dict["module_name"]
+    module_path = Path.cwd() / module_name
+
+    # Create module folder if it doesn't exist
+    if not module_path.exists():
+        print(f"> Creating module directory '{module_name}'...")
+        module_path.mkdir(parents=True, exist_ok=True)
+
+    # Check for __init__.py and create if missing
+    init_file = module_path / "__init__.py"
+    if not init_file.exists():
+        print("> Creating __init__.py with claim and version...")
+        init_file.write_text(f'"""{metadata_dict["claim"]}"""\n\n__version__ = "1.0.0"\n')
+    else:
+        print("> Updating __init__.py claim...")
+        content = init_file.read_text()
+
+        # Extract existing version if present
+        regex = r'__version__\s*=\s*"(\d+\.\d+\.\d+)"'
+        match = re.search(regex, content)
+        version = match[1] if match else "1.0.0"
+
+        # Replace claim at the beginning (first docstring)
+        content = re.sub(r'^""".*?"""', f'"""{metadata_dict["claim"]}"""', content, count=1, flags=re.DOTALL)
+
+        # Ensure __version__ is present
+        if not re.search(regex, content):
+            # Add version after the docstring
+            content = re.sub(
+                r'^(""".*?""")\s*', rf'\1\n\n__version__ = "{version}"\n', content, count=1, flags=re.DOTALL
+            )
+
+        init_file.write_text(content)
+
+
 @app.command()
 def render_templates():
     # Collect all template files and add them to "template_list"
@@ -121,6 +161,9 @@ def render_templates():
         template=f"snippets/licenses/{metadata_dict['license']}.md",
         relative_target_path="LICENSE.md",
     )
+
+    # Package basics
+    setup_package_basics(metadata_dict)
 
     print("Rendering finished.")
 

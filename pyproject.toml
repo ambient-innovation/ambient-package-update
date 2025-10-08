@@ -20,7 +20,8 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Topic :: Utilities",
 ]
-dynamic = ["version", "description"]
+dynamic = ["version"]
+description = "Ambient package update tool for clean and swift maintenance"
 license = {"file" = "LICENSE.md"}
 requires-python = ">=3.10"
 dependencies = [

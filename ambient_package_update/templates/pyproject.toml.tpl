@@ -22,7 +22,8 @@ classifiers = [
     "Programming Language :: Python :: {{ python_version }}",{% endfor %}
     "Topic :: Utilities",
 ]
-dynamic = ["version", "description"]
+dynamic = ["version"]
+description = "{{ claim }}"
 license = {"file" = "LICENSE.md"}
 requires-python = ">={{ supported_python_versions.0 }}"
 dependencies = [{% for dependency in dependencies %}

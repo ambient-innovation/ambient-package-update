@@ -1,5 +1,13 @@
 # Changelog
 
+**25.10.3 (2025-10-08)**
+* **Breaking change:** Added new `claim` field to the metadata to provide the preview text at PyPI for the package
+* Rendering claim in main module `__init__py`
+* Creating main module `__init__py` for new projects
+
+**25.10.2 (2025-10-08)**
+* Readded package claim
+
 **25.10.1 (2025-10-08)**
 * **Breaking change:** Dropped support for Python 3.9
 * Added Python 3.14 to test matrix
