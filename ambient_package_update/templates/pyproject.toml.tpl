@@ -1,6 +1,6 @@
 [build-system]
-requires = ["flit_core~=3.12"]
-build-backend = "flit_core.buildapi"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "{{ package_name|replace("_", "-") }}"
@@ -24,6 +24,7 @@ classifiers = [
 ]
 dynamic = ["version", "description"]
 license = {"file" = "LICENSE.md"}
+requires-python = ">={{ supported_python_versions.0 }}"
 dependencies = [{% for dependency in dependencies %}
     '{{ dependency }}',{% endfor %}
 ]
@@ -36,9 +37,6 @@ scripts.{{ script_executable.name }} = "{{ script_executable.import_path }}"{% e
 {{ area }} = [{% for dependency in dependency_list %}
    '{{ dependency }}',{% endfor %}
 ]{% endfor %}{% endif %}
-
-[tool.flit.module]
-name = "{{ module_name }}"
 
 [project.urls]
 'Homepage' = 'https://github.com/{{ github_package_group|replace("_", "-") }}/{{ github_package_name|replace("_", "-") }}/'
@@ -242,3 +240,6 @@ source = [
     "{{ module_name }}",
     ".tox/**/site-packages",
 ]
+
+[tool.hatch.version]
+path = "{{ module_name }}/__init__.py"

@@ -13,8 +13,7 @@ DEV_DEPENDENCIES = [
     "m2r2~=0.3",
     # "mistune<2.0.0",  # fixes a problem mit m2r2
     # Release
-    "flit~=3.12",  # TODO(RV): replace with uv
-    "keyring~=25.6",
+    "uv~=0.9",
     # Build
     "ambient-package-update",
 ]
