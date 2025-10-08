@@ -25,20 +25,20 @@ classifiers = [
 ]
 dynamic = ["version", "description"]
 license = {"file" = "LICENSE.md"}
+requires-python = ">=3.13"
 dependencies = [
     # Rendering
-    "typer~=0.16",
+    "typer~=0.19",
     "Jinja2~=3.1",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
     # Deploy
     "flit~=3.12",
     "keyring~=25.6",
     # Linting
-    "pre-commit~=4.2",
-    "ruff~=0.11",
+    "pre-commit~=4.3",
 ]
 
 [project.urls]
@@ -70,12 +70,15 @@ lint.select = [
     "PERF",    # PerfLint
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
-    "INP"      # Ban PEP-420 implicit namespace packages
+    "INP",     # Ban PEP-420 implicit namespace packages
+    "C90",     # McCabe code complexity
+    "FURB",    # Refurbish Python code
 ]
 lint.ignore = [
     'N999',     # Project name contains underscore, not fixable
     'A003',     # Django attributes shadow python builtins
     'DJ001',    # Django model text-based fields shouldn't be nullable
+    'TD003',    # Missing issue link for this TODO
 ]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
@@ -100,7 +103,9 @@ lint.fixable = [
     "PERF",    # PerfLint
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
-    "INP"      # Ban PEP-420 implicit namespace packages
+    "INP",     # Ban PEP-420 implicit namespace packages
+    "C90",     # McCabe code complexity
+    "FURB",    # Refurbish Python code
 ]
 lint.unfixable = []
 

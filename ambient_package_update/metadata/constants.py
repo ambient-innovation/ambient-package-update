@@ -1,20 +1,19 @@
 DEV_DEPENDENCIES = [
     # Updater
-    "typer~=0.12",
+    "typer~=0.19",
     # Test runner
-    "pytest-django~=4.9",
-    "pytest-mock~=3.14",
-    "coverage~=7.6",
+    "pytest-django~=4.11",
+    "pytest-mock~=3.15",
+    "coverage~=7.10",  # TODO(RV): can we get rid of that?
     # Linting
-    "pre-commit~=4.2",
-    "ruff~=0.11",
+    "pre-commit~=4.3",
     # Documentation
-    "sphinx~=7.1",
-    "sphinx-rtd-theme~=2.0",
-    "m2r2==0.3.3.post2",
-    "mistune<2.0.0",  # fixes a problem mit m2r2
+    "sphinx~=7.4",
+    "sphinx-rtd-theme~=3.0",
+    "m2r2~=0.3",
+    # "mistune<2.0.0",  # fixes a problem mit m2r2
     # Release
-    "flit~=3.12",
+    "flit~=3.12",  # TODO(RV): replace with uv
     "keyring~=25.6",
     # Build
     "ambient-package-update",
@@ -27,11 +26,11 @@ SUPPORTED_DJANGO_VERSIONS = [
 ]
 
 SUPPORTED_PYTHON_VERSIONS = [
-    "3.9",
     "3.10",
     "3.11",
     "3.12",
     "3.13",
+    "3.14",
 ]
 
 LICENSE_MIT = "MIT"

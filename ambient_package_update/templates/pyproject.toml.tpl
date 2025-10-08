@@ -76,6 +76,7 @@ lint.select = [
     "ERA",     # Commented out code
     "INP",     # Ban PEP-420 implicit namespace packages
     "C90",     # McCabe code complexity
+    "FURB",    # Refurbish Python code
 ]
 lint.ignore = [{% for ruff_ignore in ruff_ignore_list %}
     "{{ ruff_ignore.key }}", # {{ ruff_ignore.comment }}{% endfor %}
@@ -110,6 +111,7 @@ lint.fixable = [
     "ERA",     # Commented out code
     "INP",     # Ban PEP-420 implicit namespace packages
     "C90",     # McCabe code complexity
+    "FURB",    # Refurbish Python code
 ]
 lint.unfixable = []
 
