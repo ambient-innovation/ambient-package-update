@@ -4,9 +4,9 @@
 
   `pip install {{ package_name }}`
 
-  or via pipenv:
+  or via uv:
 
-  `pipenv install {{ package_name }}`
+  `uv add {{ package_name }}`
 
 - Add module to `INSTALLED_APPS` within the main django `settings.py`:
 

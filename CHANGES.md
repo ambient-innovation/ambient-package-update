@@ -1,5 +1,14 @@
 # Changelog
 
+**25.10.1 (2025-10-08)**
+* **Breaking change:** Dropped support for Python 3.9
+* Added Python 3.14 to test matrix
+* Using pyest-cov instead of coverage in GitHub actions
+* Updated dependencies and pre-commit hooks
+* Updated sphinx documentation packages
+* Updated Python in GitHub actions to 3.13
+* Updated pre-commit hooks for meta package
+
 **25.9.1 (2025-09-29)**
 * Added PyPI classifier for inactive projects
 * Updated pre-commit hooks for meta package

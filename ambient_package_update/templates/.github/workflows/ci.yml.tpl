@@ -12,10 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python 3.12
+      - name: Set up Python 3.13
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
 
       - name: Install required packages
         run: pip install pre-commit
@@ -31,7 +31,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.13'
 
       - name: Install dependencies
         run: python -m pip install -U pip-tools && pip-compile --extra {% for area, dependency_list in optional_dependencies.items() %}{{ area }},{% endfor %} -o requirements.txt pyproject.toml --resolver=backtracking && pip-sync
@@ -71,7 +71,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-data-{% raw %}${{ matrix.python-version }}-${{ matrix.django-version }}{% endraw %}
-          path: '{% raw %}${{ github.workspace }}{% endraw %}/.coverage.*'
+          path: '{% raw %}${{ github.workspace }}{% endraw %}/coverage.xml'
           include-hidden-files: true
           if-no-files-found: error
 
@@ -84,7 +84,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.13'
 
       - name: Install dependencies
         run: python -m pip install --upgrade coverage[toml]
@@ -92,13 +92,13 @@ jobs:
       - name: Download data
         uses: actions/download-artifact@v4
         with:
-          path: {% raw %}${{ github.workspace }}{% endraw %}
+          path: {% raw %}${{ github.workspace }}{% endraw %}}/coverage-reports
           pattern: coverage-data-*
-          merge-multiple: true
+          merge-multiple: false
 
       - name: Combine coverage and fail if it's <{{ min_coverage }}%
         run: |
-          python -m coverage combine
+          python -m coverage combine coverage-reports/**/*.xml
           python -m coverage html --skip-covered --skip-empty
           python -m coverage report --fail-under={{ min_coverage }}
           echo "## Coverage summary" >> $GITHUB_STEP_SUMMARY

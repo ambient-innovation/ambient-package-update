@@ -1,6 +1,6 @@
 [build-system]
-requires = ["flit_core~=3.12"]
-build-backend = "flit_core.buildapi"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "{{ package_name|replace("_", "-") }}"
@@ -24,6 +24,7 @@ classifiers = [
 ]
 dynamic = ["version", "description"]
 license = {"file" = "LICENSE.md"}
+requires-python = ">={{ supported_python_versions.0 }}"
 dependencies = [{% for dependency in dependencies %}
     '{{ dependency }}',{% endfor %}
 ]
@@ -32,13 +33,10 @@ dependencies = [{% for dependency in dependencies %}
 scripts.{{ script_executable.name }} = "{{ script_executable.import_path }}"{% endfor %}
 
 {% if optional_dependencies %}
-[project.optional-dependencies]{% for area, dependency_list in optional_dependencies.items() %}
+[dependency-groups]{% for area, dependency_list in optional_dependencies.items() %}
 {{ area }} = [{% for dependency in dependency_list %}
    '{{ dependency }}',{% endfor %}
 ]{% endfor %}{% endif %}
-
-[tool.flit.module]
-name = "{{ module_name }}"
 
 [project.urls]
 'Homepage' = 'https://github.com/{{ github_package_group|replace("_", "-") }}/{{ github_package_name|replace("_", "-") }}/'
@@ -76,6 +74,7 @@ lint.select = [
     "ERA",     # Commented out code
     "INP",     # Ban PEP-420 implicit namespace packages
     "C90",     # McCabe code complexity
+    "FURB",    # Refurbish Python code
 ]
 lint.ignore = [{% for ruff_ignore in ruff_ignore_list %}
     "{{ ruff_ignore.key }}", # {{ ruff_ignore.comment }}{% endfor %}
@@ -110,6 +109,7 @@ lint.fixable = [
     "ERA",     # Commented out code
     "INP",     # Ban PEP-420 implicit namespace packages
     "C90",     # McCabe code complexity
+    "FURB",    # Refurbish Python code
 ]
 lint.unfixable = []
 
@@ -143,8 +143,8 @@ line-length = 120
 # Allow unused variables when underscore-prefixed.
 lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-# Assume Python 3.12
-target-version = "py312"
+# Assume Python 3.13
+target-version = "py313"
 
 [tool.ruff.format]
 # Like Black, use double quotes for strings.
@@ -193,7 +193,7 @@ deps ={% for django_version in supported_django_versions %}
     django{{ django_version|replace(".", "") }}: Django=={{ django_version }}.*{% endfor %}
 extras = {% for area, dependency_list in optional_dependencies.items() %}{{ area }},{% endfor %}
 commands =
-    coverage run -m pytest {% if tests_require_django %}--ds settings {% endif %}tests
+     pytest --cov=django_removals --cov-report=term --cov-report=xml {% if tests_require_django %}--ds settings {% endif %}test
 
 [gh-actions]
 python ={% for python_version in supported_python_versions %}
@@ -240,3 +240,6 @@ source = [
     "{{ module_name }}",
     ".tox/**/site-packages",
 ]
+
+[tool.hatch.version]
+path = "{{ module_name }}/__init__.py"
