@@ -2,9 +2,9 @@ DEV_DEPENDENCIES = [
     # Updater
     "typer~=0.19",
     # Test runner
+    "pytest-cov~=7.0",
     "pytest-django~=4.11",
     "pytest-mock~=3.15",
-    "coverage~=7.10",  # TODO(RV): can we get rid of that?
     # Linting
     "pre-commit~=4.3",
     # Documentation
