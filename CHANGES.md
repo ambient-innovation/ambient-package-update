@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.9 (2025-10-09)**
+* Fixed a typo
+
 **25.10.8 (2025-10-09)**
 * Fixed a bug for non-Django packages
 
