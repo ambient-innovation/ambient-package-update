@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.7 (2025-10-09)**
+* Improved maintenance shell scripts
+
 **25.10.6 (2025-10-09)**
 * Improved GitHub action and fixed uv-related setup bug
 
