@@ -197,7 +197,7 @@ wheel_build_env = ".pkg"
 runner = "uv-venv-lock-runner"
 groups = [{% for area, dependency_list in optional_dependencies.items() %}"{{ area }}",{% endfor %}]
 commands = [
-    ["pytest", "--cov={{ module_name }}", "--cov-report=term", "--cov-report=xml", "--ds", "settings", "tests"]
+    ["pytest", "--cov={{ module_name }}", "--cov-report=term", "--cov-report=xml", {% if tests_require_django %}"--ds", "settings",{% endif %}"tests"]
 ]
 
 {% for django_version in supported_django_versions %}[tool.tox.env.django{{ django_version|replace(".", "") }}]

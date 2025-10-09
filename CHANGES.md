@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.8 (2025-10-09)**
+* Fixed a bug for non-Django packages
+
 **25.10.7 (2025-10-09)**
 * Improved maintenance shell scripts
 
