@@ -34,11 +34,10 @@ jobs:
           python-version: '3.13'
 
       - name: Install dependencies
-      # todo
-        run: python -m pip install -U uv && uv sync --frozen {% for area, dependency_list in optional_dependencies.items() %}--group {{ area }}{% endfor %}
+        run: python -m pip install -U uv && uv sync --frozen{% for area, dependency_list in optional_dependencies.items() %} --group {{ area }}{% endfor %}
 
       - name: Validate migration integrity
-        run: python manage.py makemigrations --check --dry-run{% endif %}
+        run: uv run python manage.py makemigrations --check --dry-run{% endif %}
 
   tests:
     name: Python {% raw %}${{ matrix.python-version }}{% endraw %}, django {% raw %}${{ matrix.django-version }}{% endraw %}
