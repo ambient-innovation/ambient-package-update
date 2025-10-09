@@ -65,13 +65,13 @@ gettext_lazy (`from django.utils.translation import gettext_lazy as _`).
 
 How to create translation file:
 
-* Navigate to `{{ package_name|replace("_", "-") }}`
+* Navigate to `{{ module_name }}`
 * `python manage.py makemessages -l de`
 * Have a look at the new/changed files within `{{ module_name }}/locale`
 
 How to compile translation files:
 
-* Navigate to `{{ package_name|replace("_", "-") }}`
+* Navigate to `{{ module_name }}`
 * `python manage.py compilemessages`
 * Have a look at the new/changed files within `{{ module_name }}/locale`
 {% endif %}

@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "{{ package_name|replace("_", "-") }}"
+name = "{{ module_name }}"
 authors = [{% for author in authors %}
     {'name' = '{{ author.name }}', 'email' = '{{ author.email }}'},{% endfor %}
 ]

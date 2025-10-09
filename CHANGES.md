@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.5 (2025-10-09)**
+* Fixed a bug for projects where project name != module name
+
 **25.10.4 (2025-10-09)**
 * Updated missed files for uv
 
