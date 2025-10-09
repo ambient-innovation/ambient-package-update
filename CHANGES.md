@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.4 (2025-10-09)**
+* Updated missed files for uv
+
 **25.10.3 (2025-10-08)**
 * **Breaking change:** Added new `claim` field to the metadata to provide the preview text at PyPI for the package
 * Rendering claim in main module `__init__py`
