@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.11 (2025-10-09)**
+* Fixed issue with tox and uv
+
 **25.10.10 (2025-10-09)**
 * Fixed issue with migration integrity check and uv
 * Fixed issue with pipeline not using extra dependencies
