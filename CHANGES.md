@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.6 (2025-10-09)**
+* Improved GitHub action and fixed uv-related setup bug
+
 **25.10.5 (2025-10-09)**
 * Fixed a bug for projects where project name != module name
 

@@ -187,19 +187,26 @@ line-ending = "auto"
 ]{% endfor %}
 {% endif %}
 [tool.tox]
-legacy_tox_ini = """
-[testenv]
-# Django deprecation overview: https://www.djangoproject.com/download/
-deps ={% for django_version in supported_django_versions %}
-    django{{ django_version|replace(".", "") }}: Django=={{ django_version }}.*{% endfor %}
-extras = {% for area, dependency_list in optional_dependencies.items() %}{{ area }},{% endfor %}
-commands =
-     pytest --cov=django_removals --cov-report=term --cov-report=xml {% if tests_require_django %}--ds settings {% endif %}test
+requires = ["tox>=4", "tox-uv>=1.0.0"]
+env_list = [{% for django_version in supported_django_versions %}"django{{ django_version|replace(".", "") }}", {% endfor %}]
 
-[gh-actions]
-python ={% for python_version in supported_python_versions %}
-    {{ python_version }}: py{{ python_version|replace(".", "") }}{% endfor %}
-"""
+[tool.tox.env_run_base]
+# Django deprecation overview: https://www.djangoproject.com/download/
+package = "wheel"
+wheel_build_env = ".pkg"
+runner = "uv-venv-lock-runner"
+groups = [{% for area, dependency_list in optional_dependencies.items() %}"{{ area }}",{% endfor %}]
+commands = [
+    ["pytest", "--cov={{ module_name }}", "--cov-report=term", "--cov-report=xml", "--ds", "settings", "tests"]
+]
+
+{% for django_version in supported_django_versions %}[tool.tox.env.django{{ django_version|replace(".", "") }}]
+deps = ["Django=={{ django_version }}.*"]
+
+{% endfor %}
+
+[tool.tox.gh_actions.python]{% for python_version in supported_python_versions %}
+"{{ python_version }}" = "py{{ python_version|replace(".", "") }}"{% endfor %}
 
 [tool.pytest.ini_options]
 python_files = [
