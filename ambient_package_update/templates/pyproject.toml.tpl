@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "{{ module_name }}"
+name = "{{ package_name|replace("_", "-") }}"
 authors = [{% for author in authors %}
     {'name' = '{{ author.name }}', 'email' = '{{ author.email }}'},{% endfor %}
 ]
@@ -248,6 +248,9 @@ source = [
     "{{ module_name }}",
     ".tox/**/site-packages",
 ]
+
+{% if package_name|replace("-", "_") != module_name %}[tool.hatch.build.targets.wheel]
+packages = ["{{ module_name }}"]{% endif %}
 
 [tool.hatch.version]
 path = "{{ module_name }}/__init__.py"

@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.12 (2025-10-10)**
+* Fixed issue with package build for differently named modules
+
 **25.10.11 (2025-10-09)**
 * Fixed issue with tox and uv
 
