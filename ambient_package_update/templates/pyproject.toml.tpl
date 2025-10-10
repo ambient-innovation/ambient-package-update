@@ -37,7 +37,12 @@ scripts.{{ script_executable.name }} = "{{ script_executable.import_path }}"{% e
 [dependency-groups]{% for area, dependency_list in optional_dependencies.items() %}
 {{ area }} = [{% for dependency in dependency_list %}
    '{{ dependency }}',{% endfor %}
-]{% endfor %}{% endif %}
+]{% endfor %}
+
+{% if optional_dependencies|length > 1 %}[project.optional-dependencies]{% for area, dependency_list in optional_dependencies.items() %}{% if area != "dev" %}
+{{ area }} = [{% for dependency in dependency_list %}
+    '{{ dependency }}',{% endfor %}
+]{% endif %}{% endfor %}{% endif %}{% endif %}
 
 [project.urls]
 'Homepage' = 'https://github.com/{{ github_package_group|replace("_", "-") }}/{{ github_package_name|replace("_", "-") }}/'

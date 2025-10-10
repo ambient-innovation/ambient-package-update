@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.13 (2025-10-10)**
+* Fixed issue with extra dependencies
+
 **25.10.12 (2025-10-10)**
 * Fixed issue with package build for differently named modules
 
