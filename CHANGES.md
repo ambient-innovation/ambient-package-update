@@ -1,5 +1,9 @@
 # Changelog
 
+**25.10.14 (2025-10-15)**
+* Fixed issue with RTD docs build
+* Fixed issue with missing translations
+
 **25.10.13 (2025-10-10)**
 * Fixed issue with extra dependencies
 

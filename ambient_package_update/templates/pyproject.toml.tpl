@@ -34,7 +34,7 @@ dependencies = [{% for dependency in dependencies %}
 scripts.{{ script_executable.name }} = "{{ script_executable.import_path }}"{% endfor %}
 
 {% if optional_dependencies %}
-[dependency-groups]{% for area, dependency_list in optional_dependencies.items() %}
+[project.optional-dependencies]{% for area, dependency_list in optional_dependencies.items() %}
 {{ area }} = [{% for dependency in dependency_list %}
    '{{ dependency }}',{% endfor %}
 ]{% endfor %}

@@ -13,7 +13,7 @@ create a lockfile
 
 To install the packages, run:
 
-> uv sync --frozen --group dev
+> uv sync --frozen --extra dev
 
 ### Preparation and building
 
