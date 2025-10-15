@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.17 (2025-10-15)**
+* Fixed template bug
+
 **25.10.16 (2025-10-15)**
 * Fixed duplicate extra declaration in pyproject.toml
 

@@ -37,7 +37,7 @@ scripts.{{ script_executable.name }} = "{{ script_executable.import_path }}"{% e
 [project.optional-dependencies]{% for area, dependency_list in optional_dependencies.items() %}
 {{ area }} = [{% for dependency in dependency_list %}
    '{{ dependency }}',{% endfor %}
-]{% endfor %}
+]{% endfor %}{% endif %}
 
 [project.urls]
 'Homepage' = 'https://github.com/{{ github_package_group|replace("_", "-") }}/{{ github_package_name|replace("_", "-") }}/'
