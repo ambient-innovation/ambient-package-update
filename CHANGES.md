@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.18 (2025-10-15)**
+* Fixed dependency extra setting for tox
+
 **25.10.17 (2025-10-15)**
 * Fixed template bug
 
