@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.15 (2025-10-15)**
+* Fixed missing whitespace issue for uv
+
 **25.10.14 (2025-10-15)**
 * Fixed issue with RTD docs build
 * Fixed issue with missing translations

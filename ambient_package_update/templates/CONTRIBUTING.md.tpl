@@ -4,7 +4,7 @@
 
 - Create a Python virtualenv and activate it
 - Install "uv" with `pip install -U uv`
-- Sync the requirements with `uv sync --frozen {% for area, dependency_list in optional_dependencies.items() %}--extra {{ area }}{% endfor %}`
+- Sync the requirements with `uv sync --frozen {% for area, dependency_list in optional_dependencies.items() %} --extra {{ area }}{% endfor %}`
 
 ## Add functionality
 
