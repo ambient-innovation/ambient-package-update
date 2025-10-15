@@ -1,5 +1,8 @@
 # Changelog
 
+**25.10.16 (2025-10-15)**
+* Fixed duplicate extra declaration in pyproject.toml
+
 **25.10.15 (2025-10-15)**
 * Fixed missing whitespace issue for uv
 
