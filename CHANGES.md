@@ -1,5 +1,11 @@
 # Changelog
 
+**25.12.1 (2025-12-10)**
+* Added Django 6.0 support
+* Dropped Django 5.1 support
+* Updated pre-commit hooks
+* Package maintenance
+
 **25.10.18 (2025-10-15)**
 * Fixed dependency extra setting for tox
 

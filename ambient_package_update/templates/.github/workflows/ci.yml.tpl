@@ -48,10 +48,12 @@ jobs:
         django-version: [{% for django_version in supported_django_versions %}'{{ django_version|replace(".", "") }}', {% endfor %}]
 
         exclude:
+          - python-version: '3.11'
+            django-version: 60
+          - python-version: '3.10'
+            django-version: 60
           - python-version: '3.9'
             django-version: 52
-          - python-version: '3.9'
-            django-version: 51
           - python-version: "3.13"
             django-version: 42
 
