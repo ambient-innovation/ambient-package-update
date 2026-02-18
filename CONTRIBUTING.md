@@ -35,16 +35,24 @@ This package uses [uv](https://github.com/astral-sh/uv) for dependency managemen
 
 ### Publishing to PyPI
 
+```bash
+# One-time setup
+keyring set https://test.pypi.org/legacy/ __token__
+# paste TestPyPI token
+keyring set https://upload.pypi.org/legacy/ __token__
+# paste prod PyPI token
+```
+
 To publish to the production PyPI:
 
 ```bash
-uv publish
+uv publish --username __token__
 ```
 
 To publish to TestPyPI first (recommended for testing):
 
 ```bash
-uv publish --publish-url https://test.pypi.org/legacy/
+uv publish --publish-url https://test.pypi.org/legacy/ --username __token__
 ```
 
 You can then test the installation from TestPyPI:
