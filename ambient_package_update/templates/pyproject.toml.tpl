@@ -254,3 +254,6 @@ packages = ["{{ module_name }}"]{% endif %}
 
 [tool.hatch.version]
 path = "{{ module_name }}/__init__.py"
+
+[tool.uv]
+keyring-provider = "subprocess"

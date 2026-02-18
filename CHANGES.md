@@ -1,5 +1,8 @@
 # Changelog
 
+**26.2.1 (2026-02-18)**
+* Added keyring support for "uv publish"
+
 **25.12.1 (2025-12-10)**
 * Added Django 6.0 support
 * Dropped Django 5.1 support
