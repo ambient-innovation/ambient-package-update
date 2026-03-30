@@ -1,5 +1,8 @@
 # Changelog
 
+**26.3.4 (2026-03-30)**
+* Dropped deprecated release CI dependency
+
 **26.3.3 (2026-03-30)**
 * Ensured that releases only run after successful pipelines
 

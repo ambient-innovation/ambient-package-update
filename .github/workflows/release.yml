@@ -82,10 +82,13 @@ jobs:
           path: dist/
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: dist/**
-          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          shopt -s failglob
+          gh release create "${{ github.ref_name }}" \
+            --generate-notes \
+            dist/*
 
   publish-pypi:
     name: Publish to PyPI
