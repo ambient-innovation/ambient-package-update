@@ -1,5 +1,9 @@
 # Changelog
 
+**26.3.2 (2026-03-30)**
+* Updated versions for CI/CD pipeline
+* Bumped pre-commit versions
+
 **26.3.1 (2026-03-30)**
 * Added trusted publishing and CI/CD releases for this package
 * Added trusted publishing and CI/CD releases for target packages
