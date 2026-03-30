@@ -1,5 +1,8 @@
 # Changelog
 
+**26.3.8 (2026-03-30)**
+* Fixed a bug which led to not replacing template variables in local snippets
+
 **26.3.7 (2026-03-30)**
 * Avoid creating releases from other branch than main/master
 

@@ -21,6 +21,10 @@ app = typer.Typer()
 
 @app.command()
 def get_metadata() -> PackageMetadata:
+    """
+    Load and return the PackageMetadata instance from the target package's
+    .ambient-package-update/metadata.py file.
+    """
     sys.path.append("./.ambient-package-update")
     try:
         m = import_module("metadata")
@@ -33,7 +37,13 @@ def get_metadata() -> PackageMetadata:
 
 def create_rendered_file(*, template: Path | str, relative_target_path: Path | str) -> None:
     """
-    Takes a template Path object and renders a template in the target package.
+    Render a single Jinja2 template and write the result to relative_target_path.
+
+    The Jinja2 environment searches .ambient-package-update/templates/ first, then the
+    built-in templates directory, so local overrides take precedence. Template globals
+    (version, current_year, license_label) are injected alongside the package metadata.
+    Output is post-processed to collapse consecutive blank lines and ensure a single
+    trailing newline.
     """
     metadata_dict = get_metadata().__dict__
 
@@ -87,14 +97,39 @@ def create_rendered_file(*, template: Path | str, relative_target_path: Path | s
     print(f'> Successfully rendered template "{abs_path}".')
 
 
-def get_template_list(*, include_snippets: bool = False) -> list[str | Path]:
-    template_list = [
+def get_template_list(*, include_snippets: bool = False) -> list[str]:
+    """
+    Return relative template paths from the built-in templates directory.
+
+    Snippets are excluded by default. Pass include_snippets=True to include them
+    (used by eject_template to list all ejectable templates).
+    """
+    return [
         str(Path(Path(path).relative_to(TEMPLATE_PATH), file))
         for path, subdirs, files in os.walk(TEMPLATE_PATH)
         for file in files
         if include_snippets or "snippets" not in path
     ]
-    return template_list
+
+
+def get_local_template_list(*, include_snippets: bool = False) -> list[str]:
+    """
+    Return relative template paths from the target package's local template directory
+    (.ambient-package-update/templates/).
+
+    These are package-specific templates that have no built-in counterpart, such as
+    extra documentation pages. Returns an empty list if the directory does not exist.
+    Snippets are excluded by default.
+    """
+    local_template_path = Path(".ambient-package-update/templates")
+    if not local_template_path.exists():
+        return []
+    return [
+        str(Path(Path(path).relative_to(local_template_path), file))
+        for path, subdirs, files in os.walk(local_template_path)
+        for file in files
+        if include_snippets or "snippets" not in path
+    ]
 
 
 def setup_package_basics(metadata_dict: dict) -> None:
@@ -139,8 +174,16 @@ def setup_package_basics(metadata_dict: dict) -> None:
 
 @app.command()
 def render_templates():
-    # Collect all template files and add them to "template_list"
-    template_list = get_template_list()
+    """
+    Render all templates into the target package.
+
+    Built-in templates and local package-specific templates are merged; if both define
+    the same path, the local version takes precedence (handled by Jinja2's loader
+    ordering). The LICENSE.md file is rendered separately as it is chosen conditionally
+    based on the configured license type.
+    """
+    # Collect all template files; local templates shadow built-in ones with the same path
+    template_list = list(dict.fromkeys([*get_template_list(), *get_local_template_list()]))
 
     for template in template_list:
         print(f"> Found template {template!r}...")
@@ -168,12 +211,19 @@ def render_templates():
 
 @app.command()
 def build_docs(package_name: str):
+    """
+    Build Sphinx HTML documentation for the given package by running sphinx-build
+    in its docs/ directory.
+    """
     print(f'Building docs for package "{package_name}"')
     subprocess.call(f"cd ../{package_name} && sphinx-build docs/ docs/_build/html/", shell=True)
 
 
 @app.command()
 def run_tests():
+    """
+    Install the target package's dependencies and run its test suite with pytest.
+    """
     print("Running tests")
 
     package_data = get_metadata()
@@ -191,6 +241,11 @@ def run_tests():
 
 @app.command()
 def eject_template():
+    """
+    Interactively copy a built-in template into .ambient-package-update/templates/ so
+    the target package can customise it. Only built-in templates are listed; locally
+    overridden templates are already present in that directory.
+    """
     template_list = get_template_list(include_snippets=True)
 
     for i, template in enumerate(template_list, start=1):
