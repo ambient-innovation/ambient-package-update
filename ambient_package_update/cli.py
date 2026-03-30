@@ -38,9 +38,7 @@ def create_rendered_file(*, template: Path | str, relative_target_path: Path | s
     metadata_dict = get_metadata().__dict__
 
     # Special case: We might want to set an explicit GitHub package name
-    metadata_dict["github_package_name"] = (
-        metadata_dict["github_package_name"] if metadata_dict["github_package_name"] else metadata_dict["package_name"]
-    )
+    metadata_dict["github_package_name"] = metadata_dict["github_package_name"] or metadata_dict["package_name"]
 
     env = Environment(
         loader=FileSystemLoader(
