@@ -1,5 +1,8 @@
 # Changelog
 
+**26.3.10 (2026-03-30)**
+* Added uv's lockfile to gitignore
+
 **26.3.9 (2026-03-30)**
 * Fixed another bug with GitHub variables breaking Jinja templates
 
