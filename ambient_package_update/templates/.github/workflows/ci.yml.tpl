@@ -10,10 +10,10 @@ jobs:
   linting:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set up Python 3.13
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
 
@@ -27,9 +27,9 @@ jobs:
     name: Validate migrations
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
 
@@ -58,13 +58,13 @@ jobs:
             django-version: 42
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: setup python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v8.0.0
       - name: Install tox
         run: uv pip install --system tox tox-uv
       - name: Run Tests
@@ -72,7 +72,7 @@ jobs:
           TOXENV: django{% raw %}${{ matrix.django-version }}{% endraw %}
         run: tox
       - name: Upload coverage data
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-data-{% raw %}${{ matrix.python-version }}-${{ matrix.django-version }}{% endraw %}
           path: '{% raw %}${{ github.workspace }}{% endraw %}/.coverage'
@@ -84,9 +84,9 @@ jobs:
     runs-on: ubuntu-24.04
     needs: tests
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
 
@@ -94,7 +94,7 @@ jobs:
         run: python -m pip install --upgrade coverage[toml]
 
       - name: Download data
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: {% raw %}${{ github.workspace }}{% endraw %}/coverage-reports
           pattern: coverage-data-*
