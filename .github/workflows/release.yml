@@ -1,9 +1,9 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - "v*"
+  workflow_run:
+    workflows: ["Unit tests"]
+    types: [completed]
 
 # Restrictive default — each job declares only what it needs
 permissions:
@@ -11,6 +11,14 @@ permissions:
 
 jobs:
   build:
+    # Only release when CI passed on a version tag. We use head_branch which holds the tag name
+    # for tag-triggered runs (e.g. "v1.2.3"). The startsWith + contains heuristic approximates
+    # a version tag: starts with "v" and contains a dot. It is not bullet-proof — a branch named
+    # "v2.0-feature" would also match — but covers the common case without regex support.
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      startsWith(github.event.workflow_run.head_branch, 'v') &&
+      contains(github.event.workflow_run.head_branch, '.')
     name: Build distribution packages
     runs-on: ubuntu-24.04
     permissions:

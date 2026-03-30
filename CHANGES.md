@@ -1,5 +1,8 @@
 # Changelog
 
+**26.3.3 (2026-03-30)**
+* Ensured that releases only run after successful pipelines
+
 **26.3.2 (2026-03-30)**
 * Updated versions for CI/CD pipeline
 * Bumped pre-commit versions

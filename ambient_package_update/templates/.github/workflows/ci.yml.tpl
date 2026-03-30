@@ -4,6 +4,8 @@ on:
   push:
     branches:
     - {{ main_branch }}
+    tags:
+      - "v*"
   pull_request:
 
 jobs:
