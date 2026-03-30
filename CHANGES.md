@@ -1,5 +1,8 @@
 # Changelog
 
+**26.3.7 (2026-03-30)**
+* Avoid creating releases from other branch than main/master
+
 **26.3.6 (2026-03-30)**
 * Fixed bug with GitHub variables breaking Jinja templates
 
