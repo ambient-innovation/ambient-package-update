@@ -117,6 +117,34 @@ If you want to overwrite template manually, you can find the default templates i
 You can overwrite them by creating a `.ambient-package-update/templates` directory in your project
 and create a new file with the same name as the template you want to overwrite.
 
+## Releasing a new version
+
+Releases are fully automated. Push a version tag and the pipeline will build, sign with
+[Sigstore](https://www.sigstore.dev/), publish to PyPI via
+[Trusted Publishing](https://docs.pypi.org/trusted-publishers/), and create a GitHub Release —
+no API tokens needed.
+
+```bash
+git tag v<version>          # e.g. git tag v26.3.1
+git push origin v<version>
+```
+
+Tags **must** start with `v`. Tags without the prefix won't trigger the pipeline.
+
+### First-time setup
+
+Before the pipeline can run for the first time, an admin must:
+
+1. **Create GitHub Environment `pypi`**
+   - Go to *Settings → Environments → New environment*, name it exactly `pypi`
+   - Under *Deployment branches and tags*, add a tag rule with pattern `v*`
+   - Optionally add required reviewers for a manual approval gate
+
+2. **Configure PyPI Trusted Publisher**
+   - Go to *PyPI → Project settings → Publishing → Add a new publisher*
+   - Fill in: Owner `ambient-innovation`, Repository `ambient-package-update`,
+     Workflow `release.yml`, Environment `pypi`
+
 ## Changelog
 
 Can be found at [GitHub](https://github.com/ambient-innovation/ambient-package-update/blob/master/CHANGES.md).

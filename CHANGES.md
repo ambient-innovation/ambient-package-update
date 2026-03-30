@@ -1,5 +1,10 @@
 # Changelog
 
+**26.3.1 (2026-03-30)**
+* Added trusted publishing and CI/CD releases for this package
+* Added trusted publishing and CI/CD releases for target packages
+* Minor styling in rendered link list for target package Readme
+
 **26.2.1 (2026-02-18)**
 * Added keyring support for "uv publish"
 
