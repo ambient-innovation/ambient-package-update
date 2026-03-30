@@ -83,11 +83,11 @@ jobs:
 
       - name: Create GitHub Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
         run: |
           shopt -s failglob
-          gh release create "${{ github.ref_name }}" \
-            --repo "${{ github.repository }}" \
+          gh release create "{% raw %}${{ github.ref_name }}{% endraw %}" \
+            --repo "{% raw %}${{ github.repository }}{% endraw %}" \
             --generate-notes \
             dist/*
 

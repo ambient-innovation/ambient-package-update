@@ -1,5 +1,8 @@
 # Changelog
 
+**26.3.6 (2026-03-30)**
+* Fixed bug with GitHub variables breaking Jinja templates
+
 **26.3.5 (2026-03-30)**
 * Fixed missing git config for new GitHub release CI job
 
