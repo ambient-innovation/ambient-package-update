@@ -16,19 +16,28 @@ jobs:
   check-branch:
     name: Verify tag is on {{ main_branch }}
     runs-on: ubuntu-24.04
+    outputs:
+      on-main: {% raw %}${{ steps.check.outputs.on-main }}{% endraw %}
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - name: Fail if tag is not on {{ main_branch }}
+      - name: Check if tag is on {{ main_branch }}
+        id: check
         run: |
           git fetch origin {{ main_branch }}
-          git merge-base --is-ancestor {% raw %}"${{ github.sha }}"{% endraw %} origin/{{ main_branch }}
+          if git merge-base --is-ancestor {% raw %}"${{ github.sha }}"{% endraw %} origin/{{ main_branch }}; then
+            echo "on-main=true" >> $GITHUB_OUTPUT
+          else
+            echo "Tag is not on {{ main_branch }}, skipping release." >&2
+            echo "on-main=false" >> $GITHUB_OUTPUT
+          fi
 
   build:
     name: Build distribution packages
     runs-on: ubuntu-24.04
     needs: [ci, check-branch]
+    if: needs.check-branch.outputs.on-main == 'true'
     permissions:
       contents: read
     steps:
