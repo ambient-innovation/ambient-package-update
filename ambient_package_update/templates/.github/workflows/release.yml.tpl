@@ -87,6 +87,7 @@ jobs:
         run: |
           shopt -s failglob
           gh release create "${{ github.ref_name }}" \
+            --repo "${{ github.repository }}" \
             --generate-notes \
             dist/*
 

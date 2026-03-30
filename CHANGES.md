@@ -1,5 +1,8 @@
 # Changelog
 
+**26.3.5 (2026-03-30)**
+* Fixed missing git config for new GitHub release CI job
+
 **26.3.4 (2026-03-30)**
 * Dropped deprecated release CI dependency
 
