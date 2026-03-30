@@ -160,6 +160,3 @@ _build
 
 # AI
 .claude/
-
-# Lock files
-uv.lock

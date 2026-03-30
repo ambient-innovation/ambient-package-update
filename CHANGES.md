@@ -1,5 +1,8 @@
 # Changelog
 
+**26.3.12 (2026-03-30)**
+* Removed uv's lockfile to gitignore
+
 **26.3.11 (2026-03-30)**
 * Changed CI main check to be non-failing
 
