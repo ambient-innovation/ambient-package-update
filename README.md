@@ -6,7 +6,7 @@
 # Ambient Package Update
 
 This repository will help keep all Python packages following a certain basic structure tidy and up-to-date. It's being
-maintained by [Ambient Digital](https://ambient.digital).
+maintained by [Beyonder Deutschland](https://beyonder.de).
 
 This package will render all required configuration and installation files for your target package.
 
@@ -42,7 +42,14 @@ Just follow these steps if you want to create a new package and maintain it usin
 
 ```python
 from ambient_package_update.metadata.author import PackageAuthor
-from ambient_package_update.metadata.constants import DEV_DEPENDENCIES
+from ambient_package_update.metadata.constants import (
+    DEV_DEPENDENCIES,
+    DEPLOYMENT_STATUS_STABLE,
+    LICENSE_MIT,
+    SUPPORTED_DJANGO_VERSIONS,
+    SUPPORTED_PYTHON_VERSIONS,
+)
+from ambient_package_update.metadata.maintainer import PackageMaintainer
 from ambient_package_update.metadata.package import PackageMetadata
 from ambient_package_update.metadata.readme import ReadmeContent
 from ambient_package_update.metadata.ruff_ignored_inspection import (
@@ -52,13 +59,22 @@ from ambient_package_update.metadata.ruff_ignored_inspection import (
 
 METADATA = PackageMetadata(
     package_name="my_package_name",
+    github_package_group="ambient-innovation",
+    licenser="Beyonder Deutschland",
+    license=LICENSE_MIT,
+    development_status=DEPLOYMENT_STATUS_STABLE,
+    claim="A short one-line description of what your package does.",
     authors=[
         PackageAuthor(
-            name="Ambient Digital",
-            email="hello@ambient.digital",
+            name="Beyonder Deutschland",
+            email="hello@beyonder.de",
         ),
     ],
-    development_status="5 - Production/Stable",
+    maintainer=PackageMaintainer(
+        name="Beyonder Deutschland",
+        url="https://beyonder.de/",
+        email="hello@beyonder.de",
+    ),
     readme_content=ReadmeContent(
         tagline="A fancy tagline for your new package",
         content="""A multiline string containing specific things you want to have in your package readme.
@@ -67,6 +83,9 @@ METADATA = PackageMetadata(
     dependencies=[
         "my_dependency>=1.0",
     ],
+    supported_python_versions=SUPPORTED_PYTHON_VERSIONS,
+    supported_django_versions=SUPPORTED_DJANGO_VERSIONS,
+    has_migrations=False,
     optional_dependencies={
         "dev": [
             *DEV_DEPENDENCIES,
@@ -90,6 +109,50 @@ METADATA = PackageMetadata(
     ],
 )
 ```
+
+### Metadata reference
+
+`PackageMetadata` (in `ambient_package_update.metadata.package`) is the single configuration object that drives
+all rendered files. The following fields are **required** (no default value):
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `package_name` | `str` | The distribution/module name, e.g. `django_pony_express`. Underscores are converted to hyphens for the GitHub/PyPI name. |
+| `github_package_group` | `str` | The GitHub owner/organization the repo lives under, e.g. `ambient-innovation`. Used for repo, issue and security-advisory URLs. |
+| `licenser` | `str` | The copyright holder written into the `LICENSE.md` file. |
+| `authors` | `list[PackageAuthor]` | One or more `PackageAuthor(name, email)` entries; rendered into `pyproject.toml`. |
+| `maintainer` | `PackageMaintainer` | A single `PackageMaintainer(name, url, email)`. The email is used as the Code-of-Conduct contact. |
+| `development_status` | `str` | A trove classifier such as `DEPLOYMENT_STATUS_STABLE`. See `metadata.constants` for the presets. |
+| `readme_content` | `ReadmeContent` | Controls the generated `README.md` (see below). |
+| `claim` | `str` | One-line package description. Used as the `pyproject.toml` description and the `__init__.py` docstring. |
+| `has_migrations` | `bool` | Whether the package ships Django migrations. Enables the migration-integrity CI job when `True`. |
+| `dependencies` | `list[str]` | Runtime dependencies (PEP 508 specifiers). |
+| `supported_python_versions` | `list[str]` | Python versions for the CI test matrix, e.g. `SUPPORTED_PYTHON_VERSIONS`. |
+| `supported_django_versions` | `list[str]` | Django versions for the CI test matrix, e.g. `SUPPORTED_DJANGO_VERSIONS`. |
+
+The following fields are **optional** (defaults shown):
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `min_coverage` | `float` | `100.0` | Coverage threshold the CI coverage job enforces. |
+| `license` | `str` | `LICENSE_MIT` | `LICENSE_MIT` or `LICENSE_GPL`; selects the rendered license file. |
+| `license_year` | `int` | current year | Copyright year in the license file. |
+| `main_branch` | `str` | `"master"` | Default branch name used in CI triggers and docs links. |
+| `tests_require_django` | `bool` | `True` | Whether the test setup needs a Django settings module. |
+| `github_package_name` | `str` | derived | Overrides the GitHub repo name (defaults to `package_name` with hyphens). |
+| `module_name` | `str` | derived | Overrides the importable module name (defaults to `package_name` with underscores). |
+| `optional_dependencies` | `dict[str, list[str]]` | `None` | Extras, e.g. `{"dev": [*DEV_DEPENDENCIES]}`. The `dev` extra is what CI and Read the Docs install. |
+| `ruff_ignore_list` | `list[RuffIgnoredInspection]` | `None` | Global ruff rule ignores. |
+| `ruff_file_based_ignore_list` | `list[RuffFilePatternIgnoredInspection]` | `None` | Per-file-pattern ruff ignores. |
+| `script_executables` | `list[ScriptExecutable]` | `[]` | Console entry points, each `ScriptExecutable(name, import_path)`. |
+| `gitignore_list` | `list[str]` | `[]` | Extra `.gitignore` entries appended to the defaults. |
+
+`ReadmeContent(tagline, content, uses_internationalisation=True)` controls the generated README: `tagline` is the
+short headline, `content` is the free-form body, and `uses_internationalisation` toggles the translation-workflow
+section in `CONTRIBUTING.md`.
+
+Useful presets live in `ambient_package_update.metadata.constants`: `DEV_DEPENDENCIES`, `SUPPORTED_PYTHON_VERSIONS`,
+`SUPPORTED_DJANGO_VERSIONS`, the `LICENSE_*` values, and the `DEPLOYMENT_STATUS_*` classifiers.
 
 - Install the `ambient_package_update` package
   ```

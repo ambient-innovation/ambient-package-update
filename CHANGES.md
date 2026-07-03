@@ -1,5 +1,21 @@
 # Changelog
 
+**26.7.1 (2026-07-03)**
+* Added native uv support to the rendered Read the Docs configuration
+* Replaced the unmaintained "m2r2" documentation dependency with "sphinx-mdinclude"
+* Added a Code of Conduct, issue templates and a pull request template to rendered packages
+* Made the single-version CI and Read the Docs jobs track the newest supported Python version
+* Bumped internal tooling and rendered single-version jobs to Python 3.14
+* Added a cache suffix to the uv setup step to avoid CI cache namespace conflicts
+* Documented the full `PackageMetadata` field reference in the README
+* Excluded unsupported Python/Django combinations (Python 3.14 with Django 4.2 and 5.2) from the rendered CI matrix
+* Added a Code of Conduct, security policy, issue templates and a pull request template to this repository
+* Renamed author, maintainer and documentation references to Beyonder Deutschland (beyonder.de)
+* Fixed the rendered ruff `target-version` to track the minimum supported Python (matching `requires-python`) instead of the newest
+* Removed the stale `.md` source suffix from the rendered Sphinx config, since `sphinx-mdinclude` provides only the `mdinclude` directive (not a Markdown source parser)
+* Raised this tool's own minimum required Python to 3.13
+* Dropped Python 3.10 (nearing end-of-life in October 2026) from the default supported versions
+
 **26.3.12 (2026-03-30)**
 * Removed uv's lockfile to gitignore
 

@@ -36,7 +36,7 @@ from {{ module_name }} import __version__  # noqa: E402
 # -- Project information -----------------------------------------------------
 
 project = "{{ package_name|replace("_", "-") }}"
-copyright = "{{ current_year }}, Ambient Innovation: GmbH"  # noqa: A001
+copyright = "{{ current_year }}, Beyonder Deutschland"  # noqa: A001
 author = "{{ maintainer.name }} <{{ maintainer.email }}>"
 version = __version__
 release = __version__
@@ -49,10 +49,10 @@ release = __version__
 extensions = [
     "sphinx_rtd_theme",
     "sphinx.ext.autodoc",
-    "m2r2",
+    "sphinx_mdinclude",
 ]
 
-source_suffix = [".rst", ".md"]
+source_suffix = [".rst"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]

@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "ambient-package-update"
 authors = [
-    {'name' = 'Ambient Digital', 'email' = 'hello@ambient.digital'},
+    {'name' = 'Beyonder Deutschland', 'email' = 'hello@beyonder.de'},
 ]
 readme = "README.md"
 classifiers = [
@@ -18,12 +18,13 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Utilities",
 ]
 dynamic = ["version"]
 description = "Ambient package update tool for clean and swift maintenance"
 license = {"file" = "LICENSE.md"}
-requires-python = ">=3.10"
+requires-python = ">=3.13"
 dependencies = [
     # Rendering
     "typer~=0.19",
@@ -41,7 +42,7 @@ dev = [
 [project.urls]
 'Homepage' = 'https://github.com/ambient-innovation/ambient-package-update/'
 'Documentation' = 'https://github.com/ambient-innovation/ambient-package-update/blob/master/README.md'
-'Maintained by' = 'https://ambient.digital/'
+'Maintained by' = 'https://beyonder.de/'
 'Bugtracker' = 'https://github.com/ambient-innovation/ambient-package-update/issues'
 'Changelog' = 'https://github.com/ambient-innovation/ambient-package-update/blob/master/CHANGES.md'
 
@@ -136,7 +137,7 @@ line-length = 120
 # Allow unused variables when underscore-prefixed.
 lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-# Assume Python 3.13
+# Match the minimum supported Python version (mirrors requires-python)
 target-version = "py313"
 
 [tool.ruff.format]
