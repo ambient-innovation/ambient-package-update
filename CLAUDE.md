@@ -60,4 +60,4 @@ ambient_package_update/
 
 - Line length: 120 characters (configured in `pyproject.toml` under `[tool.ruff]`)
 - Ruff is the sole formatter and linter — no Black, no isort separately
-- Python ≥ 3.10 required; target version for ruff is 3.13
+- Python ≥ 3.13 required; ruff `target-version` is `py313` (matches the `requires-python` floor)

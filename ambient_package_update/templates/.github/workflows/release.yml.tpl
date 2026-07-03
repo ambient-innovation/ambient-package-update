@@ -43,10 +43,10 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Set up Python 3.13
+      - name: Set up Python {{ supported_python_versions|last }}
         uses: actions/setup-python@v6
         with:
-          python-version: "3.13"
+          python-version: "{{ supported_python_versions|last }}"
 
       - name: Install uv
         uses: astral-sh/setup-uv@v8.0.0

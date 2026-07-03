@@ -144,8 +144,8 @@ line-length = 120
 # Allow unused variables when underscore-prefixed.
 lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-# Assume Python 3.13
-target-version = "py313"
+# Match the minimum supported Python version (mirrors requires-python above)
+target-version = "py{{ supported_python_versions.0|replace(".", "") }}"
 
 [tool.ruff.format]
 # Like Black, use double quotes for strings.

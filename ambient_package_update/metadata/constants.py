@@ -10,8 +10,7 @@ DEV_DEPENDENCIES = [
     # Documentation
     "sphinx~=7.4",
     "sphinx-rtd-theme~=3.0",
-    "m2r2~=0.3",
-    # "mistune<2.0.0",  # fixes a problem mit m2r2
+    "sphinx-mdinclude~=0.6",
     # Release
     "uv~=0.9",
     "keyring~=25.7",
@@ -26,7 +25,6 @@ SUPPORTED_DJANGO_VERSIONS = [
 ]
 
 SUPPORTED_PYTHON_VERSIONS = [
-    "3.10",
     "3.11",
     "3.12",
     "3.13",

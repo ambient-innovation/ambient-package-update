@@ -9,10 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Set up Python 3.13
+      - name: Set up Python {{ supported_python_versions|last }}
         uses: actions/setup-python@v6
         with:
-          python-version: "3.13"
+          python-version: "{{ supported_python_versions|last }}"
 
       - name: Install required packages
         run: pip install pre-commit
@@ -28,7 +28,7 @@ jobs:
 
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.13'
+          python-version: '{{ supported_python_versions|last }}'
 
       - name: Install dependencies
         run: python -m pip install -U uv && uv sync --frozen{% for area, dependency_list in optional_dependencies.items() %} --extra {{ area }}{% endfor %}
@@ -44,15 +44,18 @@ jobs:
         python-version: [{% for python_version in supported_python_versions %}'{{ python_version }}', {% endfor %}]
         django-version: [{% for django_version in supported_django_versions %}'{{ django_version|replace(".", "") }}', {% endfor %}]
 
+        # Exclude Python/Django combinations that are not supported upstream.
+        # Django 4.2 supports Python <= 3.12, Django 5.2 supports Python <= 3.13,
+        # Django 6.0 requires Python >= 3.12.
         exclude:
           - python-version: '3.11'
             django-version: 60
-          - python-version: '3.10'
-            django-version: 60
-          - python-version: '3.9'
-            django-version: 52
-          - python-version: "3.13"
+          - python-version: '3.13'
             django-version: 42
+          - python-version: '3.14'
+            django-version: 42
+          - python-version: '3.14'
+            django-version: 52
 
     steps:
       - uses: actions/checkout@v6
@@ -62,6 +65,8 @@ jobs:
           python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
       - name: Install uv
         uses: astral-sh/setup-uv@v8.0.0
+        with:
+          cache-suffix: {% raw %}${{ github.ref_type }}{% endraw %}
       - name: Install tox
         run: uv pip install --system tox tox-uv
       - name: Run Tests
@@ -85,7 +90,7 @@ jobs:
 
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.13'
+          python-version: '{{ supported_python_versions|last }}'
 
       - name: Install dependencies
         run: python -m pip install --upgrade coverage[toml]
