@@ -45,8 +45,6 @@ jobs:
         django-version: [{% for django_version in supported_django_versions %}'{{ django_version|replace(".", "") }}', {% endfor %}]
 
         # Exclude Python/Django combinations that are not supported upstream.
-        # Django 4.2 supports Python <= 3.12, Django 5.2 supports Python <= 3.13,
-        # Django 6.0 requires Python >= 3.12.
         exclude:
           - python-version: '3.11'
             django-version: 60
