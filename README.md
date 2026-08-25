@@ -127,8 +127,8 @@ all rendered files. The following fields are **required** (no default value):
 | `claim` | `str` | One-line package description. Used as the `pyproject.toml` description and the `__init__.py` docstring. |
 | `has_migrations` | `bool` | Whether the package ships Django migrations. Enables the migration-integrity CI job when `True`. |
 | `dependencies` | `list[str]` | Runtime dependencies (PEP 508 specifiers). |
-| `supported_python_versions` | `list[str]` | Python versions for the CI test matrix, e.g. `SUPPORTED_PYTHON_VERSIONS`. |
-| `supported_django_versions` | `list[str]` | Django versions for the CI test matrix, e.g. `SUPPORTED_DJANGO_VERSIONS`. |
+| `supported_python_versions` | `list[str]` | Python versions for the CI test matrix, e.g. `SUPPORTED_PYTHON_VERSIONS`. Every version has to appear in `DJANGO_PYTHON_COMPATIBILITY`. |
+| `supported_django_versions` | `list[str]` | Django versions for the CI test matrix, e.g. `SUPPORTED_DJANGO_VERSIONS`. Every version has to be a key in `DJANGO_PYTHON_COMPATIBILITY`, which drives the matrix exclusions. |
 
 The following fields are **optional** (defaults shown):
 

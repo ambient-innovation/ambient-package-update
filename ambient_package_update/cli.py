@@ -10,7 +10,7 @@ from pathlib import Path
 import typer
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from ambient_package_update.metadata.constants import LICENSE_GPL
+from ambient_package_update.metadata.constants import DJANGO_PYTHON_COMPATIBILITY, LICENSE_GPL
 from ambient_package_update.metadata.package import PackageMetadata
 
 BASE_PATH = Path(__file__).parent
@@ -35,6 +35,39 @@ def get_metadata() -> PackageMetadata:
     return m.METADATA
 
 
+def get_unsupported_version_combinations(*, python_versions: list[str], django_versions: list[str]) -> list[tuple]:
+    """
+    Return the (python_version, django_version) pairs that Django does not support upstream.
+
+    Both version sets have to be covered by DJANGO_PYTHON_COMPATIBILITY. A version the map
+    does not know about aborts rendering, because either direction would otherwise degrade
+    silently: an unmapped Django version yields no exclusions and renders a matrix whose
+    dependencies cannot resolve, while an unmapped Python version is excluded everywhere and
+    renders a matrix that quietly tests nothing.
+    """
+    unmapped_django_versions = [version for version in django_versions if version not in DJANGO_PYTHON_COMPATIBILITY]
+    known_python_versions = {
+        version for compatible_versions in DJANGO_PYTHON_COMPATIBILITY.values() for version in compatible_versions
+    }
+    unmapped_python_versions = [version for version in python_versions if version not in known_python_versions]
+
+    if unmapped_django_versions or unmapped_python_versions:
+        unmapped = [f"Django {version}" for version in unmapped_django_versions] + [
+            f"Python {version}" for version in unmapped_python_versions
+        ]
+        raise RuntimeError(
+            f"{', '.join(unmapped)} missing from DJANGO_PYTHON_COMPATIBILITY. Add the version there so the "
+            f"rendered CI matrix covers the supported combinations and excludes the unsupported ones."
+        )
+
+    return [
+        (python_version, django_version)
+        for django_version in django_versions
+        for python_version in python_versions
+        if python_version not in DJANGO_PYTHON_COMPATIBILITY[django_version]
+    ]
+
+
 def create_rendered_file(*, template: Path | str, relative_target_path: Path | str) -> None:
     """
     Render a single Jinja2 template and write the result to relative_target_path.
@@ -49,6 +82,11 @@ def create_rendered_file(*, template: Path | str, relative_target_path: Path | s
 
     # Special case: We might want to set an explicit GitHub package name
     metadata_dict["github_package_name"] = metadata_dict["github_package_name"] or metadata_dict["package_name"]
+
+    metadata_dict["unsupported_version_combinations"] = get_unsupported_version_combinations(
+        python_versions=metadata_dict["supported_python_versions"],
+        django_versions=metadata_dict["supported_django_versions"],
+    )
 
     env = Environment(
         loader=FileSystemLoader(

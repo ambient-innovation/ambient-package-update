@@ -1,5 +1,14 @@
 # Changelog
 
+**26.8.1 (2026-08-25)**
+* Added Django 6.1 to the default supported versions
+* Dropped Django 4.2, whose extended support ended in April 2026
+* Derived the rendered CI matrix exclusions from a Django/Python compatibility map instead of a hardcoded list, so they stay correct for any version set a package declares
+* Aborted rendering when a supported Python or Django version is missing from the compatibility map, instead of rendering a matrix that cannot resolve or quietly tests nothing
+* Listed the upcoming Django 6.2 in the compatibility map, so packages can opt into it before it becomes a default supported version
+* Bumped the pre-commit hooks in this repository and in the rendered configuration to ruff 0.16.4 and black 26.5.1, and the rendered django-upgrade hook to 1.32.0
+* Raised this repository's pyupgrade target to Python 3.13, matching its `requires-python`
+
 **26.7.1 (2026-07-03)**
 * Added native uv support to the rendered Read the Docs configuration
 * Replaced the unmaintained "m2r2" documentation dependency with "sphinx-mdinclude"
