@@ -39,20 +39,33 @@ def get_unsupported_version_combinations(*, python_versions: list[str], django_v
     """
     Return the (python_version, django_version) pairs that Django does not support upstream.
 
-    Django versions absent from DJANGO_PYTHON_COMPATIBILITY count as compatible with every
-    declared Python version, so an unlisted version is never silently dropped from the matrix.
+    Both version sets have to be covered by DJANGO_PYTHON_COMPATIBILITY. A version the map
+    does not know about aborts rendering, because either direction would otherwise degrade
+    silently: an unmapped Django version yields no exclusions and renders a matrix whose
+    dependencies cannot resolve, while an unmapped Python version is excluded everywhere and
+    renders a matrix that quietly tests nothing.
     """
-    combinations = []
-    for django_version in django_versions:
-        compatible_python_versions = DJANGO_PYTHON_COMPATIBILITY.get(django_version)
-        if compatible_python_versions is None:
-            continue
-        combinations.extend(
-            (python_version, django_version)
-            for python_version in python_versions
-            if python_version not in compatible_python_versions
+    unmapped_django_versions = [version for version in django_versions if version not in DJANGO_PYTHON_COMPATIBILITY]
+    known_python_versions = {
+        version for compatible_versions in DJANGO_PYTHON_COMPATIBILITY.values() for version in compatible_versions
+    }
+    unmapped_python_versions = [version for version in python_versions if version not in known_python_versions]
+
+    if unmapped_django_versions or unmapped_python_versions:
+        unmapped = [f"Django {version}" for version in unmapped_django_versions] + [
+            f"Python {version}" for version in unmapped_python_versions
+        ]
+        raise RuntimeError(
+            f"{', '.join(unmapped)} missing from DJANGO_PYTHON_COMPATIBILITY. Add the version there so the "
+            f"rendered CI matrix covers the supported combinations and excludes the unsupported ones."
         )
-    return combinations
+
+    return [
+        (python_version, django_version)
+        for django_version in django_versions
+        for python_version in python_versions
+        if python_version not in DJANGO_PYTHON_COMPATIBILITY[django_version]
+    ]
 
 
 def create_rendered_file(*, template: Path | str, relative_target_path: Path | str) -> None:

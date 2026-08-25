@@ -4,7 +4,8 @@
 * Added Django 6.1 to the default supported versions
 * Dropped Django 4.2, whose extended support ended in April 2026
 * Derived the rendered CI matrix exclusions from a Django/Python compatibility map instead of a hardcoded list, so they stay correct for any version set a package declares
-* Bumped the pre-commit hooks in this repository and in the rendered configuration to ruff 0.16.4, black 26.5.1 and django-upgrade 1.32.0
+* Aborted rendering when a supported Python or Django version is missing from the compatibility map, instead of rendering a matrix that cannot resolve or quietly tests nothing
+* Bumped the pre-commit hooks in this repository and in the rendered configuration to ruff 0.16.4 and black 26.5.1, and the rendered django-upgrade hook to 1.32.0
 * Raised this repository's pyupgrade target to Python 3.13, matching its `requires-python`
 
 **26.7.1 (2026-07-03)**
