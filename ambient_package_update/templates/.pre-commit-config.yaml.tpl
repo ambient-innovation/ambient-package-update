@@ -3,7 +3,7 @@
 
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.8
+    rev: v0.16.4
     hooks:
       # Run the Ruff formatter.
       - id: ruff-format
@@ -16,7 +16,7 @@ repos:
     hooks:
       - id: blacken-docs
         additional_dependencies:
-        - black==25.9.0
+        - black==26.5.1
         files: '(?:README\.md|\.ambient-package-update\/templates\/snippets\/.*\.tpl|docs\/.*\.(?:md|rst))'
 
   - repo: https://github.com/asottile/pyupgrade
@@ -26,7 +26,7 @@ repos:
         args: [ --py{{ supported_python_versions.0|replace(".", "") }}-plus ]
 
   - repo: https://github.com/adamchainz/django-upgrade
-    rev: 1.30.0
+    rev: 1.32.0
     hooks:
       - id: django-upgrade
         args: [--target-version, "{{ supported_django_versions.0 }}"]

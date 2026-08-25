@@ -19,10 +19,21 @@ DEV_DEPENDENCIES = [
 ]
 
 SUPPORTED_DJANGO_VERSIONS = [
-    "4.2",
     "5.2",
     "6.0",
+    "6.1",
 ]
+
+# Python versions each Django version runs on, as documented in the Django installation FAQ.
+# Used to keep unsupported combinations out of the rendered CI test matrix.
+DJANGO_PYTHON_COMPATIBILITY = {
+    "4.2": ["3.8", "3.9", "3.10", "3.11", "3.12"],
+    "5.0": ["3.10", "3.11", "3.12"],
+    "5.1": ["3.10", "3.11", "3.12", "3.13"],
+    "5.2": ["3.10", "3.11", "3.12", "3.13", "3.14"],
+    "6.0": ["3.12", "3.13", "3.14"],
+    "6.1": ["3.12", "3.13", "3.14"],
+}
 
 SUPPORTED_PYTHON_VERSIONS = [
     "3.11",

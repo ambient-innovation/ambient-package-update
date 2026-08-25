@@ -1,6 +1,5 @@
 import dataclasses
 import datetime
-from typing import Optional
 
 from ambient_package_update.metadata.author import PackageAuthor
 from ambient_package_update.metadata.constants import LICENSE_MIT
@@ -33,7 +32,7 @@ class PackageMetadata:
     main_branch: str = "master"
     tests_require_django: bool = True
     github_package_name: str = None
-    module_name: Optional[str] = None
+    module_name: str | None = None
     optional_dependencies: dict[str, list[str]] = None
     ruff_ignore_list: list[RuffIgnoredInspection] = None
     ruff_file_based_ignore_list: list[RuffFilePatternIgnoredInspection] = None

@@ -43,17 +43,12 @@ jobs:
       matrix:
         python-version: [{% for python_version in supported_python_versions %}'{{ python_version }}', {% endfor %}]
         django-version: [{% for django_version in supported_django_versions %}'{{ django_version|replace(".", "") }}', {% endfor %}]
-
+{% if unsupported_version_combinations %}
         # Exclude Python/Django combinations that are not supported upstream.
-        exclude:
-          - python-version: '3.11'
-            django-version: 60
-          - python-version: '3.13'
-            django-version: 42
-          - python-version: '3.14'
-            django-version: 42
-          - python-version: '3.14'
-            django-version: 52
+        exclude:{% for python_version, django_version in unsupported_version_combinations %}
+          - python-version: '{{ python_version }}'
+            django-version: {{ django_version|replace(".", "") }}{% endfor %}
+{% endif %}
 
     steps:
       - uses: actions/checkout@v6

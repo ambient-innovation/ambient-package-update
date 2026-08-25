@@ -10,7 +10,7 @@ from pathlib import Path
 import typer
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from ambient_package_update.metadata.constants import LICENSE_GPL
+from ambient_package_update.metadata.constants import DJANGO_PYTHON_COMPATIBILITY, LICENSE_GPL
 from ambient_package_update.metadata.package import PackageMetadata
 
 BASE_PATH = Path(__file__).parent
@@ -35,6 +35,26 @@ def get_metadata() -> PackageMetadata:
     return m.METADATA
 
 
+def get_unsupported_version_combinations(*, python_versions: list[str], django_versions: list[str]) -> list[tuple]:
+    """
+    Return the (python_version, django_version) pairs that Django does not support upstream.
+
+    Django versions absent from DJANGO_PYTHON_COMPATIBILITY count as compatible with every
+    declared Python version, so an unlisted version is never silently dropped from the matrix.
+    """
+    combinations = []
+    for django_version in django_versions:
+        compatible_python_versions = DJANGO_PYTHON_COMPATIBILITY.get(django_version)
+        if compatible_python_versions is None:
+            continue
+        combinations.extend(
+            (python_version, django_version)
+            for python_version in python_versions
+            if python_version not in compatible_python_versions
+        )
+    return combinations
+
+
 def create_rendered_file(*, template: Path | str, relative_target_path: Path | str) -> None:
     """
     Render a single Jinja2 template and write the result to relative_target_path.
@@ -49,6 +69,11 @@ def create_rendered_file(*, template: Path | str, relative_target_path: Path | s
 
     # Special case: We might want to set an explicit GitHub package name
     metadata_dict["github_package_name"] = metadata_dict["github_package_name"] or metadata_dict["package_name"]
+
+    metadata_dict["unsupported_version_combinations"] = get_unsupported_version_combinations(
+        python_versions=metadata_dict["supported_python_versions"],
+        django_versions=metadata_dict["supported_django_versions"],
+    )
 
     env = Environment(
         loader=FileSystemLoader(
