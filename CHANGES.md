@@ -1,5 +1,9 @@
 # Changelog
 
+**26.8.3 (2026-08-27)**
+* Stated the reason for the per-environment Django install once at the tox runner instead of
+  repeating it above every rendered matrix environment
+
 **26.8.2 (2026-08-27)**
 * Fixed the rendered Django test matrix testing only the locked Django version in every cell: the
   "uv-venv-lock-runner" ignores tox's `deps`, so each environment now installs its Django on top of
