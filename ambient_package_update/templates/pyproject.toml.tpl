@@ -201,7 +201,9 @@ commands = [
 ]
 
 {% for django_version in supported_django_versions %}[tool.tox.env.django{{ django_version|replace(".", "") }}]
-deps = ["Django=={{ django_version }}.*"]
+# "uv-venv-lock-runner" installs whatever Django the lockfile pins and ignores "deps",
+# so the matrix version has to be installed on top of the synced environment.
+commands_pre = [["uv", "pip", "install", "Django=={{ django_version }}.*"]]
 
 {% endfor %}
 

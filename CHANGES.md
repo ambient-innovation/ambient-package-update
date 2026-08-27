@@ -1,5 +1,10 @@
 # Changelog
 
+**26.8.2 (2026-08-27)**
+* Fixed the rendered Django test matrix testing only the locked Django version in every cell: the
+  "uv-venv-lock-runner" ignores tox's `deps`, so each environment now installs its Django on top of
+  the synced environment via `commands_pre`
+
 **26.8.1 (2026-08-25)**
 * Added Django 6.1 to the default supported versions
 * Dropped Django 4.2, whose extended support ended in April 2026
