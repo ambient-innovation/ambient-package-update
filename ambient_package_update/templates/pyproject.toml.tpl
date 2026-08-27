@@ -194,6 +194,8 @@ env_list = [{% for django_version in supported_django_versions %}"django{{ djang
 # Django deprecation overview: https://www.djangoproject.com/download/
 package = "wheel"
 wheel_build_env = ".pkg"
+# This runner syncs from the lockfile and ignores "deps", so every environment below
+# installs its matrix Django version on top of the synced environment.
 runner = "uv-venv-lock-runner"
 extras = [{% for area, dependency_list in optional_dependencies.items() %}"{{ area }}", {% endfor %}]
 commands = [
@@ -201,8 +203,6 @@ commands = [
 ]
 
 {% for django_version in supported_django_versions %}[tool.tox.env.django{{ django_version|replace(".", "") }}]
-# "uv-venv-lock-runner" installs whatever Django the lockfile pins and ignores "deps",
-# so the matrix version has to be installed on top of the synced environment.
 commands_pre = [["uv", "pip", "install", "Django=={{ django_version }}.*"]]
 
 {% endfor %}
