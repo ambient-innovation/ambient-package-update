@@ -1,5 +1,10 @@
 # Changelog
 
+**26.10.1 (2026-10-06)**
+* Fixed broken links in the pre-commit section of the rendered `CONTRIBUTING.md`: the config link now points to the
+  package's `.pre-commit-config.yaml` and `.git/hooks` is no longer linked
+* Removed the "frontend and backend" wording from the rendered `CONTRIBUTING.md`, since the packages are Python-only
+
 **26.8.3 (2026-08-27)**
 * Stated the reason for the per-environment Django install once at the tox runner instead of
   repeating it above every rendered matrix environment
