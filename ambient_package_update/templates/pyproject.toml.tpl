@@ -194,9 +194,11 @@ env_list = [{% for django_version in supported_django_versions %}"django{{ djang
 # Django deprecation overview: https://www.djangoproject.com/download/
 package = "wheel"
 wheel_build_env = ".pkg"
-# This runner syncs from the lockfile and ignores "deps", so every environment below
+# This runner installs via "uv sync" and ignores "deps", so every environment below
 # installs its matrix Django version on top of the synced environment.
 runner = "uv-venv-lock-runner"
+# uv.lock is not committed for libraries, so tox resolves fresh instead of asserting a lockfile.
+uv_sync_locked = false
 extras = [{% for area, dependency_list in optional_dependencies.items() %}"{{ area }}", {% endfor %}]
 commands = [
     ["pytest", "--cov={{ module_name }}", "--cov-report=term", "--cov-report=xml", {% if tests_require_django %}"--ds", "settings", {% endif %}"tests"]

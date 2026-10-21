@@ -1,5 +1,11 @@
 # Changelog
 
+**26.10.3 (2026-10-21)**
+* Stopped committing `uv.lock` in rendered packages: it is now gitignored, and the rendered CI, install scripts and
+  `CONTRIBUTING.md` run `uv sync` without `--frozen`. Packages are libraries, so the lockfile never reaches their users
+  and only caused lockfile churn in every maintenance release
+* Set `uv_sync_locked = false` in the rendered tox config, so the test matrix resolves without a committed lockfile
+
 **26.10.2 (2026-10-21)**
 * Bumped the rendered GitHub Actions to `actions/checkout` v7, `actions/setup-python` v7, `astral-sh/setup-uv` v10.3.0
   and `sigstore/gh-action-sigstore-python` v3.5.0
