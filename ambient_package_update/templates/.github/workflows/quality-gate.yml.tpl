@@ -31,7 +31,7 @@ jobs:
           python-version: '{{ supported_python_versions|last }}'
 
       - name: Install dependencies
-        run: python -m pip install -U uv && uv sync --frozen{% for area, dependency_list in optional_dependencies.items() %} --extra {{ area }}{% endfor %}
+        run: python -m pip install -U uv && uv sync{% for area, dependency_list in optional_dependencies.items() %} --extra {{ area }}{% endfor %}
 
       - name: Validate migration integrity
         run: uv run python manage.py makemigrations --check --dry-run{% endif %}
