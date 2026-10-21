@@ -101,9 +101,7 @@ METADATA = PackageMetadata(
         RuffFilePatternIgnoredInspection(
             pattern="**/tests/missing_init/*.py",
             rules=[
-                RuffIgnoredInspection(
-                    key="INP001", comment="Missing by design for a test case"
-                ),
+                RuffIgnoredInspection(key="INP001", comment="Missing by design for a test case"),
             ],
         ),
     ],

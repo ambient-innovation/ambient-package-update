@@ -7,10 +7,10 @@ jobs:
   linting:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up Python {{ supported_python_versions|last }}
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "{{ supported_python_versions|last }}"
 
@@ -24,9 +24,9 @@ jobs:
     name: Validate migrations
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: '{{ supported_python_versions|last }}'
 
@@ -51,13 +51,13 @@ jobs:
 {% endif %}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: setup python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
       - name: Install uv
-        uses: astral-sh/setup-uv@v8.0.0
+        uses: astral-sh/setup-uv@v10.3.0
         with:
           cache-suffix: {% raw %}${{ github.ref_type }}{% endraw %}
       - name: Install tox
@@ -79,9 +79,9 @@ jobs:
     runs-on: ubuntu-24.04
     needs: tests
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: '{{ supported_python_versions|last }}'
 

@@ -1,18 +1,18 @@
 DEV_DEPENDENCIES = [
     # Updater
-    "typer~=0.19",
+    "typer~=0.27",
     # Test runner
-    "pytest-cov~=7.0",
-    "pytest-django~=4.11",
-    "pytest-mock~=3.15",
+    "pytest-cov~=7.1",
+    "pytest-django~=4.14",
+    "pytest-mock~=3.17",
     # Linting
-    "pre-commit~=4.3",
+    "pre-commit~=4.7",
     # Documentation
-    "sphinx~=7.4",
-    "sphinx-rtd-theme~=3.0",
+    "sphinx~=8.2",
+    "sphinx-rtd-theme~=3.1",
     "sphinx-mdinclude~=0.6",
     # Release
-    "uv~=0.9",
+    "uv~=0.13",
     "keyring~=25.7",
     # Build
     "ambient-package-update",
