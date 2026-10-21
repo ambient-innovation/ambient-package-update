@@ -27,16 +27,16 @@ license = {"file" = "LICENSE.md"}
 requires-python = ">=3.13"
 dependencies = [
     # Rendering
-    "typer~=0.19",
+    "typer~=0.27",
     "Jinja2~=3.1",
     "keyring~=25.7",
-    "uv~=0.9",
+    "uv~=0.13",
 ]
 
 [dependency-groups]
 dev = [
     # Linting
-    "pre-commit~=4.3",
+    "pre-commit~=4.7",
 ]
 
 [project.urls]
