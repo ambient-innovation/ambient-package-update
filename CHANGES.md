@@ -8,8 +8,9 @@
   supported version
 * Read the Docs builds use the newest supported Python version that Read the Docs offers, listed in
   `READTHEDOCS_PYTHON_VERSIONS`, which is Python 3.14 until Read the Docs adds 3.15
-* Rendering now aborts when a supported Python version is unsupported by every supported Django version, since the
-  rendered matrix would never test it
+* **Breaking:** Rendering now aborts when a supported Python version is unsupported by every supported Django version,
+  since the rendered matrix would never test it. Packages that use `SUPPORTED_PYTHON_VERSIONS` with only Django 5.2
+  and/or 6.0 have to add Django 6.1 to `supported_django_versions` or set `supported_python_versions` without 3.15
 * Ran this tool's own CI and release workflows on Python 3.15 and added the Python 3.15 classifier
 
 **26.10.3 (2026-10-21)**

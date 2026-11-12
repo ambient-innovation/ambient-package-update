@@ -67,12 +67,13 @@ def get_unsupported_version_combinations(*, python_versions: list[str], django_v
             f"rendered CI matrix covers the supported combinations and excludes the unsupported ones."
         )
 
-    untested_python_versions = [
-        python_version
-        for python_version in python_versions
-        if django_versions
-        and all(python_version not in DJANGO_PYTHON_COMPATIBILITY[django_version] for django_version in django_versions)
-    ]
+    untested_python_versions = []
+    if django_versions:
+        untested_python_versions = [
+            python_version
+            for python_version in python_versions
+            if all(python_version not in DJANGO_PYTHON_COMPATIBILITY[version] for version in django_versions)
+        ]
     if untested_python_versions:
         raise RuntimeError(
             f"Python {', '.join(untested_python_versions)} is not supported by any of the Django versions "
