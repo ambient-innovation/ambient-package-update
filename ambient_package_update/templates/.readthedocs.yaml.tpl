@@ -9,7 +9,7 @@ version: 2
 build:
   os: ubuntu-24.04
   tools:
-    python: "{{ supported_python_versions|last }}"
+    python: "{{ readthedocs_python_version }}"
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:

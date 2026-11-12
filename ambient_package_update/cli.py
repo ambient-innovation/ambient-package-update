@@ -10,7 +10,11 @@ from pathlib import Path
 import typer
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from ambient_package_update.metadata.constants import DJANGO_PYTHON_COMPATIBILITY, LICENSE_GPL
+from ambient_package_update.metadata.constants import (
+    DJANGO_PYTHON_COMPATIBILITY,
+    LICENSE_GPL,
+    READTHEDOCS_PYTHON_VERSIONS,
+)
 from ambient_package_update.metadata.package import PackageMetadata
 
 BASE_PATH = Path(__file__).parent
@@ -44,6 +48,9 @@ def get_unsupported_version_combinations(*, python_versions: list[str], django_v
     silently: an unmapped Django version yields no exclusions and renders a matrix whose
     dependencies cannot resolve, while an unmapped Python version is excluded everywhere and
     renders a matrix that quietly tests nothing.
+
+    For the same reason, a Python version that none of the given Django versions supports
+    aborts rendering: the package would advertise it while the matrix never runs it.
     """
     unmapped_django_versions = [version for version in django_versions if version not in DJANGO_PYTHON_COMPATIBILITY]
     known_python_versions = {
@@ -60,12 +67,41 @@ def get_unsupported_version_combinations(*, python_versions: list[str], django_v
             f"rendered CI matrix covers the supported combinations and excludes the unsupported ones."
         )
 
+    untested_python_versions = [
+        python_version
+        for python_version in python_versions
+        if django_versions
+        and all(python_version not in DJANGO_PYTHON_COMPATIBILITY[django_version] for django_version in django_versions)
+    ]
+    if untested_python_versions:
+        raise RuntimeError(
+            f"Python {', '.join(untested_python_versions)} is not supported by any of the Django versions "
+            f"{', '.join(django_versions)}, so the rendered CI matrix would never test it. Remove it from "
+            f"supported_python_versions or add a Django version that supports it to supported_django_versions."
+        )
+
     return [
         (python_version, django_version)
         for django_version in django_versions
         for python_version in python_versions
         if python_version not in DJANGO_PYTHON_COMPATIBILITY[django_version]
     ]
+
+
+def get_readthedocs_python_version(*, python_versions: list[str]) -> str:
+    """
+    Return the newest of python_versions that Read the Docs offers as build.tools.python.
+
+    Read the Docs adds new interpreters some time after their release, so the newest supported
+    Python version is not necessarily available there yet.
+    """
+    available_versions = [version for version in python_versions if version in READTHEDOCS_PYTHON_VERSIONS]
+    if not available_versions:
+        raise RuntimeError(
+            f"None of the Python versions {', '.join(python_versions)} is in READTHEDOCS_PYTHON_VERSIONS. Add the "
+            f"versions Read the Docs offers as build.tools.python there."
+        )
+    return available_versions[-1]
 
 
 def create_rendered_file(*, template: Path | str, relative_target_path: Path | str) -> None:
@@ -86,6 +122,9 @@ def create_rendered_file(*, template: Path | str, relative_target_path: Path | s
     metadata_dict["unsupported_version_combinations"] = get_unsupported_version_combinations(
         python_versions=metadata_dict["supported_python_versions"],
         django_versions=metadata_dict["supported_django_versions"],
+    )
+    metadata_dict["readthedocs_python_version"] = get_readthedocs_python_version(
+        python_versions=metadata_dict["supported_python_versions"],
     )
 
     env = Environment(

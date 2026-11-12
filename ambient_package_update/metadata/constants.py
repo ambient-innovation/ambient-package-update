@@ -44,6 +44,10 @@ SUPPORTED_PYTHON_VERSIONS = [
     "3.15",
 ]
 
+# Python versions Read the Docs offers as build.tools.python, as documented in its config file reference:
+# https://docs.readthedocs.com/platform/stable/config-file/v2.html#build-tools-python
+READTHEDOCS_PYTHON_VERSIONS = ["3.10", "3.11", "3.12", "3.13", "3.14"]
+
 LICENSE_MIT = "MIT"
 LICENSE_GPL = "GPL"
 
