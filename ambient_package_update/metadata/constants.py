@@ -32,8 +32,8 @@ DJANGO_PYTHON_COMPATIBILITY = {
     "5.1": ["3.10", "3.11", "3.12", "3.13"],
     "5.2": ["3.10", "3.11", "3.12", "3.13", "3.14"],
     "6.0": ["3.12", "3.13", "3.14"],
-    "6.1": ["3.12", "3.13", "3.14"],
-    "6.2": ["3.12", "3.13", "3.14"],
+    "6.1": ["3.12", "3.13", "3.14", "3.15"],
+    "6.2": ["3.12", "3.13", "3.14", "3.15"],
 }
 
 SUPPORTED_PYTHON_VERSIONS = [
@@ -41,7 +41,12 @@ SUPPORTED_PYTHON_VERSIONS = [
     "3.12",
     "3.13",
     "3.14",
+    "3.15",
 ]
+
+# Python versions Read the Docs offers as build.tools.python, as documented in its config file reference:
+# https://docs.readthedocs.com/platform/stable/config-file/v2.html#build-tools-python
+READTHEDOCS_PYTHON_VERSIONS = ["3.10", "3.11", "3.12", "3.13", "3.14"]
 
 LICENSE_MIT = "MIT"
 LICENSE_GPL = "GPL"

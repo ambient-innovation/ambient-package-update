@@ -1,5 +1,18 @@
 # Changelog
 
+**26.11.1 (2026-11-12)**
+* Added Python 3.15 to the supported Python versions. With the default Django versions, rendered packages test it
+  against Django 6.1, which supports it as of 6.1.3, and exclude it for Django 5.2 and 6.0. Django 6.2 is mapped as
+  supporting it as well
+* Rendered linting, migration validation, coverage and release jobs now run on Python 3.15, since they use the newest
+  supported version
+* Read the Docs builds use the newest supported Python version that Read the Docs offers, listed in
+  `READTHEDOCS_PYTHON_VERSIONS`, which is Python 3.14 until Read the Docs adds 3.15
+* **Breaking:** Rendering now aborts when a supported Python version is unsupported by every supported Django version,
+  since the rendered matrix would never test it. Packages that use `SUPPORTED_PYTHON_VERSIONS` with only Django 5.2
+  and/or 6.0 have to add Django 6.1 to `supported_django_versions` or set `supported_python_versions` without 3.15
+* Ran this tool's own CI and release workflows on Python 3.15 and added the Python 3.15 classifier
+
 **26.10.3 (2026-10-21)**
 * Stopped committing `uv.lock` in rendered packages: it is now gitignored, and the rendered CI, install scripts and
   `CONTRIBUTING.md` run `uv sync` without `--frozen`. Packages are libraries, so the lockfile never reaches their users
