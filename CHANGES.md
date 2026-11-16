@@ -1,5 +1,9 @@
 # Changelog
 
+**26.11.2 (2026-11-16)**
+* The rendered documentation badge is served by shields.io. Read the Docs answers its own badge URL with a redirect,
+  which GitHub's image proxy does not follow, so the badge showed as broken in the rendered README
+
 **26.11.1 (2026-11-12)**
 * Added Python 3.15 to the supported Python versions. With the default Django versions, rendered packages test it
   against Django 6.1, which supports it as of 6.1.3, and exclude it for Django 5.2 and 6.0. Django 6.2 is mapped as
