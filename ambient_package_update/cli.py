@@ -23,6 +23,20 @@ TEMPLATE_PATH = BASE_PATH / "templates"
 app = typer.Typer()
 
 
+@app.callback()
+def discontinued_notice() -> None:
+    """
+    ambient-package-update is discontinued and continues as package-foundry.
+    """
+    typer.secho(
+        "ambient-package-update is discontinued and receives no further releases. It continues as package-foundry: "
+        "https://github.com/beyonder-deutschland/package-foundry. To migrate, replace ambient-package-update with "
+        'package-foundry in your development dependencies, then run "package-foundry migrate".',
+        fg=typer.colors.YELLOW,
+        err=True,
+    )
+
+
 @app.command()
 def get_metadata() -> PackageMetadata:
     """

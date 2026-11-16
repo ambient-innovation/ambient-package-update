@@ -9,7 +9,7 @@ authors = [
 ]
 readme = "README.md"
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 7 - Inactive",
     "Environment :: Console",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -23,7 +23,7 @@ classifiers = [
     "Topic :: Utilities",
 ]
 dynamic = ["version"]
-description = "Ambient package update tool for clean and swift maintenance"
+description = "Discontinued: continues as package-foundry (https://pypi.org/project/package-foundry/)"
 license = {"file" = "LICENSE.md"}
 requires-python = ">=3.13"
 dependencies = [

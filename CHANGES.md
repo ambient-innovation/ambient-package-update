@@ -1,5 +1,11 @@
 # Changelog
 
+**26.11.3 (2026-11-16)**
+* **Discontinued:** This project continues as [package-foundry](https://github.com/beyonder-deutschland/package-foundry)
+  ([PyPI](https://pypi.org/project/package-foundry/)). This is the last release of `ambient-package-update`; the
+  repository and the PyPI project are archived
+* Every command prints a notice pointing to `package-foundry` and its `migrate` command
+
 **26.11.2 (2026-11-16)**
 * The rendered documentation badge is served by shields.io. Read the Docs answers its own badge URL with a redirect,
   which GitHub's image proxy does not follow, so the badge showed as broken in the rendered README
