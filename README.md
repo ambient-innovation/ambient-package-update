@@ -5,6 +5,14 @@
 
 # Ambient Package Update
 
+> [!WARNING]
+> **This project is discontinued and no longer maintained.** It continues as
+> [package-foundry](https://github.com/beyonder-deutschland/package-foundry)
+> ([PyPI](https://pypi.org/project/package-foundry/)). `ambient-package-update` receives no further releases.
+>
+> To migrate a package, replace `ambient-package-update` with `package-foundry` in your development dependencies,
+> then run `package-foundry migrate` and `package-foundry render-templates` in the package's main directory.
+
 This repository will help keep all Python packages following a certain basic structure tidy and up-to-date. It's being
 maintained by [Beyonder Deutschland](https://beyonder.de).
 
